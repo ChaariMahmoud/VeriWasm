@@ -1,0 +1,480 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/hamoud/Desktop/verisol/Sources/VeriSol/VeriSol.csproj": {}
+  },
+  "projects": {
+    "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj",
+        "projectName": "BoogieAST",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/BoogieAST/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectName": "ExternalToolsManager",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/ExternalToolsManager/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/hamoud/Desktop/verisol/Sources/SolToBoogie/SolToBoogie.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/SolToBoogie/SolToBoogie.csproj",
+        "projectName": "SolToBoogie",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolToBoogie/SolToBoogie.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/SolToBoogie/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {
+              "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAnalysis/SolidityAnalysis.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj",
+        "projectName": "SolidityAST",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/SolidityAST/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/hamoud/Desktop/verisol/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "projectName": "SolidityAnalysis",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/SolidityAnalysis/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {
+              "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/hamoud/Desktop/verisol/Sources/VeriSol/VeriSol.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/VeriSol/VeriSol.csproj",
+        "projectName": "VeriSol",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/VeriSol/VeriSol.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/VeriSol/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {
+              "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/SolToBoogie/SolToBoogie.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolToBoogie/SolToBoogie.csproj"
+              },
+              "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/hamoud/Desktop/verisol/Sources/SolidityAST/SolidityAST.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

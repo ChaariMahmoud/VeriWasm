@@ -1,0 +1,10 @@
+BoogieOutputs/simple.bpl(4,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(5,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(6,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(7,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(7,11): Error: use of undeclared function: pop
+BoogieOutputs/simple.bpl(7,21): Error: use of undeclared function: pop
+BoogieOutputs/simple.bpl(8,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(8,11): Error: use of undeclared function: pop
+BoogieOutputs/simple.bpl(8,21): Error: use of undeclared function: pop
+9 name resolution errors detected in BoogieOutputs/simple.bpl

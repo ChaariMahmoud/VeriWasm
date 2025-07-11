@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {}
+  },
+  "projects": {
+    "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectName": "ExternalToolsManager",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/ExternalToolsManager/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

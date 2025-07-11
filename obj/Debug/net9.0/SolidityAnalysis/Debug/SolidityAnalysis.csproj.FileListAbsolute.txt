@@ -1,0 +1,39 @@
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAnalysis.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAnalysis.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.sourcelink.json
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/Solidity.8994C1DA.Up2Date
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAnalysis.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAnalysis.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/Solidity.8994C1DA.Up2Date
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll

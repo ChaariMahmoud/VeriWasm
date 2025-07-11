@@ -1,0 +1,49 @@
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.sourcelink.json
+/home/hamoud/Desktop/verisol/bin/Debug/toolsourcesettings.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol/bin/Debug/LICENSE.txt
+/home/hamoud/Desktop/verisol/bin/Debug/VeriSol
+/home/hamoud/Desktop/verisol/bin/Debug/VeriSol.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/VeriSol.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/VeriSol.dll
+/home/hamoud/Desktop/verisol/bin/Debug/VeriSol.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.Up2Date
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/refint/VeriSol.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/VeriSol.genruntimeconfig.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/VeriSol/Debug/ref/VeriSol.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/refint/VeriSol.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.pdb
+/home/hamoud/Desktop/verisol 2/bin/Debug/toolsourcesettings.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/LICENSE.txt
+/home/hamoud/Desktop/verisol 2/bin/Debug/VeriSol
+/home/hamoud/Desktop/verisol 2/bin/Debug/VeriSol.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/VeriSol.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/VeriSol.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/VeriSol.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.Up2Date
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.genruntimeconfig.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/ref/VeriSol.dll

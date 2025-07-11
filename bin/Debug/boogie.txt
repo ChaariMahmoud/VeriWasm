@@ -1,0 +1,12 @@
+__SolToBoogieTest_out.bpl(25,14): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Alloc
+__SolToBoogieTest_out.bpl(34,0): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Alloc
+__SolToBoogieTest_out.bpl(62,14): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Balance
+__SolToBoogieTest_out.bpl(63,23): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: x_SimpleContract
+__SolToBoogieTest_out.bpl(93,23): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: x_SimpleContract
+__SolToBoogieTest_out.bpl(132,14): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Balance
+__SolToBoogieTest_out.bpl(133,12): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Balance
+__SolToBoogieTest_out.bpl(165,0): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: now
+__SolToBoogieTest_out.bpl(169,21): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Alloc
+__SolToBoogieTest_out.bpl(196,0): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: now
+__SolToBoogieTest_out.bpl(200,21): Error: command assigns to a global variable that is not in the enclosing procedure's modifies clause: Alloc
+11 type checking errors detected in __SolToBoogieTest_out.bpl

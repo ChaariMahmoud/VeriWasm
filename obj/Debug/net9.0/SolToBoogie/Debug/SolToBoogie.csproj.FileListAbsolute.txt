@@ -1,0 +1,39 @@
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol/bin/Debug/SolToBoogie.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/SolToBoogie.dll
+/home/hamoud/Desktop/verisol/bin/Debug/SolToBoogie.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.sourcelink.json
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoo.E703E2C4.Up2Date
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/refint/SolToBoogie.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogie/Debug/ref/SolToBoogie.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolidityAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolToBoogie.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolToBoogie.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/SolToBoogie.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoo.E703E2C4.Up2Date
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/refint/SolToBoogie.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/ref/SolToBoogie.dll

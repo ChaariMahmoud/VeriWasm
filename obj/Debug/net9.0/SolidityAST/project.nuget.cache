@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ox9sk2c8jiI=",
+  "success": true,
+  "projectFilePath": "/home/hamoud/Desktop/verisol 2/Sources/SolidityAST/SolidityAST.csproj",
+  "expectedPackageFiles": [
+    "/home/hamoud/.nuget/packages/jsonsubtypes/1.7.0/jsonsubtypes.1.7.0.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.configuration/3.1.3/microsoft.extensions.configuration.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.configuration.abstractions/3.1.3/microsoft.extensions.configuration.abstractions.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.configuration.binder/3.1.3/microsoft.extensions.configuration.binder.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.dependencyinjection/3.1.3/microsoft.extensions.dependencyinjection.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/3.1.3/microsoft.extensions.dependencyinjection.abstractions.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.logging/3.1.3/microsoft.extensions.logging.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.3/microsoft.extensions.logging.abstractions.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.logging.configuration/3.1.3/microsoft.extensions.logging.configuration.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.logging.console/3.1.3/microsoft.extensions.logging.console.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.options/3.1.3/microsoft.extensions.options.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.options.configurationextensions/3.1.3/microsoft.extensions.options.configurationextensions.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/microsoft.extensions.primitives/3.1.3/microsoft.extensions.primitives.3.1.3.nupkg.sha512",
+    "/home/hamoud/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json' 12.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
+}

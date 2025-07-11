@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {}
+  },
+  "projects": {
+    "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj",
+        "projectName": "BoogieAST",
+        "projectPath": "/home/hamoud/Desktop/verisol/Sources/BoogieAST/BoogieAST.csproj",
+        "packagesPath": "/home/hamoud/.nuget/packages/",
+        "outputPath": "/home/hamoud/Desktop/verisol/obj/Debug/netcoreapp2.2/BoogieAST/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

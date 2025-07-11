@@ -1,0 +1,29 @@
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.dll
+/home/hamoud/Desktop/verisol/bin/Debug/BoogieAST.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.sourcelink.json
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/refint/BoogieAST.dll
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.pdb
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.genruntimeconfig.cache
+/home/hamoud/Desktop/verisol/obj/Debug/net9.0/BoogieAST/Debug/ref/BoogieAST.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.dll
+/home/hamoud/Desktop/verisol 2/bin/Debug/BoogieAST.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/refint/BoogieAST.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.pdb
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.genruntimeconfig.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/ref/BoogieAST.dll

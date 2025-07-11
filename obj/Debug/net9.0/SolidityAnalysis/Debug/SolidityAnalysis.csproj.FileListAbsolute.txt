@@ -37,3 +37,4 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.sourcelink.json

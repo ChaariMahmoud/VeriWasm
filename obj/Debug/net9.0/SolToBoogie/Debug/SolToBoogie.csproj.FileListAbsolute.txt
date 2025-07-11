@@ -37,3 +37,4 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/refint/SolToBoogie.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/ref/SolToBoogie.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.sourcelink.json

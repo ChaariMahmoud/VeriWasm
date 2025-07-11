@@ -37,3 +37,4 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.genruntimeconfig.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/ref/SolidityCFG.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.sourcelink.json

@@ -88,7 +88,6 @@ else
     this.TryRefutation = tryRefutation;
     this.printTransactionSequence = false;
     this.translatorFlags = new TranslatorFlags();
-
     var baseName = Path.GetFileNameWithoutExtension(contractName);
     this.outFileName = $"BoogieOutputs/{baseName}.bpl";
 

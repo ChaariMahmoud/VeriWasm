@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SolidityAST")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha+7ae954e4813d06fa90b3510acda2d2d8488774ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("SolidityAST")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SolidityAST")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.1.0")]

@@ -1,5 +1,3 @@
-// --- Pile pour la traduction WAT vers Boogie ---
-
 var $stack: [int]real;
 var $sp: int;
 
@@ -10,9 +8,23 @@ procedure push(val: real)
   $sp := $sp + 1;
 }
 
-procedure pop() returns (val: real)
-  modifies $sp;
+procedure popToTmp1()
+  modifies $sp, $stack, $tmp1;
 {
   $sp := $sp - 1;
-  val := $stack[$sp];
+  $tmp1 := $stack[$sp];
+}
+
+procedure popToTmp2()
+  modifies $sp, $stack, $tmp1;
+{
+  $sp := $sp - 1;
+  $tmp2 := $stack[$sp];
+}
+
+procedure popToTmp3()
+  modifies $sp, $stack, $tmp1;
+{
+  $sp := $sp - 1;
+  $tmp3 := $stack[$sp];
 }

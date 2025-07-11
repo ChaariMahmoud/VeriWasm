@@ -1,10 +1,16 @@
-BoogieOutputs/simple.bpl(4,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(5,0): Error: call to undeclared procedure: push
 BoogieOutputs/simple.bpl(6,0): Error: call to undeclared procedure: push
 BoogieOutputs/simple.bpl(7,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(7,11): Error: use of undeclared function: pop
-BoogieOutputs/simple.bpl(7,21): Error: use of undeclared function: pop
 BoogieOutputs/simple.bpl(8,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(8,11): Error: use of undeclared function: pop
-BoogieOutputs/simple.bpl(8,21): Error: use of undeclared function: pop
-9 name resolution errors detected in BoogieOutputs/simple.bpl
+BoogieOutputs/simple.bpl(9,0): Error: call to undeclared procedure: popToTmp1
+BoogieOutputs/simple.bpl(10,0): Error: call to undeclared procedure: popToTmp2
+BoogieOutputs/simple.bpl(11,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(11,11): Error: undeclared identifier: $tmp2
+BoogieOutputs/simple.bpl(11,21): Error: undeclared identifier: $tmp1
+BoogieOutputs/simple.bpl(12,0): Error: call to undeclared procedure: popToTmp1
+BoogieOutputs/simple.bpl(13,0): Error: call to undeclared procedure: popToTmp2
+BoogieOutputs/simple.bpl(14,0): Error: call to undeclared procedure: push
+BoogieOutputs/simple.bpl(14,10): Error: use of undeclared function: bool_to_real
+BoogieOutputs/simple.bpl(14,24): Error: undeclared identifier: $tmp2
+BoogieOutputs/simple.bpl(14,35): Error: undeclared identifier: $tmp1
+BoogieOutputs/simple.bpl(15,0): Error: call to undeclared procedure: pop
+15 name resolution errors detected in BoogieOutputs/simple.bpl

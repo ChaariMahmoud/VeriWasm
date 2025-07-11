@@ -35,3 +35,4 @@
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.pdb
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBo.D0AA1B52.Up2Date
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.sourcelink.json

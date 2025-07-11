@@ -63,16 +63,33 @@ namespace BoogieAST
         public string Name { get; set; }
     }
 
+public class BoogieFunctionCall : BoogieExpr
+{
+    public string FunctionName { get; }
+    public List<BoogieExpr> Arguments { get; }
+
+    public BoogieFunctionCall(string functionName, List<BoogieExpr> args)
+    {
+        FunctionName = functionName;
+        Arguments = args;
+    }
+
+    public override string ToString()
+    {
+        return $"{FunctionName}({string.Join(", ", Arguments)})";
+    }
+}
+
     public class BoogieTypeCtorDecl : BoogieNamedDecl
     {
         private BoogieType EquivType;
-        
+
         public BoogieTypeCtorDecl(string name)
         {
             this.Name = name;
             this.EquivType = null;
         }
-        
+
         public BoogieTypeCtorDecl(string name, BoogieType equivType)
         {
             this.Name = name;
@@ -90,7 +107,7 @@ namespace BoogieAST
             {
                 builder.Append("type ").Append(Name).Append(" = ").Append(EquivType).AppendLine(";");
             }
-            
+
             return builder.ToString();
         }
     }
@@ -1269,9 +1286,9 @@ namespace BoogieAST
                 case Opcode.MUL:
                     return "*";
                 case Opcode.DIV:
-                    return USE_ARITH_OPS ? "/" : "div";
+                    return   "/";
                 case Opcode.MOD:
-                    return USE_ARITH_OPS ? "%" : "mod";
+                    return  "%";
                 case Opcode.EQ:
                     return "==";
                 case Opcode.NEQ:

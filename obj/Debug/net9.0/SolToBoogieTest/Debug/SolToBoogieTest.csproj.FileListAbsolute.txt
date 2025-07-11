@@ -45,3 +45,4 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.genruntimeconfig.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/ref/SolToBoogieTest.dll
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.sourcelink.json

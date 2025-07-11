@@ -8,7 +8,7 @@
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
-    <repository type="git" />
+    <repository type="git" commit="7ae954e4813d06fa90b3510acda2d2d8488774ae" />
   </metadata>
   <files>
     <file src="/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/DotnetToolSettings.xml" target="tools/net9.0/any/DotnetToolSettings.xml" />

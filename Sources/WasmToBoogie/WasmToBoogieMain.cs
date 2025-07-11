@@ -4,7 +4,6 @@ using System.IO;
 using WasmToBoogie.Parser;
 using WasmToBoogie.Parser.Ast;
 using WasmToBoogie.Conversion;
-
 namespace WasmToBoogie
 {
     public class WasmToBoogieMain
@@ -26,7 +25,7 @@ namespace WasmToBoogie
             var parser = new WasmParser(wasmPath);
             WasmModule wasmAst = parser.Parse();
             Console.WriteLine($"✅ AST WAT généré avec {wasmAst.Functions.Count} fonctions.");
-
+            
             // 2. Convertir l'AST WAT vers un programme Boogie
             var converter = new WasmAstToBoogie(contractName);
             BoogieProgram boogieProgram = converter.Convert(wasmAst);

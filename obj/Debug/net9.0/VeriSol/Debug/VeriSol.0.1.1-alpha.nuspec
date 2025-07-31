@@ -10,7 +10,7 @@
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
-    <repository type="git" url="https://github.com/microsoft/verisol" commit="cc8976ca6603e0248781f13a532a2f33bfd205ac" />
+    <repository type="git" url="https://github.com/microsoft/verisol" commit="b01f1224520d94ed1539a867160ebf7fdea83b37" />
   </metadata>
   <files>
     <file src="/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/DotnetToolSettings.xml" target="tools/net9.0/any/DotnetToolSettings.xml" />

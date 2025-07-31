@@ -23,7 +23,27 @@ namespace BoogieAST
             return root;
         }
     }
+        public class Pdouble
+    {
+        public float Value { get; set; }
 
+        public Pdouble(float value)
+        {
+            Value = value;
+        }
+public override string ToString()
+{
+    if (Value % 1 == 0)
+    {
+        return ((int)Value).ToString() + ".0";
+    }
+    else
+    {
+        return Value.ToString();
+    }
+}
+
+    }
     public abstract class BoogieASTNode
     {
     }
@@ -932,27 +952,29 @@ public class BoogieFunctionCall : BoogieExpr
         }
     }
 
-    public class BoogieSkipCmd : BoogieCmd
-    {
-        public string Comment { get; set; }
+public class BoogieSkipCmd : BoogieCmd
+{
+    public string Label { get; set; }
 
-        public BoogieSkipCmd(string comment = null)
-        {
-            this.Comment = comment;
-        }
+    public BoogieSkipCmd(string label = null)
+    {
+        this.Label = label;
+    }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("// skip");
-            if (Comment != null)
+
+            if (!string.IsNullOrEmpty(Label))
             {
-                builder.Append(": ").Append(Comment);
+                builder.Append(Label);
+                if (!Label.EndsWith(":"))
+                    builder.Append(":");
+                builder.AppendLine();
             }
-            builder.AppendLine();
-            return builder.ToString();
-        }
+        return builder.ToString();
     }
+}
 
     public class BoogieCommentCmd : BoogieCmd
     {
@@ -1102,7 +1124,10 @@ public class BoogieFunctionCall : BoogieExpr
         {
             this.Val = num;
         }
-
+        public BoogieLiteralExpr(Pdouble num)
+        {
+            this.Val = num;
+        }
         public override string ToString()
         {
             if (Val is bool)

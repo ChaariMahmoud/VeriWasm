@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ExternalToolsManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha+cc8976ca6603e0248781f13a532a2f33bfd205ac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha+b01f1224520d94ed1539a867160ebf7fdea83b37")]
 [assembly: System.Reflection.AssemblyProductAttribute("ExternalToolsManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ExternalToolsManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.1.0")]

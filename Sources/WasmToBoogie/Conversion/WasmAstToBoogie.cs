@@ -80,8 +80,8 @@ namespace WasmToBoogie.Conversion
                     new BoogieFunctionCall("bool_to_real", new List<BoogieExpr> { new BoogieIdentifierExpr("b") }),
                     new BoogieITE(
                         new BoogieIdentifierExpr("b"),
-                        new BoogieLiteralExpr(1),
-                        new BoogieLiteralExpr(0)
+                        new BoogieLiteralExpr(new Pdouble(1)),
+                        new BoogieLiteralExpr(new Pdouble(0))
                     )
                 )
             );
@@ -97,7 +97,7 @@ namespace WasmToBoogie.Conversion
                     new BoogieBinaryOperation(
                         BoogieBinaryOperation.Opcode.NEQ,
                         new BoogieIdentifierExpr("r"),
-                        new BoogieLiteralExpr(0)
+                        new BoogieLiteralExpr(new Pdouble(0))
                     )
                 )
             );
@@ -284,14 +284,29 @@ namespace WasmToBoogie.Conversion
             switch (node)
             {
                 case ConstNode cn:
-                    if (int.TryParse(cn.Value, out int val))
+                    // if (int.TryParse(cn.Value, out int val))
+                    // {
+                    //     var push = new BoogieCallCmd(
+                    //         "push",
+                    //         new List<BoogieExpr> { new BoogieLiteralExpr(val) },
+                    //         new List<BoogieIdentifierExpr>()
+                    //     );
+                    //     body.AddStatement(push);
+                    // }
+                    // else 
+                    if (float.TryParse(cn.Value, out float longVal))
                     {
+                        Pdouble fVal =new Pdouble(longVal); 
                         var push = new BoogieCallCmd(
                             "push",
-                            new List<BoogieExpr> { new BoogieLiteralExpr(val) },
+                            new List<BoogieExpr> { new BoogieLiteralExpr(fVal) },
                             new List<BoogieIdentifierExpr>()
                         );
                         body.AddStatement(push);
+                    }
+                    else
+                    {
+                        body.AddStatement(new BoogieCommentCmd($"// unsupported const value: {cn.Value}"));
                     }
                     break;
 
@@ -317,7 +332,7 @@ namespace WasmToBoogie.Conversion
                                 new BoogieBinaryOperation(
                                     BoogieBinaryOperation.Opcode.EQ,
                                     new BoogieIdentifierExpr("$tmp1"),
-                                    new BoogieLiteralExpr(0)
+                                    new BoogieLiteralExpr(new Pdouble(0))
                                 )
                             }
                         );

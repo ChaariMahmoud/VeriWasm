@@ -1,19 +1,2 @@
-BoogieOutputs/simple.bpl(10,44): Error: invalid argument types (real and int) to binary operator ==
-BoogieOutputs/simple.bpl(12,52): Error: invalid argument types (real and int) to binary operator !=
-BoogieOutputs/simple.bpl(74,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(75,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(79,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(84,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(86,31): Error: invalid argument types (real and int) to binary operator ==
-BoogieOutputs/simple.bpl(88,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(91,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(92,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(98,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(101,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(104,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(107,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(109,31): Error: invalid argument types (real and int) to binary operator ==
-BoogieOutputs/simple.bpl(112,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(115,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-BoogieOutputs/simple.bpl(118,10): Error: invalid type for argument 0 in call to push: int (expected: real)
-18 type checking errors detected in BoogieOutputs/simple.bpl
+
+Boogie program verifier finished with 0 verified, 0 errors

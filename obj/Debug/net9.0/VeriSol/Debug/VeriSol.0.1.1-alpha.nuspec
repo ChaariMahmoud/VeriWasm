@@ -10,7 +10,7 @@
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
-    <repository type="git" url="https://github.com/microsoft/verisol" commit="7ae954e4813d06fa90b3510acda2d2d8488774ae" />
+    <repository type="git" url="https://github.com/microsoft/verisol" commit="cc8976ca6603e0248781f13a532a2f33bfd205ac" />
   </metadata>
   <files>
     <file src="/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/VeriSol/Debug/DotnetToolSettings.xml" target="tools/net9.0/any/DotnetToolSettings.xml" />
@@ -55,8 +55,8 @@
     <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAST.pdb" target="tools/net9.0/any/SolidityAST.pdb" />
     <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/BoogieAST.pdb" target="tools/net9.0/any/BoogieAST.pdb" />
     <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolToBoogie.pdb" target="tools/net9.0/any/SolToBoogie.pdb" />
-    <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAnalysis.pdb" target="tools/net9.0/any/SolidityAnalysis.pdb" />
     <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/WasmToBoogie.pdb" target="tools/net9.0/any/WasmToBoogie.pdb" />
+    <file src="/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAnalysis.pdb" target="tools/net9.0/any/SolidityAnalysis.pdb" />
     <file src="/home/hamoud/Desktop/verisol 2/LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>

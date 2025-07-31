@@ -60,7 +60,7 @@
     )
   )
 );)
-(module
+(;;(module
   (func $test
     (drop
       (i32.eq
@@ -72,7 +72,121 @@
       )
     )
   )
+);)
+
+
+(;;(module
+  (func (export "test")
+    (block $exit
+      (loop $start
+        (i32.const 0)
+        (i32.eqz)
+        (br_if $exit)
+        (i32.const 42)
+        (drop)
+        (br $start)
+      )
+    )
+  )
+);)
+
+
+
+(;;(module
+  (func $test
+    (i32.const 1)
+    (if
+      (then
+        (i32.const 100)
+        (drop)
+      )
+      (else
+        (i32.const 200)
+        (drop)
+      )
+    ))
+  );)
+(;;(module
+  (func $test
+    (i32.const 1)
+    (if
+      (then
+        (i32.const 1)
+        (i32.const 2)
+        (i32.add)
+        (drop)
+      )
+      (else
+        (i32.const 3)
+        (i32.const 4)
+        (i32.sub)
+        (drop)
+      )
+    )
+  )
+);)
+
+(module
+  (func $test
+    ;; Partie 1 — Arithmétique + logique
+    (i32.const 5)
+    (i32.const 3)
+    (i32.add)       ;; stack: 8
+    (i32.const 8)
+    (i32.eq)        ;; stack: 1 (true)
+    (drop)
+
+    (i32.const 0)
+    (i32.eqz)       ;; stack: 1
+    (drop)
+
+    ;; Partie 2 — if imbriqués (sans block)
+    (i32.const 1)
+    (if
+      (then
+        (i32.const 2)
+        (i32.const 2)
+        (i32.eq)
+        (if
+          (then
+            (i32.const 42)
+            (drop)
+          )
+          (else
+            (i32.const 99)
+            (drop)
+          )
+        )
+        (i32.const 77)
+        (drop)
+      )
+      (else
+        (i32.const 0)
+        (i32.eqz)
+        (if
+          (then
+            (i32.const 100)
+            (drop)
+          )
+          (else
+            (i32.const 200)
+            (drop)
+          )
+        )
+        (i32.const 888)
+        (drop)
+      )
+    )
+  )
 )
+
+
+
+
+
+
+
+
 
 
 

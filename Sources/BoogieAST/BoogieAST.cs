@@ -62,23 +62,41 @@ namespace BoogieAST
     {
         public string Name { get; set; }
     }
+    
+
+     public class BoogieLabelCmd : BoogieStmt
+    {
+        public string Label { get; }
+
+        public BoogieLabelCmd(string label)
+        {
+            Label = label;
+        }
+
+        public override string ToString() => $"{Label}:";
+    }
+
+    public abstract class BoogieStmt
+    {
+        public abstract override string ToString();
+    }
 
 public class BoogieFunctionCall : BoogieExpr
-{
-    public string FunctionName { get; }
-    public List<BoogieExpr> Arguments { get; }
-
-    public BoogieFunctionCall(string functionName, List<BoogieExpr> args)
     {
-        FunctionName = functionName;
-        Arguments = args;
-    }
+        public string FunctionName { get; }
+        public List<BoogieExpr> Arguments { get; }
 
-    public override string ToString()
-    {
-        return $"{FunctionName}({string.Join(", ", Arguments)})";
+        public BoogieFunctionCall(string functionName, List<BoogieExpr> args)
+        {
+            FunctionName = functionName;
+            Arguments = args;
+        }
+
+        public override string ToString()
+        {
+            return $"{FunctionName}({string.Join(", ", Arguments)})";
+        }
     }
-}
 
     public class BoogieTypeCtorDecl : BoogieNamedDecl
     {

@@ -1,16 +1,19 @@
-BoogieOutputs/simple.bpl(6,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(7,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(8,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(9,0): Error: call to undeclared procedure: popToTmp1
-BoogieOutputs/simple.bpl(10,0): Error: call to undeclared procedure: popToTmp2
-BoogieOutputs/simple.bpl(11,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(11,11): Error: undeclared identifier: $tmp2
-BoogieOutputs/simple.bpl(11,21): Error: undeclared identifier: $tmp1
-BoogieOutputs/simple.bpl(12,0): Error: call to undeclared procedure: popToTmp1
-BoogieOutputs/simple.bpl(13,0): Error: call to undeclared procedure: popToTmp2
-BoogieOutputs/simple.bpl(14,0): Error: call to undeclared procedure: push
-BoogieOutputs/simple.bpl(14,10): Error: use of undeclared function: bool_to_real
-BoogieOutputs/simple.bpl(14,24): Error: undeclared identifier: $tmp2
-BoogieOutputs/simple.bpl(14,35): Error: undeclared identifier: $tmp1
-BoogieOutputs/simple.bpl(15,0): Error: call to undeclared procedure: pop
-15 name resolution errors detected in BoogieOutputs/simple.bpl
+BoogieOutputs/simple.bpl(10,44): Error: invalid argument types (real and int) to binary operator ==
+BoogieOutputs/simple.bpl(12,52): Error: invalid argument types (real and int) to binary operator !=
+BoogieOutputs/simple.bpl(74,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(75,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(79,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(84,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(86,31): Error: invalid argument types (real and int) to binary operator ==
+BoogieOutputs/simple.bpl(88,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(91,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(92,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(98,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(101,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(104,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(107,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(109,31): Error: invalid argument types (real and int) to binary operator ==
+BoogieOutputs/simple.bpl(112,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(115,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+BoogieOutputs/simple.bpl(118,10): Error: invalid type for argument 0 in call to push: int (expected: real)
+18 type checking errors detected in BoogieOutputs/simple.bpl

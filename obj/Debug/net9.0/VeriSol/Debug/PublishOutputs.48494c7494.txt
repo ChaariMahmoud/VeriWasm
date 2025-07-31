@@ -40,5 +40,5 @@
 /home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAST.pdb
 /home/hamoud/Desktop/verisol 2/bin/Debug/publish/BoogieAST.pdb
 /home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolToBoogie.pdb
-/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAnalysis.pdb
 /home/hamoud/Desktop/verisol 2/bin/Debug/publish/WasmToBoogie.pdb
+/home/hamoud/Desktop/verisol 2/bin/Debug/publish/SolidityAnalysis.pdb

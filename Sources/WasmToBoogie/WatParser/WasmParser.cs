@@ -16,43 +16,41 @@ namespace WasmToBoogie.Parser
             this.filePath = filePath;
         }
 
-public WasmModule Parse()
-{
-    if (!File.Exists(filePath))
-        throw new FileNotFoundException($"❌ Fichier WAT introuvable : {filePath}");
+        public WasmModule Parse()
+        {
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException($"\u274C Fichier WAT introuvable : {filePath}");
 
-    Console.WriteLine("📖 Lecture du fichier WAT : " + filePath);
-    string wasmPath = ConvertWatToWasm(filePath);
+            Console.WriteLine("\ud83d\udcd6 Lecture du fichier WAT : " + filePath);
+            string wasmPath = ConvertWatToWasm(filePath);
 
-    IntPtr modulePtr = LoadWasmTextFile(wasmPath);
-    if (modulePtr == IntPtr.Zero || !ValidateModule(modulePtr))
-        throw new Exception("❌ Erreur de lecture ou validation du module Binaryen");
+            IntPtr modulePtr = LoadWasmTextFile(wasmPath);
+            if (modulePtr == IntPtr.Zero || !ValidateModule(modulePtr))
+                throw new Exception("\u274C Erreur de lecture ou validation du module Binaryen");
 
-    PrintModuleAST(modulePtr);
+            PrintModuleAST(modulePtr);
 
-    string watBody = Marshal.PtrToStringAnsi(GetFunctionBodyText(modulePtr, 0)) ?? "";
-    Console.WriteLine("📤 Corps extrait de la fonction :\n" + watBody);
+            string watBody = Marshal.PtrToStringAnsi(GetFunctionBodyText(modulePtr, 0)) ?? "";
+            Console.WriteLine("\ud83d\udcc4 Corps extrait de la fonction :\n" + watBody);
 
-    var tokens = Tokenize(watBody);
-    Console.WriteLine("🔍 Tokens : " + string.Join(" ", tokens));
+            var tokens = Tokenize(watBody);
+            Console.WriteLine("\ud83d\udd0d Tokens : " + string.Join(" ", tokens));
 
-    int idx = 0;
-    var body = new List<WasmNode>();
+            int idx = 0;
+            var body = new List<WasmNode>();
 
-    while (idx < tokens.Count)
-    {
-        Console.WriteLine($"\n🔽 Appel ParseNode à l'index {idx}");
-        body.Add(ParseNode(tokens, ref idx));
-    }
+            while (idx < tokens.Count)
+            {
+                Console.WriteLine($"\n\ud83d\udd7d\ufe0f Appel ParseNode \u00e0 l'index {idx}");
+                body.Add(ParseNode(tokens, ref idx));
+            }
 
-    Console.WriteLine("✅ AST WAT généré avec succès.");
-    return new WasmModule
-    
-    {
-        Functions = { new WasmFunction { Body = body } }
-    };
-}
-
+            Console.WriteLine("\u2705 AST WAT g\u00e9n\u00e9r\u00e9 avec succ\u00e8s.");
+            return new WasmModule
+            {
+                Functions = { new WasmFunction { Body = body } }
+            };
+        }
 
         private List<string> Tokenize(string wat)
         {
@@ -66,31 +64,27 @@ public WasmModule Parse()
         {
             if (tokens[index] == "(")
             {
-                index++; // consume '('
+                index++;
                 string op = tokens[index++];
-                Console.WriteLine($"🔸 Début bloc : ({op}");
+                Console.WriteLine($"\ud83d\udd38 D\u00e9but bloc : ({op}");
 
                 if (op.EndsWith(".const"))
                 {
                     string value = tokens[index++];
                     ExpectToken(tokens, ref index, ")");
-                    Console.WriteLine($"  🔹 ConstNode({op}, {value})");
-                    return new ConstNode
-                    {
-                        Type = op.Split('.')[0],
-                        Value = value
-                    };
+                    Console.WriteLine($"  \ud83d\udd39 ConstNode({op}, {value})");
+                    return new ConstNode { Type = op.Split('.')[0], Value = value };
                 }
                 else if (IsUnaryOp(op))
                 {
-                    Console.WriteLine($"  🔹 UnaryOpNode : {op}");
+                    Console.WriteLine($"  \ud83d\udd39 UnaryOpNode : {op}");
                     var operand = ParseNode(tokens, ref index);
                     ExpectToken(tokens, ref index, ")");
                     return new UnaryOpNode { Op = op, Operand = operand };
                 }
                 else if (IsBinaryOp(op))
                 {
-                    Console.WriteLine($"  🔹 BinaryOpNode : {op}");
+                    Console.WriteLine($"  \ud83d\udd39 BinaryOpNode : {op}");
                     var left = ParseNode(tokens, ref index);
                     var right = ParseNode(tokens, ref index);
                     ExpectToken(tokens, ref index, ")");
@@ -98,7 +92,7 @@ public WasmModule Parse()
                 }
                 else if (op == "block")
                 {
-                    Console.WriteLine("  🔹 Bloc block");
+                    Console.WriteLine("  \ud83d\udd39 Bloc block");
                     string? label = tokens[index].StartsWith("$") ? tokens[index++] : null;
                     var body = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
@@ -108,7 +102,7 @@ public WasmModule Parse()
                 }
                 else if (op == "loop")
                 {
-                    Console.WriteLine("  🔹 Bloc loop");
+                    Console.WriteLine("  \ud83d\udd39 Bloc loop");
                     string? label = tokens[index].StartsWith("$") ? tokens[index++] : null;
                     var body = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
@@ -116,32 +110,51 @@ public WasmModule Parse()
                     ExpectToken(tokens, ref index, ")");
                     return new LoopNode { Label = label, Body = body };
                 }
-                else if (op == "if")
+else if (op == "if")
+{
+    Console.WriteLine("  🔹 Bloc if implicite");
+
+    var condition = ParseNode(tokens, ref index);
+
+    var thenBody = new List<WasmNode>();
+    thenBody.Add(ParseNode(tokens, ref index));
+
+    List<WasmNode>? elseBody = null;
+    if (index < tokens.Count && tokens[index] == "(")
+    {
+        elseBody = new List<WasmNode>();
+        elseBody.Add(ParseNode(tokens, ref index));
+    }
+
+    ExpectToken(tokens, ref index, ")");
+
+    return new IfNode
+    {
+        Condition = condition,
+        ThenBody = thenBody,
+        ElseBody = elseBody
+    };
+}
+
+
+                else if (op == "br")
                 {
-                    Console.WriteLine("  🔹 Bloc if");
-                    var condition = ParseNode(tokens, ref index);
-                    var thenBody = new List<WasmNode>();
-                    List<WasmNode>? elseBody = null;
-
-                    while (index < tokens.Count && tokens[index] != ")" && tokens[index] != "(")
-                        thenBody.Add(ParseNode(tokens, ref index));
-
-                    if (index < tokens.Count - 1 && tokens[index] == "(" && tokens[index + 1] == "else")
-                    {
-                        Console.WriteLine("  🔹 Bloc else");
-                        index += 2;
-                        elseBody = new List<WasmNode>();
-                        while (index < tokens.Count && tokens[index] != ")")
-                            elseBody.Add(ParseNode(tokens, ref index));
-                        ExpectToken(tokens, ref index, ")");
-                    }
-
+                    string label = tokens[index++];
                     ExpectToken(tokens, ref index, ")");
-                    return new IfNode { Condition = condition, ThenBody = thenBody, ElseBody = elseBody };
+                    Console.WriteLine($"  \ud83d\udd39 Br vers label {label}");
+                    return new BrNode { Label = label };
+                }
+                else if (op == "br_if")
+                {
+                    string label = tokens[index++];
+                    var condition = ParseNode(tokens, ref index);
+                    ExpectToken(tokens, ref index, ")");
+                    Console.WriteLine($"  \ud83d\udd39 Br_if vers label {label}");
+                    return new BrIfNode { Label = label, Condition = condition };
                 }
                 else if (op == "module" || op == "type" || op == "func")
                 {
-                    Console.WriteLine($"  ⚙️ Bloc de structure : {op}");
+                    Console.WriteLine($"  \u2699\ufe0f Bloc de structure : {op}");
                     var inner = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
                         inner.Add(ParseNode(tokens, ref index));
@@ -150,7 +163,7 @@ public WasmModule Parse()
                 }
                 else
                 {
-                    Console.WriteLine($"  📦 Instruction générique : {op}");
+                    Console.WriteLine($"  \ud83d\udce6 Instruction g\u00e9n\u00e9rique : {op}");
                     var children = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
                         children.Add(ParseNode(tokens, ref index));
@@ -160,17 +173,14 @@ public WasmModule Parse()
             }
             else if (tokens[index] == ")")
             {
-                throw new Exception("❌ Parenthèse fermante inattendue.");
+                throw new Exception("\u274C Parenth\u00e8se fermante inattendue.");
             }
             else
             {
-                Console.WriteLine($"📌 Instruction isolée : {tokens[index]}");
+                Console.WriteLine($"\ud83d\udccc Instruction isol\u00e9e : {tokens[index]}");
                 return new RawInstructionNode { Instruction = tokens[index++] };
             }
-    
-   
-}
-
+        }
 
         private bool IsUnaryOp(string op) =>
             op == "drop" || op.EndsWith(".eqz") || op.EndsWith(".wrap_i64");
@@ -183,7 +193,7 @@ public WasmModule Parse()
         private void ExpectToken(List<string> tokens, ref int index, string expected)
         {
             if (index >= tokens.Count || tokens[index] != expected)
-                throw new Exception($"❌ Parenthèse fermante '{expected}' attendue.");
+                throw new Exception($"\u274C Parenth\u00e8se fermante '{expected}' attendue.");
             index++;
         }
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A formal specification and verification tool for Solidity")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha+7ae954e4813d06fa90b3510acda2d2d8488774ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1-alpha+cc8976ca6603e0248781f13a532a2f33bfd205ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("VeriSol")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VeriSol")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.1.0")]

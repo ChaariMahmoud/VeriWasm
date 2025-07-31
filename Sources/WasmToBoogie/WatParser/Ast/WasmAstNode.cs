@@ -10,13 +10,13 @@ namespace WasmToBoogie.Parser.Ast
 
     public class UnaryOpNode : WasmNode
     {
-        public string Op { get; set; }     // e.g., drop
+        public string Op { get; set; }     // e.g., drop, i32.eqz
         public WasmNode Operand { get; set; }
     }
 
     public class BinaryOpNode : WasmNode
     {
-        public string Op { get; set; }      // e.g., i32.add
+        public string Op { get; set; }      // e.g., i32.add, i32.lt_s
         public WasmNode Left { get; set; }
         public WasmNode Right { get; set; }
     }
@@ -40,6 +40,17 @@ namespace WasmToBoogie.Parser.Ast
         public List<WasmNode> Body { get; set; } = new();
     }
 
+    public class BrNode : WasmNode
+    {
+        public string Label { get; set; }  // e.g., $label
+    }
+
+    public class BrIfNode : WasmNode
+    {
+        public string Label { get; set; }  // e.g., $label
+        public WasmNode Condition { get; set; }
+    }
+
     public class RawInstructionNode : WasmNode
     {
         public string Instruction { get; set; }
@@ -47,6 +58,7 @@ namespace WasmToBoogie.Parser.Ast
 
     public class WasmFunction
     {
+        public string? Name { get; set; }
         public List<WasmNode> Body { get; set; } = new();
     }
 

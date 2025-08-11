@@ -65,44 +65,94 @@ modifies $sp;
 modifies $stack;
 implementation func_simple()
 {
-exit_1:
-start_2:
-// // unhandled raw instruction: $none_=>_none
 func_5:
 type_4:
-// // unhandled raw instruction: $temp
-label$2_start_8:
-call push(5.0);
-call push(5.0);
+label$3_start_9:
+call push(3.0);
+call push(2.0);
 call popToTmp1();
 call popToTmp2();
-call push(bool_to_real(($tmp2) == ($tmp1)));
+call push(bool_to_real(($tmp2) < ($tmp1)));
 call popToTmp1();
 if (real_to_bool($tmp1)) {
-goto label$1_7;
+goto label$2_8;
 }
-call push(3.0);
-call push(4.0);
+call push(10.0);
+call push(32.0);
 call popToTmp1();
 call popToTmp2();
 call push(($tmp2) + ($tmp1));
 call pop();
-call push(1.0);
+call push(0.0);
 call popToTmp1();
 if (real_to_bool($tmp1)) {
-goto label$2_start_8;
+goto label$3_start_9;
 }
-label$2_end_9:
-label$1_7:
+label$3_end_10:
+label$2_8:
+call push(2.0);
+call push(3.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) <= ($tmp1)));
+call pop();
+call push(5.0);
+call push(4.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) > ($tmp1)));
+call pop();
+call push(3.0);
+call push(3.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) >= ($tmp1)));
+call pop();
+call push(7.0);
+call push(9.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) < ($tmp1)));
+call pop();
+call push(1.0);
+call push(2.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) < ($tmp1)));
+call pop();
+call push(3.0);
+call push(3.0);
+call popToTmp1();
+call popToTmp2();
+call push(bool_to_real(($tmp2) >= ($tmp1)));
+call pop();
+call push(0.0);
+call popToTmp1();
+call push(bool_to_real(($tmp1) == (0.0)));
+call pop();
 call push(1.0);
 call popToTmp1();
+call push(bool_to_real(($tmp1) == (0.0)));
+call pop();
+label$1_7:
+call push(0.0);
+call popToTmp1();
 if (real_to_bool($tmp1)) {
-call push(42.0);
+call push(999.0);
 call pop();
 } else {
-call push(7.0);
+call push(111.0);
 call pop();
 }
+call push(42.0);
+// // i32.wrap_i64: no-op under real semantics
+call pop();
+call push(6.0);
+call push(2.0);
+call popToTmp1();
+call popToTmp2();
+call push(($tmp2) / ($tmp1));
+call pop();
 func_6:
 module_3:
 }

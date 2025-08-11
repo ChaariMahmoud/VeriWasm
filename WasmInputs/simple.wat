@@ -271,7 +271,7 @@
 );)
 
 
-(module
+(;;(module
   (func $test
     (block $exit
       (loop $start
@@ -306,7 +306,116 @@
       )
     )
   )
+);)
+
+
+(;;(module
+  (func $test_all_comparisons
+    ;; ===== integer eq / ne =====
+    (drop (i32.eq (i32.const 5) (i32.const 5)))
+    (drop (i32.ne (i32.const 5) (i32.const 7)))
+    (drop (i64.eq (i64.const 10) (i64.const 10)))
+    (drop (i64.ne (i64.const 10) (i64.const 11)))
+
+    ;; ===== i32 signed/unsigned order =====
+    (drop (i32.lt_s (i32.const 1) (i32.const 2)))
+    (drop (i32.lt_u (i32.const 1) (i32.const 2)))
+    (drop (i32.le_s (i32.const 2) (i32.const 2)))
+    (drop (i32.le_u (i32.const 2) (i32.const 3)))
+    (drop (i32.gt_s (i32.const 3) (i32.const 2)))
+    (drop (i32.gt_u (i32.const 3) (i32.const 2)))
+    (drop (i32.ge_s (i32.const 3) (i32.const 3)))
+    (drop (i32.ge_u (i32.const 3) (i32.const 2)))
+
+    ;; ===== i64 signed/unsigned order =====
+    (drop (i64.lt_s (i64.const 1) (i64.const 2)))
+    (drop (i64.lt_u (i64.const 1) (i64.const 2)))
+    (drop (i64.le_s (i64.const 2) (i64.const 2)))
+    (drop (i64.le_u (i64.const 2) (i64.const 3)))
+    (drop (i64.gt_s (i64.const 3) (i64.const 2)))
+    (drop (i64.gt_u (i64.const 3) (i64.const 2)))
+    (drop (i64.ge_s (i64.const 3) (i64.const 3)))
+    (drop (i64.ge_u (i64.const 3) (i64.const 2)))
+
+    ;; ===== float eq / ne =====
+    (drop (f32.eq (f32.const 1.0) (f32.const 1.0)))
+    (drop (f32.ne (f32.const 1.0) (f32.const 2.0)))
+    (drop (f64.eq (f64.const 1.0) (f64.const 1.0)))
+    (drop (f64.ne (f64.const 1.0) (f64.const 2.0)))
+
+    ;; ===== float order (no _s/_u) =====
+    (drop (f32.lt (f32.const 1.0) (f32.const 2.0)))
+    (drop (f32.le (f32.const 2.0) (f32.const 2.0)))
+    (drop (f32.gt (f32.const 3.0) (f32.const 2.0)))
+    (drop (f32.ge (f32.const 3.0) (f32.const 3.0)))
+
+    (drop (f64.lt (f64.const 1.0) (f64.const 2.0)))
+    (drop (f64.le (f64.const 2.0) (f64.const 2.0)))
+    (drop (f64.gt (f64.const 3.0) (f64.const 2.0)))
+    (drop (f64.ge (f64.const 3.0) (f64.const 3.0)))
+
+    ;; ===== a few arithmetics just to ensure nothing broke =====
+    (drop (i32.add (i32.const 1) (i32.const 2)))
+    (drop (i64.sub (i64.const 5) (i64.const 3)))
+    (drop (f32.mul (f32.const 2.0) (f32.const 4.0)))
+    (drop (f64.div (f64.const 8.0) (f64.const 2.0)))
+
+    ;; ===== wrap (no-op under your real semantics) =====
+    (drop (i32.wrap_i64 (i64.const 123)))
+  )
+);)
+
+
+
+(module
+  (func $test2
+    ;; ===== nested labeled control flow =====
+    (block $outer
+      (block $mid
+        (loop $loop
+          ;; br_if to enclosing block (condition is FALSE → no break)
+          (br_if $mid (i32.lt_s (i32.const 3) (i32.const 2)))
+
+          ;; some arithmetic inside the loop
+          (drop (i32.add (i32.const 10) (i32.const 32)))
+
+          ;; continue to loop header? (FALSE → no continue)
+          (br_if $loop (i32.const 0))
+        )
+      )
+
+      ;; after $mid, still inside $outer
+      ;; ===== integer comparisons (signed + unsigned) =====
+      (drop (i32.le_u (i32.const 2) (i32.const 3)))
+      (drop (i32.gt_s (i32.const 5) (i32.const 4)))
+      (drop (i32.ge_u (i32.const 3) (i32.const 3)))
+      (drop (i64.lt_u (i64.const 7) (i64.const 9)))
+
+      ;; ===== float comparisons =====
+      (drop (f32.lt (f32.const 1.0) (f32.const 2.0)))
+      (drop (f64.ge (f64.const 3.0) (f64.const 3.0)))
+
+      ;; ===== eqz tests =====
+      (drop (i32.eqz (i32.const 0)))
+      (drop (i64.eqz (i64.const 1)))
+    )
+
+    ;; ===== if with inline condition (your parser expects the condition here) =====
+    (if
+      (i32.const 0)
+      (then (i32.const 999) (drop))
+      (else (i32.const 111) (drop))
+    )
+
+    ;; ===== wrap is a no-op under your real semantics =====
+    (drop (i32.wrap_i64 (i64.const 42)))
+
+    ;; ===== a float arithmetic sanity check =====
+    (drop (f32.div (f32.const 6.0) (f32.const 2.0)))
+  )
 )
+
+
 
 
 

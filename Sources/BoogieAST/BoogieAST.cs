@@ -23,11 +23,11 @@ namespace BoogieAST
             return root;
         }
     }
-        public class Pdouble
+        public class Pfloat
     {
         public float Value { get; set; }
 
-        public Pdouble(float value)
+        public Pfloat(float value)
         {
             Value = value;
         }
@@ -1124,7 +1124,7 @@ public class BoogieSkipCmd : BoogieCmd
         {
             this.Val = num;
         }
-        public BoogieLiteralExpr(Pdouble num)
+        public BoogieLiteralExpr(Pfloat num)
         {
             this.Val = num;
         }

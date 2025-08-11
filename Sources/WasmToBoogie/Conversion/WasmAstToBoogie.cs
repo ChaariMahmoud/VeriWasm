@@ -80,8 +80,8 @@ namespace WasmToBoogie.Conversion
                     new BoogieFunctionCall("bool_to_real", new List<BoogieExpr> { new BoogieIdentifierExpr("b") }),
                     new BoogieITE(
                         new BoogieIdentifierExpr("b"),
-                        new BoogieLiteralExpr(new Pdouble(1)),
-                        new BoogieLiteralExpr(new Pdouble(0))
+                        new BoogieLiteralExpr(new Pfloat(1)),
+                        new BoogieLiteralExpr(new Pfloat(0))
                     )
                 )
             );
@@ -97,7 +97,7 @@ namespace WasmToBoogie.Conversion
                     new BoogieBinaryOperation(
                         BoogieBinaryOperation.Opcode.NEQ,
                         new BoogieIdentifierExpr("r"),
-                        new BoogieLiteralExpr(new Pdouble(0))
+                        new BoogieLiteralExpr(new Pfloat(0))
                     )
                 )
             );
@@ -248,8 +248,8 @@ namespace WasmToBoogie.Conversion
             functionExitLabel = exitLabel;
 
             // Add labelled skips so goto targets exist
-            body.AddStatement(new BoogieSkipCmd(exitLabel + ":"));
-            body.AddStatement(new BoogieSkipCmd(startLabel + ":"));
+            //body.AddStatement(new BoogieSkipCmd(exitLabel + ":"));
+            //body.AddStatement(new BoogieSkipCmd(startLabel + ":"));
 
             // Translate body
             foreach (var node in func.Body)
@@ -296,7 +296,7 @@ namespace WasmToBoogie.Conversion
                     // else 
                     if (float.TryParse(cn.Value, out float longVal))
                     {
-                        Pdouble fVal =new Pdouble(longVal); 
+                        Pfloat fVal = new Pfloat(longVal);
                         var push = new BoogieCallCmd(
                             "push",
                             new List<BoogieExpr> { new BoogieLiteralExpr(fVal) },
@@ -332,7 +332,7 @@ namespace WasmToBoogie.Conversion
                                 new BoogieBinaryOperation(
                                     BoogieBinaryOperation.Opcode.EQ,
                                     new BoogieIdentifierExpr("$tmp1"),
-                                    new BoogieLiteralExpr(new Pdouble(0))
+                                    new BoogieLiteralExpr(new Pfloat(0))
                                 )
                             }
                         );
@@ -340,7 +340,7 @@ namespace WasmToBoogie.Conversion
                     }
                     else if (un.Op == "i32.wrap_i64")
                     {
-                        body.AddStatement(new BoogieCallCmd("popToTmp1", new(), new()));
+                        /*body.AddStatement(new BoogieCallCmd("popToTmp1", new(), new()));
                         // Convert to int and wrap to 32-bit range
                         body.AddStatement(new BoogieAssignCmd(
                             new BoogieIdentifierExpr("$tmp2"),
@@ -351,7 +351,8 @@ namespace WasmToBoogie.Conversion
                             new BoogieIdentifierExpr("$tmp2"),
                             new BoogieLiteralExpr(4294967296) // 2^32
                         );
-                        body.AddStatement(new BoogieCallCmd("push", new() { modExpr }, new()));
+                        body.AddStatement(new BoogieCallCmd("push", new() { modExpr }, new()));*/
+                        body.AddStatement(new BoogieCommentCmd("// i32.wrap_i64: no-op under real semantics"));
                     }
                     else
                     {
@@ -372,30 +373,39 @@ namespace WasmToBoogie.Conversion
                     if (bn.Op is "i32.add" or "i64.add" or "f32.add" or "f64.add"
                         or "i32.sub" or "i64.sub" or "f32.sub" or "f64.sub"
                         or "i32.mul" or "i64.mul" or "f32.mul" or "f64.mul"
-                        or "i32.div_s" or "i64.div_s" or "f32.div" or "f64.div")
+                        or "i32.div_s" or "i64.div_s" or "f32.div" or "f64.div" or
+                            "i32.div_u" or "i64.div_u")
                     {
                         var opKind = bn.Op switch
                         {
                             "i32.add" or "i64.add" or "f32.add" or "f64.add" => BoogieBinaryOperation.Opcode.ADD,
                             "i32.sub" or "i64.sub" or "f32.sub" or "f64.sub" => BoogieBinaryOperation.Opcode.SUB,
                             "i32.mul" or "i64.mul" or "f32.mul" or "f64.mul" => BoogieBinaryOperation.Opcode.MUL,
-                            "i32.div_s" or "i64.div_s" or "f32.div" or "f64.div" => BoogieBinaryOperation.Opcode.DIV,
+                            "i32.div_s" or "i64.div_s" or "i32.div_u" or "i64.div_u" or "f32.div" or "f64.div" => BoogieBinaryOperation.Opcode.DIV,
                             _ => throw new NotSupportedException($"Unsupported arithmetic op: {bn.Op}")
                         };
 
                         var arithExpr = new BoogieBinaryOperation(opKind, tmp2, tmp1);
                         body.AddStatement(new BoogieCallCmd("push", new List<BoogieExpr> { arithExpr }, new()));
                     }
-                    else if (bn.Op is "i32.eq" or "i32.ne" or "i32.lt_s" or "i32.le_s" or "i32.gt_s" or "i32.ge_s")
+                    else if (bn.Op is
+        "i32.eq" or "i64.eq" or
+        "i32.ne" or "i64.ne" or "f32.eq" or "f64.eq" or "f32.ne" or "f64.ne" or
+        "i32.lt_s" or "i64.lt_s" or "i32.lt_u" or "i64.lt_u" or
+        "i32.le_s" or "i64.le_s" or "i32.le_u" or "i64.le_u" or
+        "i32.gt_s" or "i64.gt_s" or "i32.gt_u" or "i64.gt_u" or
+        "i32.ge_s" or "i64.ge_s" or "i32.ge_u" or "i64.ge_u" or
+        "f32.lt" or "f64.lt" or "f32.le" or "f64.le" or
+        "f32.gt" or "f64.gt" or "f32.ge" or "f64.ge")
                     {
                         BoogieExpr cmpExpr = bn.Op switch
                         {
-                            "i32.eq"   => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.EQ, tmp2, tmp1) }),
-                            "i32.ne"   => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.NEQ, tmp2, tmp1) }),
-                            "i32.lt_s" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.LT, tmp2, tmp1) }),
-                            "i32.le_s" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.LE, tmp2, tmp1) }),
-                            "i32.gt_s" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.GT, tmp2, tmp1) }),
-                            "i32.ge_s" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.GE, tmp2, tmp1) }),
+                            "i32.eq" or "i64.eq" or "f32.eq" or "f64.eq" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.EQ, tmp2, tmp1) }),
+                            "i32.ne" or "i64.ne" or "f32.ne" or "f64.ne" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.NEQ, tmp2, tmp1) }),
+                            "i32.lt_s" or "i64.lt_s" or "i32.lt_u" or "i64.lt_u" or "f32.lt" or "f64.lt" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.LT, tmp2, tmp1) }),
+                            "i32.le_s" or "i64.le_s" or "i32.le_u" or "i64.le_u" or "f32.le" or "f64.le" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.LE, tmp2, tmp1) }),
+                            "i32.gt_s" or "i64.gt_s" or "i32.gt_u" or "i64.gt_u" or "f32.gt" or "f64.gt" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.GT, tmp2, tmp1) }),
+                            "i32.ge_s" or "i64.ge_s" or "i32.ge_u" or "i64.ge_u" or "f32.ge" or "f64.ge" => new BoogieFunctionCall("bool_to_real", new() { new BoogieBinaryOperation(BoogieBinaryOperation.Opcode.GE, tmp2, tmp1) }),
                             _ => throw new NotSupportedException($"Unsupported comparison: {bn.Op}")
                         };
 
@@ -436,32 +446,49 @@ namespace WasmToBoogie.Conversion
                     }
                     break;
 
-                case LoopNode loop:
-                    // Generate context and emit start label
-                    LabelContext loopCtx;
-                    string? watLoopLabel = loop.Label != null ? (loop.Label.StartsWith("$") ? loop.Label.Substring(1) : loop.Label) : null;
+case LoopNode loop:
+{
+    // Is this a real WAT label like "$start"?
+    string? wat = (!string.IsNullOrEmpty(loop.Label) && loop.Label.StartsWith("$"))
+                    ? loop.Label.Substring(1)
+                    : null;
 
-                    loopCtx = new LabelContext
-                    {
-                        WatLabel = watLoopLabel,
-                        IsLoop = true,
-                        StartLabel = GenerateLabel((watLoopLabel ?? "loop") + "_start"),
-                        EndLabel = GenerateLabel((watLoopLabel ?? "loop") + "_end")
-                    };
+    LabelContext? ctx = null;
 
-                    labelStack.Push(loopCtx);
-                    body.AddStatement(new BoogieSkipCmd(loopCtx.StartLabel + ":"));
+    if (wat != null)
+    {
+        // create start/end targets for continue/break
+        var start = GenerateLabel($"{wat}_start");
+        var end   = GenerateLabel($"{wat}_end");
 
-                    // Translate body
-                    foreach (var child in loop.Body)
-                    {
-                        TranslateNode(child, body);
-                    }
+        ctx = new LabelContext
+        {
+            WatLabel = wat,
+            IsLoop = true,
+            StartLabel = start,
+            EndLabel = end
+        };
 
-                    // End label for loop (break target)
-                    body.AddStatement(new BoogieSkipCmd(loopCtx.EndLabel + ":"));
-                    labelStack.Pop();
-                    break;
+        labelStack.Push(ctx);
+
+        // continue target
+        body.AddStatement(new BoogieSkipCmd(start + ":"));
+    }
+
+    // translate loop body once; repeating requires an explicit br/br_if
+    foreach (var child in loop.Body)
+        TranslateNode(child, body);
+
+    if (ctx != null)
+    {
+        // break target
+        body.AddStatement(new BoogieSkipCmd(ctx.EndLabel + ":"));
+        labelStack.Pop();
+    }
+
+    break;
+}
+
 
                 case IfNode ifn:
                     // Translate condition and pop to tmp1
@@ -529,14 +556,21 @@ namespace WasmToBoogie.Conversion
                     body.AddStatement(brIfStmt);
                     break;
 
-                case RawInstructionNode raw:
-                    // Ignore raw instructions for now; emit a comment
-                    body.AddStatement(new BoogieCommentCmd($"// unhandled raw instruction: {raw.Instruction}"));
-                    break;
-
-                default:
-                    body.AddStatement(new BoogieCommentCmd($"// unsupported AST node: {node.GetType().Name}"));
-                    break;
+case RawInstructionNode raw:
+{
+    var s = raw.Instruction;
+    // Ignore function/type names and signatures like "$temp", "$none_=>_none"
+    if (s.StartsWith("$") || s.Contains("=>")||  s == "module" || s == "type" || s == "func")
+    {
+        // no-op
+    }
+    else
+    {
+        // keep this if you still want visibility on truly unhandled ops
+        body.AddStatement(new BoogieCommentCmd($"// unhandled raw instruction: {s}"));
+    }
+    break;
+}
             }
         }
     }

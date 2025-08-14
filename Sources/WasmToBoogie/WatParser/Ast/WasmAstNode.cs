@@ -83,6 +83,16 @@ namespace WasmToBoogie.Parser.Ast
         public string Instruction { get; set; }
     }
 
+    public class UnreachableNode : WasmNode { }
+
+    public class SelectNode : WasmNode
+    {
+        public WasmNode V1 { get; set; }   // first value
+        public WasmNode V2 { get; set; }   // second value
+        public WasmNode Cond { get; set; } // condition (nonzero = true)
+    }
+
+
     public class WasmFunction
     {
         public string? Name { get; set; }

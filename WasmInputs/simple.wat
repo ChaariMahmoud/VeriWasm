@@ -367,7 +367,7 @@
 
 
 
-(;(module
+(;;(module
   (func $test2
     ;; ===== nested labeled control flow =====
     (block $outer
@@ -460,7 +460,7 @@
   )
 );)
 
-(module
+(;;(module
   
   (func $const42 (result i32)
     (i32.const 42)
@@ -502,7 +502,7 @@
   )
 
   (export "main" (func $caller))
-)
+);)
 
 (;;(module
   ;; --- 0-arg: returns 42 ---
@@ -632,6 +632,18 @@
 );)
 
 
+(module
+  (func $test (param $x i32) (param $y i32) (param $cond i32) (result i32)
+    ;; select: choose between x and y based on cond
+    (local.get $x)      ;; v1
+    (local.get $y)      ;; v2
+    (local.get $cond)   ;; condition
+    (select)            ;; pushes either v1 or v2
+
+    ;; force unreachable just after the select
+    (unreachable)
+  )
+)
 
 
 

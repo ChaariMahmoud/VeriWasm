@@ -16,9 +16,9 @@ namespace WasmToBoogie.Conversion
         private readonly HashSet<int> popArgsMade = new();
         private List<BoogieIdentifierExpr>? currentLocalMap;
         private WasmFunction? currentFunction;
-        
-private HashSet<string>? neededLoopStartLabels;
-private HashSet<string>? neededBlockEndLabels;
+
+        private HashSet<string>? neededLoopStartLabels;
+        private HashSet<string>? neededBlockEndLabels;
         private class LabelContext
         {
             public string? WatLabel;
@@ -52,6 +52,100 @@ private HashSet<string>? neededBlockEndLabels;
         }
 
 
+        private void PrecomputeLabelNeeds(WasmFunction func)
+        {
+            neededLoopStartLabels = new HashSet<string>(StringComparer.Ordinal);
+            neededBlockEndLabels = new HashSet<string>(StringComparer.Ordinal);
+
+            // innermost-first scope of user labels (label without '$', isLoop)
+            var scope = new Stack<(string label, bool isLoop)>();
+
+            void Walk(WasmNode n)
+            {
+                switch (n)
+                {
+                    case BlockNode blk:
+                        {
+                            bool hasUser = !string.IsNullOrEmpty(blk.Label) && blk.Label!.StartsWith("$", StringComparison.Ordinal);
+                            if (hasUser)
+                                scope.Push((blk.Label!.Substring(1), false));
+
+                            foreach (var m in blk.Body) Walk(m);
+
+                            if (hasUser) scope.Pop();
+                            break;
+                        }
+
+                    case LoopNode lp:
+                        {
+                            bool hasUser = !string.IsNullOrEmpty(lp.Label) && lp.Label!.StartsWith("$", StringComparison.Ordinal);
+                            if (hasUser)
+                                scope.Push((lp.Label!.Substring(1), true));
+
+                            foreach (var m in lp.Body) Walk(m);
+
+                            if (hasUser) scope.Pop();
+                            break;
+                        }
+
+                    case IfNode iff:
+                        {
+                            Walk(iff.Condition);
+                            foreach (var m in iff.ThenBody) Walk(m);
+                            if (iff.ElseBody != null)
+                                foreach (var m in iff.ElseBody) Walk(m);
+                            break;
+                        }
+
+                    case BinaryOpNode b:
+                        Walk(b.Left); Walk(b.Right);
+                        break;
+
+                    case UnaryOpNode u:
+                        if (u.Operand != null) Walk(u.Operand);
+                        break;
+
+                    case BrNode br:
+                        {
+                            var target = br.Label.StartsWith("$", StringComparison.Ordinal) ? br.Label.Substring(1) : br.Label;
+                            foreach (var (lab, isLoop) in scope)
+                            {
+                                if (lab == target)
+                                {
+                                    if (isLoop) neededLoopStartLabels!.Add(lab);
+                                    else neededBlockEndLabels!.Add(lab);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+
+                    case BrIfNode bri:
+                        {
+                            Walk(bri.Condition);
+                            var target = bri.Label.StartsWith("$", StringComparison.Ordinal) ? bri.Label.Substring(1) : bri.Label;
+                            foreach (var (lab, isLoop) in scope)
+                            {
+                                if (lab == target)
+                                {
+                                    if (isLoop) neededLoopStartLabels!.Add(lab);
+                                    else neededBlockEndLabels!.Add(lab);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+
+                    case CallNode c:
+                        if (c.Args != null) foreach (var a in c.Args) Walk(a);
+                        break;
+
+                        // other nodes: nothing to do
+                }
+            }
+
+            foreach (var n in func.Body) Walk(n);
+        }
 
         private static string MapCalleeName(string target)
         {
@@ -66,8 +160,8 @@ private HashSet<string>? neededBlockEndLabels;
             // Otherwise use the (sanitized) textual name
             return name;
         }
-   
-private static string SanitizeFunctionName(string? watName, string contractName)
+
+        private static string SanitizeFunctionName(string? watName, string contractName)
         {
             if (!string.IsNullOrEmpty(watName))
             {
@@ -99,7 +193,7 @@ private static string SanitizeFunctionName(string? watName, string contractName)
                 program.Declarations.Add(proc);
                 program.Declarations.Add(impl);
             }
-            
+
             return program;
         }
 
@@ -161,39 +255,39 @@ private static string SanitizeFunctionName(string? watName, string contractName)
             // === fonctions Boogie avec corps (au lieu d'axiomes) ===
 
             // bool_to_real(b) { if b then 1.0 else 0.0 }
-// bool_to_real(b) : real { if b then 1.0 else 0.0 }
-{
-    var b = new BoogieFormalParam(new BoogieTypedIdent("b", BoogieType.Bool));
-    var body = new BoogieITE(
-        new BoogieIdentifierExpr("b"),
-        new BoogieLiteralExpr(new Pfloat(1)),
-        new BoogieLiteralExpr(new Pfloat(0))
-    );
-    program.Declarations.Add(
-        new BoogieFunctionDef("bool_to_real",
-            new List<BoogieVariable> { b },
-            BoogieType.Real,
-            body));
-}
+            // bool_to_real(b) : real { if b then 1.0 else 0.0 }
+            {
+                var b = new BoogieFormalParam(new BoogieTypedIdent("b", BoogieType.Bool));
+                var body = new BoogieITE(
+                    new BoogieIdentifierExpr("b"),
+                    new BoogieLiteralExpr(new Pfloat(1)),
+                    new BoogieLiteralExpr(new Pfloat(0))
+                );
+                program.Declarations.Add(
+                    new BoogieFunctionDef("bool_to_real",
+                        new List<BoogieVariable> { b },
+                        BoogieType.Real,
+                        body));
+            }
 
-// real_to_bool(r) : bool { if r == 0.0 then false else true }
-{
-    var r = new BoogieFormalParam(new BoogieTypedIdent("r", BoogieType.Real));
-    var body = new BoogieITE(
-        new BoogieBinaryOperation(
-            BoogieBinaryOperation.Opcode.EQ,
-            new BoogieIdentifierExpr("r"),
-            new BoogieLiteralExpr(new Pfloat(0))
-        ),
-        new BoogieLiteralExpr(false),
-        new BoogieLiteralExpr(true)
-    );
-    program.Declarations.Add(
-        new BoogieFunctionDef("real_to_bool",
-            new List<BoogieVariable> { r },
-            BoogieType.Bool,
-            body));
-}
+            // real_to_bool(r) : bool { if r == 0.0 then false else true }
+            {
+                var r = new BoogieFormalParam(new BoogieTypedIdent("r", BoogieType.Real));
+                var body = new BoogieITE(
+                    new BoogieBinaryOperation(
+                        BoogieBinaryOperation.Opcode.EQ,
+                        new BoogieIdentifierExpr("r"),
+                        new BoogieLiteralExpr(new Pfloat(0))
+                    ),
+                    new BoogieLiteralExpr(false),
+                    new BoogieLiteralExpr(true)
+                );
+                program.Declarations.Add(
+                    new BoogieFunctionDef("real_to_bool",
+                        new List<BoogieVariable> { r },
+                        BoogieType.Bool,
+                        body));
+            }
 
 
 
@@ -320,7 +414,8 @@ private static string SanitizeFunctionName(string? watName, string contractName)
             var body = new BoogieStmtList();
 
             currentFunction = func;
-           
+            PrecomputeLabelNeeds(func);
+
 
             // Build locals map: arg1..argN then loc1..locM
             int n = func.ParamCount;
@@ -355,7 +450,7 @@ private static string SanitizeFunctionName(string? watName, string contractName)
             foreach (var node in func.Body)
                 TranslateNode(node, body);
 
-string funcName = MakeBoogieFuncName(func, contractName);
+            string funcName = MakeBoogieFuncName(func, contractName);
 
 
 
@@ -377,28 +472,31 @@ string funcName = MakeBoogieFuncName(func, contractName);
             // clear per-function state
             currentLocalMap = null;
             currentFunction = null;
+            neededLoopStartLabels = null;
+            neededBlockEndLabels = null;
+
 
             return (proc, impl);
         }
 
-private int ResolveLocalIndex(int? index, string? name)
-{
-    if (index.HasValue) return index.Value;
+        private int ResolveLocalIndex(int? index, string? name)
+        {
+            if (index.HasValue) return index.Value;
 
-    if (!string.IsNullOrEmpty(name))
-    {
-        // First: real names collected from (param $x T) / (local $y T)
-        if (currentFunction != null &&
-            currentFunction.LocalIndexByName.TryGetValue(name, out var idx))
-            return idx;
+            if (!string.IsNullOrEmpty(name))
+            {
+                // First: real names collected from (param $x T) / (local $y T)
+                if (currentFunction != null &&
+                    currentFunction.LocalIndexByName.TryGetValue(name, out var idx))
+                    return idx;
 
-        // Fallback: auto-names like $0, $1 ... (Binaryen style)
-        if (name[0] == '$' && int.TryParse(name.AsSpan(1), out var autoIdx))
-            return autoIdx;
-    }
+                // Fallback: auto-names like $0, $1 ... (Binaryen style)
+                if (name[0] == '$' && int.TryParse(name.AsSpan(1), out var autoIdx))
+                    return autoIdx;
+            }
 
-    throw new NotSupportedException($"Unknown local index/name: {name ?? "<null>"}");
-}
+            throw new NotSupportedException($"Unknown local index/name: {name ?? "<null>"}");
+        }
 
         private void TranslateNode(WasmNode node, BoogieStmtList body)
         {
@@ -418,34 +516,34 @@ private int ResolveLocalIndex(int? index, string? name)
                     break;
 
                 case LocalGetNode lg:
-                {
-                    int idx = ResolveLocalIndex(lg.Index, lg.Name);
-                    var id = currentLocalMap![idx];
-                    body.AddStatement(new BoogieCallCmd("push", new() { id }, new()));
-                    break;
-                }
-case LocalSetNode ls:
-{
-    int idx = ResolveLocalIndex(ls.Index, ls.Name);
-    var id = currentLocalMap![idx];
+                    {
+                        int idx = ResolveLocalIndex(lg.Index, lg.Name);
+                        var id = currentLocalMap![idx];
+                        body.AddStatement(new BoogieCallCmd("push", new() { id }, new()));
+                        break;
+                    }
+                case LocalSetNode ls:
+                    {
+                        int idx = ResolveLocalIndex(ls.Index, ls.Name);
+                        var id = currentLocalMap![idx];
 
-    // If parser gave us a folded value expression, evaluate it first
-    if (ls.Value != null)
-        TranslateNode(ls.Value, body);
+                        // If parser gave us a folded value expression, evaluate it first
+                        if (ls.Value != null)
+                            TranslateNode(ls.Value, body);
 
-    EnsurePopArgsProc(1);
-    body.AddStatement(new BoogieCallCmd("popArgs1", new(), new() { id }));
-    break;
-}
+                        EnsurePopArgsProc(1);
+                        body.AddStatement(new BoogieCallCmd("popArgs1", new(), new() { id }));
+                        break;
+                    }
                 case LocalTeeNode lt:
-                {
-                    int idx = ResolveLocalIndex(lt.Index, lt.Name);
-                    var id = currentLocalMap![idx];
-                    EnsurePopArgsProc(1);
-                    body.AddStatement(new BoogieCallCmd("popArgs1", new(), new() { id }));
-                    body.AddStatement(new BoogieCallCmd("push", new() { id }, new()));
-                    break;
-                }
+                    {
+                        int idx = ResolveLocalIndex(lt.Index, lt.Name);
+                        var id = currentLocalMap![idx];
+                        EnsurePopArgsProc(1);
+                        body.AddStatement(new BoogieCallCmd("popArgs1", new(), new() { id }));
+                        body.AddStatement(new BoogieCallCmd("push", new() { id }, new()));
+                        break;
+                    }
                 /*case CallNode call:
                 {
                     string target = SanitizeFunctionName(call.Target, contractName);
@@ -453,18 +551,18 @@ case LocalSetNode ls:
                     break;
                 }*/
 
-case CallNode call:
-{
-    // Evaluate arguments left-to-right; each pushes onto the stack
-    if (call.Args != null)
-        foreach (var a in call.Args)
-            TranslateNode(a, body);
+                case CallNode call:
+                    {
+                        // Evaluate arguments left-to-right; each pushes onto the stack
+                        if (call.Args != null)
+                            foreach (var a in call.Args)
+                                TranslateNode(a, body);
 
-    // Callee pops its own args in its prologue (popArgsN)
-    string target = MapCalleeName(call.Target);
-    body.AddStatement(new BoogieCallCmd(target, new(), new()));
-    break;
-}
+                        // Callee pops its own args in its prologue (popArgsN)
+                        string target = MapCalleeName(call.Target);
+                        body.AddStatement(new BoogieCallCmd(target, new(), new()));
+                        break;
+                    }
 
 
 
@@ -554,64 +652,117 @@ case CallNode call:
                     }
                     break;
 
-case BlockNode blk:
-{
-    bool isUserLabel = blk.Label != null && blk.Label.StartsWith("$");
+                case BlockNode blk:
+                    {
+                        bool isUserLabel = blk.Label != null && blk.Label.StartsWith("$");
+                        string? watLabel = isUserLabel ? blk.Label!.Substring(1) : null;
 
-    LabelContext? blkCtx = null;
-    if (isUserLabel)
-    {
-        var watLabel = blk.Label!.Substring(1); // drop '$'
-        blkCtx = new LabelContext { WatLabel = watLabel, IsLoop = false, EndLabel = GenerateLabel(watLabel) };
-        labelStack.Push(blkCtx);
-    }
+                        LabelContext? blkCtx = null;
+                        if (isUserLabel)
+                        {
+                            // Only create a context if this block's end can be branched to
+                            bool needEnd = neededBlockEndLabels != null && neededBlockEndLabels.Contains(watLabel!);
+                            if (needEnd)
+                            {
+                                blkCtx = new LabelContext
+                                {
+                                    WatLabel = watLabel,
+                                    IsLoop = false,
+                                    EndLabel = GenerateLabel(watLabel!)
+                                };
+                                labelStack.Push(blkCtx);
+                            }
+                        }
 
-    foreach (var child in blk.Body) TranslateNode(child, body);
+                        foreach (var child in blk.Body) TranslateNode(child, body);
 
-    if (blkCtx != null)
-    {
-        body.AddStatement(new BoogieSkipCmd(blkCtx.EndLabel + ":"));
-        labelStack.Pop();
-    }
-    break;
-}
+                        if (blkCtx != null)
+                        {
+                            // Emit the end label only if needed
+                            body.AddStatement(new BoogieSkipCmd(blkCtx.EndLabel + ":"));
+                            labelStack.Pop();
+                        }
+                        break;
+                    }
 
 
-case LoopNode loop:
-{
-    bool isUserLabel = !string.IsNullOrEmpty(loop.Label) && loop.Label.StartsWith("$");
 
-    LabelContext? ctx = null;
-    if (isUserLabel)
-    {
-        var wat = loop.Label!.Substring(1); // drop '$'
-        var start = GenerateLabel($"{wat}_start");
-        var end   = GenerateLabel($"{wat}_end");
+                case LoopNode loop:
+                    {
+                        bool isUserLabel = !string.IsNullOrEmpty(loop.Label) && loop.Label!.StartsWith("$");
+                        string? wat = isUserLabel ? loop.Label!.Substring(1) : null;
 
-        ctx = new LabelContext {
-            WatLabel  = wat,
-            IsLoop    = true,
-            StartLabel= start,
-            EndLabel  = end
-        };
-        labelStack.Push(ctx);
+                        LabelContext? ctx = null;
+                        if (isUserLabel)
+                        {
+                            // Emit loop start only if there is a br/br_if targeting the loop (continue)
+                            bool needStart = neededLoopStartLabels != null && neededLoopStartLabels.Contains(wat!);
+                            bool needEnd = neededBlockEndLabels != null && neededBlockEndLabels.Contains(wat!); // uncommon but safe
 
-        // loop entry (target for br to the loop)
-        body.AddStatement(new BoogieSkipCmd(start + ":"));
-    }
+                            if (needStart || needEnd)
+                            {
+                                var start = needStart ? GenerateLabel($"{wat}_start") : null;
+                                var end = needEnd ? GenerateLabel($"{wat}_end") : GenerateLabel($"{wat}_end"); // create one if neededEnd
 
-    // body
-    foreach (var child in loop.Body)
-        TranslateNode(child, body);
+                                ctx = new LabelContext
+                                {
+                                    WatLabel = wat,
+                                    IsLoop = true,
+                                    StartLabel = start,
+                                    EndLabel = end!
+                                };
+                                labelStack.Push(ctx);
 
-    // loop end label only if user labeled
-    if (ctx != null)
-    {
-        body.AddStatement(new BoogieSkipCmd(ctx.EndLabel + ":"));
-        labelStack.Pop();
-    }
-    break;
-}
+                                if (needStart && start != null)
+                                    body.AddStatement(new BoogieSkipCmd(start + ":"));
+                            }
+                        }
+
+                        foreach (var child in loop.Body)
+                            TranslateNode(child, body);
+
+                        if (ctx != null)
+                        {
+                            // Only emit end label if it was required
+                            bool needEnd = neededBlockEndLabels != null && neededBlockEndLabels.Contains(ctx.WatLabel!);
+                            if (needEnd)
+                                body.AddStatement(new BoogieSkipCmd(ctx.EndLabel + ":"));
+
+                            labelStack.Pop();
+                        }
+                        break;
+                    }
+
+                case UnreachableNode _:
+                    {
+                        // unreachable ⇒ assert false;
+                        body.AddStatement(new BoogieAssertCmd(new BoogieLiteralExpr(false)));
+                        break;
+                    }
+
+                case SelectNode sel:
+                    {
+                        // Evaluate e1, e2, e3 in order, then apply your rule:
+                        // pop cond → $tmp1, pop v2 → $tmp2, pop v1 → $tmp3
+                        TranslateNode(sel.V1, body);
+                        TranslateNode(sel.V2, body);
+                        TranslateNode(sel.Cond, body);
+
+                        body.AddStatement(new BoogieCallCmd("popToTmp1", new(), new())); // cond
+                        body.AddStatement(new BoogieCallCmd("popToTmp2", new(), new())); // v2
+                        body.AddStatement(new BoogieCallCmd("popToTmp3", new(), new())); // v1
+
+                        var cond = new BoogieFunctionCall("real_to_bool", new() { new BoogieIdentifierExpr("$tmp1") });
+
+                        var thenBlk = new BoogieStmtList(); // cond true → push v1 ($tmp3)
+                        thenBlk.AddStatement(new BoogieCallCmd("push", new() { new BoogieIdentifierExpr("$tmp3") }, new()));
+
+                        var elseBlk = new BoogieStmtList(); // cond false → push v2 ($tmp2)
+                        elseBlk.AddStatement(new BoogieCallCmd("push", new() { new BoogieIdentifierExpr("$tmp2") }, new()));
+
+                        body.AddStatement(new BoogieIfCmd(cond, thenBlk, elseBlk));
+                        break;
+                    }
 
 
                 case IfNode ifn:
@@ -658,18 +809,18 @@ case LoopNode loop:
                     break;
 
                 case RawInstructionNode raw:
-                {
-                    var s = raw.Instruction;
-                    if (s.StartsWith("$") || s.Contains("=>") || s == "module" || s == "type" || s == "func")
                     {
-                        // ignore structural/name crumbs
+                        var s = raw.Instruction;
+                        if (s.StartsWith("$") || s.Contains("=>") || s == "module" || s == "type" || s == "func")
+                        {
+                            // ignore structural/name crumbs
+                        }
+                        else
+                        {
+                            body.AddStatement(new BoogieCommentCmd($"// unhandled raw instruction: {s}"));
+                        }
+                        break;
                     }
-                    else
-                    {
-                        body.AddStatement(new BoogieCommentCmd($"// unhandled raw instruction: {s}"));
-                    }
-                    break;
-                }
             }
         }
     }

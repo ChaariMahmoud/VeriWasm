@@ -15,62 +15,72 @@ namespace WasmToBoogie.Parser
         {
             this.filePath = filePath;
         }
-private static int ComputeMaxLocalIndexInBody(List<WasmNode> body)
-{
-    int max = -1;
-
-    void Walk(WasmNode n)
-    {
-        switch (n)
+        private static int ComputeMaxLocalIndexInBody(List<WasmNode> body)
         {
-            case LocalGetNode g:
-                {
-                    int? k = g.Index ?? TryParseAutoName(g.Name);
-                    if (k.HasValue) max = Math.Max(max, k.Value);
-                    break;
-                }
-            case LocalSetNode s:
-                {
-                    int? k = s.Index ?? TryParseAutoName(s.Name);
-                    if (k.HasValue) max = Math.Max(max, k.Value);
-                    if (s.Value != null) Walk(s.Value);
-                    break;
-                }
-            case LocalTeeNode t:
-                {
-                    int? k = t.Index ?? TryParseAutoName(t.Name);
-                    if (k.HasValue) max = Math.Max(max, k.Value);
-                    break;
-                }
-            case UnaryOpNode u:
-                if (u.Operand != null) Walk(u.Operand);
-                break;
-            case BinaryOpNode b:
-                Walk(b.Left); Walk(b.Right);
-                break;
-            case IfNode iff:
-                Walk(iff.Condition);
-                foreach (var m in iff.ThenBody) Walk(m);
-                if (iff.ElseBody != null) foreach (var m in iff.ElseBody) Walk(m);
-                break;
-            case BlockNode blk:
-                foreach (var m in blk.Body) Walk(m);
-                break;
-            case LoopNode lp:
-                foreach (var m in lp.Body) Walk(m);
-                break;
-            case BrIfNode brIf:
-                Walk(brIf.Condition);
-                break;
-            case CallNode c:
-                if (c.Args != null) foreach (var a in c.Args) Walk(a);
-                break;
-        }
-    }
+            int max = -1;
 
-    foreach (var n in body) Walk(n);
-    return max; // -1 means “no locals referenced”
-}
+            void Walk(WasmNode n)
+            {
+                switch (n)
+                {
+                    case LocalGetNode g:
+                        {
+                            int? k = g.Index ?? TryParseAutoName(g.Name);
+                            if (k.HasValue) max = Math.Max(max, k.Value);
+                            break;
+                        }
+                    case LocalSetNode s:
+                        {
+                            int? k = s.Index ?? TryParseAutoName(s.Name);
+                            if (k.HasValue) max = Math.Max(max, k.Value);
+                            if (s.Value != null) Walk(s.Value);
+                            break;
+                        }
+                    case LocalTeeNode t:
+                        {
+                            int? k = t.Index ?? TryParseAutoName(t.Name);
+                            if (k.HasValue) max = Math.Max(max, k.Value);
+                            break;
+                        }
+                    case UnaryOpNode u:
+                        if (u.Operand != null) Walk(u.Operand);
+                        break;
+                    case BinaryOpNode b:
+                        Walk(b.Left); Walk(b.Right);
+                        break;
+                    case IfNode iff:
+                        Walk(iff.Condition);
+                        foreach (var m in iff.ThenBody) Walk(m);
+                        if (iff.ElseBody != null) foreach (var m in iff.ElseBody) Walk(m);
+                        break;
+                    case BlockNode blk:
+                        foreach (var m in blk.Body) Walk(m);
+                        break;
+                    case LoopNode lp:
+                        foreach (var m in lp.Body) Walk(m);
+                        break;
+                    case BrIfNode brIf:
+                        Walk(brIf.Condition);
+                        break;
+                    case CallNode c:
+                        if (c.Args != null) foreach (var a in c.Args) Walk(a);
+                        break;
+
+                        case SelectNode s:
+                Walk(s.V1);
+                Walk(s.V2);
+                Walk(s.Cond);
+                break;
+
+            case UnreachableNode:
+                // nothing
+                break;
+                }
+            }
+
+            foreach (var n in body) Walk(n);
+            return max; // -1 means “no locals referenced”
+        }
 
         public WasmModule Parse()
         {
@@ -125,29 +135,29 @@ private static int ComputeMaxLocalIndexInBody(List<WasmNode> body)
                 }
 
                 var func = new WasmFunction { Body = body, Name = funcName };
-int paramCount = 0;
-try { paramCount = GetFunctionParamCount(modulePtr, fi); } catch { /* ignore */ }
-func.ParamCount = Math.Max(0, paramCount);
+                int paramCount = 0;
+                try { paramCount = GetFunctionParamCount(modulePtr, fi); } catch { /* ignore */ }
+                func.ParamCount = Math.Max(0, paramCount);
 
-// 2) Compute how many indices are actually referenced in the body
-int maxIdx = ComputeMaxLocalIndexInBody(func.Body); // -1 if none
-int total   = (maxIdx >= 0 ? (maxIdx + 1) : 0);
+                // 2) Compute how many indices are actually referenced in the body
+                int maxIdx = ComputeMaxLocalIndexInBody(func.Body); // -1 if none
+                int total = (maxIdx >= 0 ? (maxIdx + 1) : 0);
 
-// Ensure total covers at least the params
-if (total < func.ParamCount) total = func.ParamCount;
+                // Ensure total covers at least the params
+                if (total < func.ParamCount) total = func.ParamCount;
 
-// 3) Derive local count
-func.LocalCount = Math.Max(0, total - func.ParamCount);
+                // 3) Derive local count
+                func.LocalCount = Math.Max(0, total - func.ParamCount);
 
-// 4) Fill Binaryen-style auto names $0..$(total-1)
-for (int k = 0; k < total; k++)
-    func.LocalIndexByName["$" + k] = k;
+                // 4) Fill Binaryen-style auto names $0..$(total-1)
+                for (int k = 0; k < total; k++)
+                    func.LocalIndexByName["$" + k] = k;
                 // Try to read signature from header inside snippet (if Binaryen included it)
                 PopulateFunctionSignature(tokens, func);
 
                 // Fallback: infer from body if header info is missing
-               /* if (func.ParamCount == 0 && func.LocalCount == 0)
-                    InferSignatureFromBody(func);*/
+                /* if (func.ParamCount == 0 && func.LocalCount == 0)
+                     InferSignatureFromBody(func);*/
 
                 Console.WriteLine($"🧭 Signature: name={func.Name ?? "<anonymous>"}, params={func.ParamCount}, locals={func.LocalCount}");
 
@@ -603,6 +613,27 @@ for (int k = 0; k < total; k++)
                     ExpectToken(tokens, ref index, ")");
                     return new BlockNode { Label = op, Body = inner };
                 }
+                else if (op == "unreachable")
+                {
+                    // (unreachable)
+                    ExpectToken(tokens, ref index, ")");
+                    return new UnreachableNode();
+                }
+                else if (op == "select")
+                {
+                    // (select v1 v2 cond)    // Binaryen usually emits this folded shape
+                    // also supports typed form: (select t v1 v2 cond) — we ignore 't' if present
+                    // Peek for an optional numeric type token (i32/i64/f32/f64)
+                    string? maybeType = (index < tokens.Count ? tokens[index] : null);
+                    if (maybeType == "i32" || maybeType == "i64" || maybeType == "f32" || maybeType == "f64")
+                        index++; // skip the annotated type
+
+                    var v1 = ParseNode(tokens, ref index);
+                    var v2 = ParseNode(tokens, ref index);
+                    var cond = ParseNode(tokens, ref index);
+                    ExpectToken(tokens, ref index, ")");
+                    return new SelectNode { V1 = v1, V2 = v2, Cond = cond };
+                }
                 else
                 {
                     Console.WriteLine($"  📦 Instruction générique : {op}");
@@ -683,7 +714,7 @@ for (int k = 0; k < total; k++)
         [DllImport("libbinaryenwrapper", CallingConvention = CallingConvention.Cdecl)]
         private static extern void PrintModuleAST(IntPtr module);
         [DllImport("libbinaryenwrapper", EntryPoint = "GetFunctionParamCount", CallingConvention = CallingConvention.Cdecl)]
-private static extern int GetFunctionParamCount(IntPtr module, int index);
+        private static extern int GetFunctionParamCount(IntPtr module, int index);
 
     }
 }

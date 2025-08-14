@@ -21,8 +21,8 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfoInputs.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfo.cs
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.sourcelink.json
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/refint/ExternalToolsManager.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ref/ExternalToolsManager.dll
-/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.sourcelink.json

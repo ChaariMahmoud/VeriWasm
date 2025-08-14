@@ -3,15 +3,14 @@ var $sp: int;
 var $tmp1: real;
 var $tmp2: real;
 var $tmp3: real;
-function bool_to_real(b: bool) returns (result: real);
-function real_to_bool(r: real) returns (result: bool);
-function real_to_int(r: real) returns (result: int);
-
-axiom(forall  b:bool ::  ((bool_to_real(b)) == (if b then (1.0) else (0.0))));
-
-axiom(forall  r:real ::  ((real_to_bool(r)) == ((r) != (0.0))));
-
-axiom(forall  r:real ::  ((real_to_int(r)) >= (0)));
+function bool_to_real(b: bool) : real
+{
+  if b then (1.0) else (0.0)
+}
+function real_to_bool(r: real) : bool
+{
+  if (r) == (0.0) then (false) else (true)
+}
 procedure {:inline true} push(val: real);
 modifies $sp;
 modifies $stack;
@@ -58,103 +57,132 @@ implementation pop()
 $sp := ($sp) - (1);
 }
 
-procedure func_simple();
+procedure func_0();
 modifies $tmp1;
 modifies $tmp2;
+modifies $tmp3;
 modifies $sp;
 modifies $stack;
-implementation func_simple()
+implementation func_0()
 {
-func_5:
-type_4:
-label$3_start_9:
-call push(3.0);
-call push(2.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) < ($tmp1)));
-call popToTmp1();
-if (real_to_bool($tmp1)) {
-goto label$2_8;
+call push(42.0);
 }
-call push(10.0);
-call push(32.0);
+
+procedure {:inline true} popArgs1() returns (a1: real);
+modifies $sp;
+modifies $stack;
+implementation popArgs1() returns (a1: real)
+{
+$sp := ($sp) - (1);
+a1 := $stack[$sp];
+}
+
+procedure func_1();
+modifies $tmp1;
+modifies $tmp2;
+modifies $tmp3;
+modifies $sp;
+modifies $stack;
+implementation func_1()
+{
+var arg1: real;
+call arg1 := popArgs1();
+call push(arg1);
+call push(1.0);
 call popToTmp1();
 call popToTmp2();
 call push(($tmp2) + ($tmp1));
-call pop();
-call push(0.0);
-call popToTmp1();
-if (real_to_bool($tmp1)) {
-goto label$3_start_9;
 }
-label$3_end_10:
-label$2_8:
-call push(2.0);
-call push(3.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) <= ($tmp1)));
-call pop();
-call push(5.0);
-call push(4.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) > ($tmp1)));
-call pop();
-call push(3.0);
-call push(3.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) >= ($tmp1)));
-call pop();
-call push(7.0);
-call push(9.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) < ($tmp1)));
-call pop();
-call push(1.0);
-call push(2.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) < ($tmp1)));
-call pop();
-call push(3.0);
-call push(3.0);
-call popToTmp1();
-call popToTmp2();
-call push(bool_to_real(($tmp2) >= ($tmp1)));
-call pop();
-call push(0.0);
-call popToTmp1();
-call push(bool_to_real(($tmp1) == (0.0)));
-call pop();
-call push(1.0);
-call popToTmp1();
-call push(bool_to_real(($tmp1) == (0.0)));
-call pop();
-label$1_7:
-call push(0.0);
-call popToTmp1();
-if (real_to_bool($tmp1)) {
-call push(999.0);
-call pop();
-} else {
-call push(111.0);
-call pop();
+
+procedure {:inline true} popArgs2() returns (a1: real, a2: real);
+modifies $sp;
+modifies $stack;
+implementation popArgs2() returns (a1: real, a2: real)
+{
+$sp := ($sp) - (1);
+a2 := $stack[$sp];
+$sp := ($sp) - (1);
+a1 := $stack[$sp];
 }
-call push(42.0);
-// // i32.wrap_i64: no-op under real semantics
-call pop();
-call push(6.0);
-call push(2.0);
+
+procedure func_2();
+modifies $tmp1;
+modifies $tmp2;
+modifies $tmp3;
+modifies $sp;
+modifies $stack;
+implementation func_2()
+{
+var arg1: real;
+var arg2: real;
+call arg1, arg2 := popArgs2();
+call push(arg1);
+call push(arg2);
 call popToTmp1();
 call popToTmp2();
-call push(($tmp2) / ($tmp1));
-call pop();
-func_6:
-module_3:
+call push(($tmp2) - ($tmp1));
+}
+
+procedure {:inline true} popArgs3() returns (a1: real, a2: real, a3: real);
+modifies $sp;
+modifies $stack;
+implementation popArgs3() returns (a1: real, a2: real, a3: real)
+{
+$sp := ($sp) - (1);
+a3 := $stack[$sp];
+$sp := ($sp) - (1);
+a2 := $stack[$sp];
+$sp := ($sp) - (1);
+a1 := $stack[$sp];
+}
+
+procedure func_3();
+modifies $tmp1;
+modifies $tmp2;
+modifies $tmp3;
+modifies $sp;
+modifies $stack;
+implementation func_3()
+{
+var arg1: real;
+var arg2: real;
+var arg3: real;
+var loc1: real;
+call arg1, arg2, arg3 := popArgs3();
+loc1 := 0.0;
+call push(arg1);
+call push(arg2);
+call popToTmp1();
+call popToTmp2();
+call push(($tmp2) + ($tmp1));
+call loc1 := popArgs1();
+call push(loc1);
+call push(arg3);
+call popToTmp1();
+call popToTmp2();
+call push(($tmp2) + ($tmp1));
+}
+
+procedure func_4();
+modifies $tmp1;
+modifies $tmp2;
+modifies $tmp3;
+modifies $sp;
+modifies $stack;
+implementation func_4()
+{
+var arg1: real;
+var arg2: real;
+var arg3: real;
+call arg1, arg2, arg3 := popArgs3();
+call push(arg1);
+call func_1();
+call push(arg2);
+call push(arg3);
+call func_2();
+call popToTmp1();
+call popToTmp2();
+call push(($tmp2) + ($tmp1));
 }
 
 

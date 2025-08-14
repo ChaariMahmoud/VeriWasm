@@ -1,12 +1,18 @@
+// binaryen_wrapper.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <binaryen-c.h>
+
 #define EXPORT __attribute__((visibility("default")))
 
+/* =========================
+ * Module loading / printing
+ * ========================= */
 
-// ✅ Charge un module WASM binaire
-BinaryenModuleRef LoadWasmTextFile(const char* filename) {
+/// Load a compiled WASM binary (.wasm) into a Binaryen module
+EXPORT BinaryenModuleRef LoadWasmTextFile(const char* filename) {
     FILE* file = fopen(filename, "rb");
     if (!file) {
         fprintf(stderr, "Error: Cannot open file %s\n", filename);
@@ -14,40 +20,49 @@ BinaryenModuleRef LoadWasmTextFile(const char* filename) {
     }
 
     fseek(file, 0, SEEK_END);
-    size_t size = ftell(file);
+    long fsize_long = ftell(file);
+    if (fsize_long < 0) {
+        fclose(file);
+        fprintf(stderr, "Error: ftell failed for %s\n", filename);
+        return NULL;
+    }
+    size_t fsize = (size_t)fsize_long;
     rewind(file);
 
-    char* buffer = (char*)malloc(size);
+    char* buffer = (char*)malloc(fsize);
     if (!buffer) {
         fprintf(stderr, "Error: Memory allocation failed.\n");
         fclose(file);
         return NULL;
     }
 
-    fread(buffer, 1, size, file);
+    size_t readn = fread(buffer, 1, fsize, file);
     fclose(file);
+    if (readn != fsize) {
+        free(buffer);
+        fprintf(stderr, "Error: fread failed (read %zu of %zu)\n", readn, fsize);
+        return NULL;
+    }
 
-    BinaryenModuleRef module = BinaryenModuleRead(buffer, size);
+    BinaryenModuleRef module = BinaryenModuleRead(buffer, fsize);
     free(buffer);
     return module;
 }
 
-// ✅ Retourne le nombre de fonctions du module
-int GetFunctionCount(BinaryenModuleRef module) {
-    return BinaryenGetNumFunctions(module);
+/// Validate a Binaryen module
+EXPORT bool ValidateModule(BinaryenModuleRef module) {
+    if (!module) return false;
+    return BinaryenModuleValidate(module);
 }
 
-// ✅ Retourne le nom de la première fonction
-const char* GetFirstFunctionName(BinaryenModuleRef module) {
-    if (BinaryenGetNumFunctions(module) == 0) return "";
-    BinaryenFunctionRef func = BinaryenGetFunctionByIndex(module, 0);
-    return BinaryenFunctionGetName(func);
-}
-
-// ✅ Affiche l'AST du module (sous forme textuelle, très utile pour debug)
-void PrintModuleAST(BinaryenModuleRef module) {
+/// Print the module as WAT (for debugging)
+EXPORT void PrintModuleAST(BinaryenModuleRef module) {
+    if (!module) {
+        fprintf(stderr, "❌ PrintModuleAST: null module\n");
+        return;
+    }
     char* watText = BinaryenModuleAllocateAndWriteText(module);
-    if (watText != NULL) {
+    if (watText) {
         printf("\n===== AST WAT (depuis Binaryen) =====\n");
         printf("%s\n", watText);
         printf("=====================================\n\n");
@@ -57,46 +72,95 @@ void PrintModuleAST(BinaryenModuleRef module) {
     }
 }
 
-// 🔒 Fonction de validation du module
-bool ValidateModule(BinaryenModuleRef module) {
-    return BinaryenModuleValidate(module);
+/* =========================
+ * Function enumeration
+ * ========================= */
+
+/// Number of functions in the module
+EXPORT int GetFunctionCount(BinaryenModuleRef module) {
+    if (!module) return 0;
+    return BinaryenGetNumFunctions(module);
 }
 
-// ✅ Récupère le corps d'une fonction (expression racine)
-BinaryenExpressionRef GetFunctionBody(BinaryenModuleRef module, int index) {
-    if (index >= BinaryenGetNumFunctions(module)) return NULL;
+/// Get function name by index (as Binaryen sees it, e.g. "$0", "$foo")
+/// Returned pointer is owned by Binaryen; DO NOT free it.
+EXPORT const char* GetFunctionNameByIndex(BinaryenModuleRef module, int index) {
+    if (!module) return "";
+    int n = BinaryenGetNumFunctions(module);
+    if (index < 0 || index >= n) return "";
     BinaryenFunctionRef func = BinaryenGetFunctionByIndex(module, index);
+    if (!func) return "";
+    const char* name = BinaryenFunctionGetName(func);
+    return name ? name : "";
+}
+
+/* =========================
+ * Function body as WAT
+ * ========================= */
+
+/// Get the root expression of a function (for completeness)
+EXPORT BinaryenExpressionRef GetFunctionBody(BinaryenModuleRef module, int index) {
+    if (!module) return NULL;
+    int n = BinaryenGetNumFunctions(module);
+    if (index < 0 || index >= n) return NULL;
+    BinaryenFunctionRef func = BinaryenGetFunctionByIndex(module, index);
+    if (!func) return NULL;
     return BinaryenFunctionGetBody(func);
 }
 
-// ✅ Récupère l'identifiant (type) d'une expression
-int GetExpressionId(BinaryenExpressionRef expr) {
-    return BinaryenExpressionGetId(expr);
+EXPORT int GetFunctionParamCount(BinaryenModuleRef module, int index) {
+    if (!module) return 0;
+    int n = BinaryenGetNumFunctions(module);
+    if (index < 0 || index >= n) return 0;
+    BinaryenFunctionRef f = BinaryenGetFunctionByIndex(module, index);
+    if (!f) return 0;
+    BinaryenType params = BinaryenFunctionGetParams(f);
+    return BinaryenTypeArity(params);
 }
 
-// ✅ Retourne le corps WAT d'une fonction sous forme de chaîne
 
-
+/// Return a WAT string containing a tiny (module (func $temp ...)) that wraps
+/// the copied body of the function at `index`.
+/// The returned C string is heap-allocated (via strdup); call FreeCString() from C#
 EXPORT const char* GetFunctionBodyText(BinaryenModuleRef module, int index) {
-    if (index >= BinaryenGetNumFunctions(module)) return "";
+    if (!module) return strdup("");
+
+    int n = BinaryenGetNumFunctions(module);
+    if (index < 0 || index >= n) return strdup("");
 
     BinaryenFunctionRef func = BinaryenGetFunctionByIndex(module, index);
-    if (!func) return "";
+    if (!func) return strdup("");
 
     BinaryenExpressionRef body = BinaryenFunctionGetBody(func);
-    if (!body) return "";
+    if (!body) return strdup("");
 
-    // On crée un nouveau module temporaire pour encapsuler le corps
+    // Create a tiny temporary module to hold the copied expression
     BinaryenModuleRef tempMod = BinaryenModuleCreate();
+    if (!tempMod) return strdup("");
+
+    // Copy the expression into the temporary module
     BinaryenExpressionRef copied = BinaryenExpressionCopy(body, tempMod);
 
-
-    BinaryenAddFunction(tempMod, "temp", BinaryenTypeNone(), BinaryenTypeNone(), NULL, 0, copied);
+    // Add a dummy function (no params/results) whose body is the copied expression.
+    // This produces a self-contained WAT snippet you can tokenize.
+    BinaryenAddFunction(
+        tempMod,
+        "temp",
+        BinaryenTypeNone(),
+        BinaryenTypeNone(),
+        NULL, 0,
+        copied
+    );
 
     char* wat = BinaryenModuleAllocateAndWriteText(tempMod);
-    char* result = strdup(wat); // Important : faire une copie persistante
-    free(wat);
+    const char* result = wat ? strdup(wat) : strdup("");
+    if (wat) free(wat);
+
     BinaryenModuleDispose(tempMod);
     return result;
 }
 
+/// Free a C-string returned by GetFunctionBodyText (since we used strdup)
+EXPORT void FreeCString(const char* s) {
+    if (s) free((void*)s);
+}

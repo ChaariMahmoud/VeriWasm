@@ -32,9 +32,9 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfoInputs.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfo.cs
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.sourcelink.json
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/Solidity.8994C1DA.Up2Date
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll
-/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.sourcelink.json

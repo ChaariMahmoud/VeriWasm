@@ -17,7 +17,8 @@ namespace WasmToBoogie.Conversion
         private List<BoogieIdentifierExpr>? currentLocalMap;
         private WasmFunction? currentFunction;
         
-
+private HashSet<string>? neededLoopStartLabels;
+private HashSet<string>? neededBlockEndLabels;
         private class LabelContext
         {
             public string? WatLabel;
@@ -40,30 +41,31 @@ namespace WasmToBoogie.Conversion
                 if (s[i] < '0' || s[i] > '9') return false;
             return s.Length > 0;
         }
-private static string MakeBoogieFuncName(WasmFunction func, string contractName)
-{
-    if (!string.IsNullOrEmpty(func.Name))
-    {
-        var raw = func.Name![0] == '$' ? func.Name.Substring(1) : func.Name;
-        return AllDigits(raw) ? $"func_{raw}" : raw;
-    }
-    return $"func_{contractName}";
-}
+        private static string MakeBoogieFuncName(WasmFunction func, string contractName)
+        {
+            if (!string.IsNullOrEmpty(func.Name))
+            {
+                var raw = func.Name![0] == '$' ? func.Name.Substring(1) : func.Name;
+                return AllDigits(raw) ? $"func_{raw}" : raw;
+            }
+            return $"func_{contractName}";
+        }
 
 
-private static string MapCalleeName(string target)
-{
-    if (string.IsNullOrEmpty(target)) return target;
 
-    // Strip a single leading '$' if present
-    string name = target[0] == '$' ? target.Substring(1) : target;
+        private static string MapCalleeName(string target)
+        {
+            if (string.IsNullOrEmpty(target)) return target;
 
-    // If the name is purely numeric, our procs are named func_<idx>
-    if (AllDigits(name)) return "func_" + name;
+            // Strip a single leading '$' if present
+            string name = target[0] == '$' ? target.Substring(1) : target;
 
-    // Otherwise use the (sanitized) textual name
-    return name;
-}
+            // If the name is purely numeric, our procs are named func_<idx>
+            if (AllDigits(name)) return "func_" + name;
+
+            // Otherwise use the (sanitized) textual name
+            return name;
+        }
    
 private static string SanitizeFunctionName(string? watName, string contractName)
         {
@@ -318,6 +320,7 @@ private static string SanitizeFunctionName(string? watName, string contractName)
             var body = new BoogieStmtList();
 
             currentFunction = func;
+           
 
             // Build locals map: arg1..argN then loc1..locM
             int n = func.ParamCount;

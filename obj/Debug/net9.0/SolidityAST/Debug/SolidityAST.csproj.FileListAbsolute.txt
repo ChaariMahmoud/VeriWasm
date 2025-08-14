@@ -25,10 +25,10 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.AssemblyInfoInputs.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.AssemblyInfo.cs
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.csproj.CoreCompileInputs.cache
+/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.sourcelink.json
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/Solidity.934F038D.Up2Date
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/refint/SolidityAST.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.genruntimeconfig.cache
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/ref/SolidityAST.dll
-/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/SolidityAST/Debug/SolidityAST.sourcelink.json

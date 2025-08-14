@@ -367,7 +367,7 @@
 
 
 
-(module
+(;(module
   (func $test2
     ;; ===== nested labeled control flow =====
     (block $outer
@@ -413,7 +413,226 @@
     ;; ===== a float arithmetic sanity check =====
     (drop (f32.div (f32.const 6.0) (f32.const 2.0)))
   )
+);)
+
+(;;(module
+  (func $mixed (param $a i32) (param $b i32) (local $t i32)
+    ;; --- unary: eqz on a, then drop ---
+    (local.get $a)
+    (i32.eqz)
+    (drop)
+
+    ;; --- t = a + b ---
+    (local.get $a)
+    (local.get $b)
+    (i32.add)
+    (local.set $t)
+
+    ;; --- t = (t * 3); keep value via tee then add 1 (result on stack) ---
+    (local.get $t)
+    (i32.const 3)
+    (i32.mul)
+    (local.tee $t)    ;; sets t AND leaves value on stack
+    (i32.const 1)
+    (i32.add)   
+    (drop)       ;; result stack := (t*3 + 1)
+
+    ;; --- comparison (t > 10) then drop ---
+    (local.get $t)
+    (i32.const 10)
+    (i32.gt_s)
+    (drop)
+
+    ;; --- wrap no-op + drop ---
+    (i64.const 5)
+    (i32.wrap_i64)
+    (drop)
+
+    ;; --- tiny loop/block to test labels & br_if ---
+    (block $exit
+      (loop $again
+        (i32.const 0)
+        (br_if $exit)  ;; never jumps
+        (i32.const 0)
+        (br_if $again) ;; never loops
+      )
+    )
+  )
+);)
+
+(module
+  
+  (func $const42 (result i32)
+    (i32.const 42)
+  )
+
+
+  (func $add1 (param $x i32) (result i32)
+    (local.get $x)
+    (i32.const 1)
+    (i32.add)
+  )
+
+
+  (func $sub (param $a i32) (param $b i32) (result i32)
+    (local.get $a)
+    (local.get $b)
+    (i32.sub)
+  )
+
+  (func $sum3 (param $p1 i32) (param $p2 i32) (param $p3 i32) (result i32) (local $temp i32)
+    (local.get $p1)
+    (local.get $p2)
+    (i32.add)
+    (local.set $temp)
+
+    (local.get $temp)
+    (local.get $p3)
+    (i32.add)
+  )
+
+
+  (func $caller (param $a i32) (param $b i32) (param $c i32) (result i32)
+    (local.get $a)
+    (call $add1)
+    (local.get $b)
+    (local.get $c)
+    (call $sub)
+    (i32.add)
+  )
+
+  (export "main" (func $caller))
 )
+
+(;;(module
+  ;; --- 0-arg: returns 42 ---
+  (func $const42 (result i32)
+    (i32.const 42)
+  )
+
+  ;; --- 1-arg: if (x == 0) then 0 else (-x)
+  ;; NO 'if (result ...)' : both branches are side-effect-only.
+  (func $neg_if_zero (param $x i32) (result i32)
+    (local $r i32)
+    (if
+      (i32.eqz (local.get $x))      ;; condition
+      (block                        ;; then
+        (local.set $r (i32.const 0))
+        (drop (i32.const 123))      ;; extra drop for testing
+      )
+      (block                        ;; else
+        (local.set $r (i32.sub (i32.const 0) (local.get $x)))
+        (drop (i32.const 456))      ;; extra drop for testing
+      )
+    )
+    (local.get $r)
+  )
+
+  ;; --- 3-arg + local + tee: t := a+b; return (t*3) + c ---
+  (func $math (param $a i32) (param $b i32) (param $c i32) (result i32) (local $t i32)
+    (local.set $t
+      (i32.add (local.get $a) (local.get $b))
+    )
+    (i32.add
+      (local.tee $t
+        (i32.mul (local.get $t) (i32.const 3))
+      )
+      (local.get $c)
+    )
+  )
+
+  ;; --- 1-arg: comparison (x > 10) -> 0/1 ---
+  (func $compare (param $x i32) (result i32)
+    (i32.gt_s (local.get $x) (i32.const 10))
+  )
+
+  ;; --- loop + block + br/br_if + eqz ---
+  ;; computes sum_{i=1..n} i
+  (func $loop_sum (param $n i32) (result i32) (local $acc i32)
+    (local.set $acc (i32.const 0))
+    (block $exit
+      (loop $again
+        (br_if $exit (i32.eqz (local.get $n)))       ;; break if n==0
+        (local.set $acc (i32.add (local.get $acc) (local.get $n)))
+        (local.set $n   (i32.sub (local.get $n) (i32.const 1)))
+        (br $again)
+      )
+    )
+    (local.get $acc)
+  )
+
+  ;; --- wrap + drop ---
+  (func $wrap_and_const (result i32)
+    (drop (i32.wrap_i64 (i64.const 5)))
+    (call $const42)
+  )
+
+  ;; --- caller using folded call args & binary ops ---
+  ;; returns: neg_if_zero(a) + math(a,b,c) + compare(c) + loop_sum(b)
+  (func $caller (param $a i32) (param $b i32) (param $c i32) (result i32)
+    (i32.add
+      (i32.add
+        (call $neg_if_zero (local.get $a))
+        (call $math (local.get $a) (local.get $b) (local.get $c))
+      )
+      (i32.add
+        (call $compare (local.get $c))
+        (call $loop_sum (local.get $b))
+      )
+    )
+  )
+
+  (export "main" (func $caller))
+);)
+
+
+
+(;;(module
+  ;; Callee 1 : a un paramètre, mais ne l'utilise pas
+  (func $f1 (param i32) (result i32)
+    ;; calcule 6 + 7 = 13
+    (i32.const 6)
+    (i32.const 7)
+    (i32.add)
+  )
+
+  ;; Callee 2 : a deux paramètres, mais ne les utilise pas
+  (func $f2 (param i32) (param i32) (result i32)
+    ;; calcule 3 * 4 = 12
+    (i32.const 3)
+    (i32.const 4)
+    (i32.mul)
+  )
+
+  ;; Caller (style STACK) : pousse des constantes puis appelle
+  (func $caller_stack (param i32) (param i32) (result i32)
+    ;;(i32.const 5)           ;; arg pour f1
+    (local.get 0)
+    
+    (local.set 1 (i32.const 10)) ;; arg pour f1
+    ;;(i32.const 5) 
+    (call $f1)  
+               ;; -> 13
+    (i32.const 2)           ;; arg1 pour f2
+    (i32.const 9) 
+              ;; arg2 pour f2
+    (call $f2)              ;; -> 12
+    (i32.add)               ;; 13 + 12 = 25
+  )
+
+  ;; Caller (style FOLDED) : mêmes appels mais en forme repliée
+  (func $caller_folded (param i32) (param i32) (result i32)
+    (i32.add
+      (call $f1 (i32.const 5))                ;; -> 13
+      (call $f2 (i32.const 2) (i32.const 9))  ;; -> 12
+    )
+  )
+
+  (export "main" (func $caller_folded))
+);)
+
+
+
 
 
 

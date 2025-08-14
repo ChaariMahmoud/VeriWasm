@@ -77,6 +77,40 @@ public override string ToString()
             return builder.ToString();
         }
     }
+    // Une nouvelle déclaration Boogie: function f(...) : T { <expr> }
+public class BoogieFunctionDef : BoogieDeclaration
+{
+    public string Name { get; }
+    public List<BoogieVariable> InParams { get; }
+    public BoogieType ReturnType { get; }
+    public BoogieExpr Body { get; }
+
+    public BoogieFunctionDef(string name,
+                             List<BoogieVariable> inParams,
+                             BoogieType returnType,
+                             BoogieExpr body)
+    {
+        Name = name;
+        InParams = inParams ?? new();
+        ReturnType = returnType;
+        Body = body;
+    }
+
+    public override string ToString()
+    {
+        // formater les paramètres
+        string fmt(BoogieVariable v) => $"{v.TypedIdent.Name}: {v.TypedIdent.Type}";
+        var args = string.Join(", ", InParams.ConvertAll(fmt));
+
+        return
+$@"function {Name}({args}) : {ReturnType}
+{{
+  {Body}
+}}
+";
+    }
+}
+
 
     public abstract class BoogieNamedDecl : BoogieDeclaration
     {

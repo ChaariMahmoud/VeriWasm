@@ -17,14 +17,6 @@
 /home/hamoud/Desktop/verisol/Sources/WasmToBoogie/obj/Debug/net9.0/refint/WasmToBoogie.dll
 /home/hamoud/Desktop/verisol/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.pdb
 /home/hamoud/Desktop/verisol/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.AssemblyReference.cache
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.GeneratedMSBuildEditorConfig.editorconfig
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfoInputs.cache
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfo.cs
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.CoreCompileInputs.cache
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.dll
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/refint/WasmToBoogie.dll
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.pdb
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.deps.json
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.runtimeconfig.json
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST
@@ -33,6 +25,14 @@
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/WasmToBoogie.pdb
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.dll
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.pdb
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBo.D0AA1B52.Up2Date
-/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.AssemblyReference.cache
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfoInputs.cache
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfo.cs
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.CoreCompileInputs.cache
 /home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.sourcelink.json
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBo.D0AA1B52.Up2Date
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.dll
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/refint/WasmToBoogie.dll
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.pdb
+/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll

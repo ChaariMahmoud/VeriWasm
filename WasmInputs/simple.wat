@@ -632,7 +632,7 @@
 );)
 
 
-(module
+(;;(module
   (func $test (param $x i32) (param $y i32) (param $cond i32) (result i32)
     ;; select: choose between x and y based on cond
     (local.get $x)      ;; v1
@@ -641,6 +641,103 @@
     (select)            ;; pushes either v1 or v2
 
     ;; force unreachable just after the select
+    (unreachable)
+  )
+);)
+
+(;;(module
+  (func $test (param $x i32) (param $y i32) (param $c i32)
+    (local.get $x)
+    (local.get $y)
+    (local.get $c)
+    (select)
+    (drop)
+    (unreachable)
+  )
+);)
+
+
+(;;(module
+  (func $test_select_unreachable (result i32)
+    ;; Push 10 and 20, then a condition (true = 1)
+    (i32.const 10)
+    (i32.const 20)
+    (i32.const 1)
+    (select)  ;; Should leave 20 on the stack
+
+    ;; Push a zero condition (false = 0), then select
+    (i32.const 5)
+    (i32.const 7)
+    (i32.const 0)
+    (select)  ;; Should leave 7 on the stack
+
+    ;; Now trigger an unreachable
+    (unreachable)
+  )
+);)
+(module
+  (func $deep_select_stress (param $a i32) (param $b i32) (param $c i32)
+    ;; Nesting level 1
+    (block $L1
+      ;; level 2
+      (block $L2
+        ;; level 3
+        (block $L3
+          ;; level 4 (loop)
+          (loop $L4
+            ;; level 5
+            (block $L5
+              ;; level 6
+              (block $L6
+                ;; ---------- NESTED SELECTS (3-deep inside 2-deep) ----------
+                ;; Outer select chooses between two inner selects with cond=1 (true)
+                (select
+                  ;; v1: inner select #1 (cond=1 => chooses v1 of this inner)
+                  (select
+                    ;; inner #1's v1 is itself a select (cond=0 => choose 2nd)
+                    (select (i32.const 10) (i32.const 11) (i32.const 0))
+                    ;; inner #1's v2
+                    (select (i32.const 20) (i32.const 21) (i32.const 1))
+                    ;; inner #1 cond
+                    (i32.const 1)
+                  )
+                  ;; v2: inner select #2 (cond=0 => choose v2)
+                  (select
+                    (select (local.get $a) (local.get $b) (local.get $c))
+                    (i32.const 42)
+                    (i32.const 0)
+                  )
+                  ;; outer cond = 1 → choose v1 (the left tree)
+                  (i32.const 1)
+                )
+                (drop) ;; drop result of the giant select tree
+
+                ;; ---------- IF (then/else are single nodes, so we use (block ...)) ----------
+                (if
+                  (i32.eqz (local.get $c))    ;; condition
+                  (block                      ;; THEN (single node)
+                    ;; push 0; br_if $L6 (won't branch)
+                    (i32.const 0)
+                    (br_if $L6)
+                  )
+                  (block                      ;; ELSE (single node)
+                    ;; push 1; br_if $L5 (will exit the $L5 block)
+                    (i32.const 1)
+                    (br_if $L5)
+                  )
+                )
+
+                ;; back to loop decision: push 0 → br_if $L4 won't loop
+                (i32.const 0)
+                (br_if $L4)
+              ) ;; end $L6
+            )   ;; end $L5
+          )     ;; end loop $L4
+        )       ;; end $L3
+      )         ;; end $L2
+    )           ;; end $L1
+
+    ;; If control reaches here, trap
     (unreachable)
   )
 )

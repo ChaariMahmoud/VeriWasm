@@ -106,14 +106,20 @@ else
                     return 1;
             }
             else
-            {
-                Console.WriteLine($"📝 Écriture du programme Boogie dans {outFileName}");
-                using (var writer = new StreamWriter(outFileName))
-                {
-                    writer.WriteLine(this.program.ToString());
+  {
+    Console.WriteLine($"📝 Écriture du programme Boogie dans {outFileName}");
+    var raw = this.program.ToString();                 // serialize
+    var pretty = BoogiePrettyPrinter.IndentBoogie(raw); // format
 
-                }
-            }
+    var dir = Path.GetDirectoryName(outFileName);
+    if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+
+    // Write UTF-8
+    using (var writer = new StreamWriter(outFileName, false, System.Text.Encoding.UTF8))
+    {
+        writer.Write(pretty);
+    }
+}
 
             if (TryProof && FindProof())
             {

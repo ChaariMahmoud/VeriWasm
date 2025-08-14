@@ -4,6 +4,7 @@ using System.IO;
 using WasmToBoogie.Parser;
 using WasmToBoogie.Parser.Ast;
 using WasmToBoogie.Conversion;
+using System.Text;
 namespace WasmToBoogie
 {
     public class WasmToBoogieMain
@@ -21,17 +22,26 @@ namespace WasmToBoogie
         {
             Console.WriteLine($"\uD83D\uDCD6 Lecture du fichier WAT : {wasmPath}");
 
-            // 1. Lire et parser le fichier .wat pour construire un AST WAT
             var parser = new WasmParser(wasmPath);
-            WasmModule wasmAst = parser.Parse();
+            var wasmAst = parser.Parse();
             Console.WriteLine($"✅ AST WAT généré avec {wasmAst.Functions.Count} fonctions.");
-            
-            // 2. Convertir l'AST WAT vers un programme Boogie
+
             var converter = new WasmAstToBoogie(contractName);
-            BoogieProgram boogieProgram = converter.Convert(wasmAst);
+            var boogieProgram = converter.Convert(wasmAst);
 
             Console.WriteLine("✅ Conversion WAT → Boogie terminée.");
             return boogieProgram;
+        }
+
+        // NEW: format + write without touching BoogieAST
+        public void TranslateAndWrite(string outPath)
+        {
+            var program = Translate();           // build program
+            var bpl = program.ToString();        // serialize
+            bpl = BoogiePrettyPrinter.IndentBoogie(bpl); // format
+            Directory.CreateDirectory(Path.GetDirectoryName(outPath)!);
+            File.WriteAllText(outPath, bpl, Encoding.UTF8);
+            Console.WriteLine($"📝 Boogie écrit: {outPath}");
         }
     }
 }

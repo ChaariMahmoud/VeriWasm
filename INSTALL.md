@@ -87,7 +87,7 @@ brew install dotnet
 
 #### 2. Clone Repository
 ```bash
-git clone (https://github.com/ChaariMahmoud/VeriSol-Extended.git)
+git clone https://github.com/ChaariMahmoud/VeriSol-Extended.git
 cd Verisol-Extended
 ```
 

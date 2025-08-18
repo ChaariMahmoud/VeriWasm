@@ -65,30 +65,30 @@ docker pull chaarimahmoud/verisol-extended:v1.0.0
 
 ### 2. Build from Source (Alternative)
 ```bash
-git clone <your-repo-url>
-cd verisol-extended
+git clone https://github.com/ChaariMahmoud/VeriSol-Extended.git
+cd Verisol-Extended
 docker build -t verisol-extended:latest .
 ```
 
 ### 3. Test the Installation
 ```bash
 # Show configuration
-docker run --rm chaarimahmoud/verisol-extended:latest --config
+docker run  chaarimahmoud/verisol-extended:latest --config
 
 # Validate tools
-docker run --rm chaarimahmoud/verisol-extended:latest --validate
+docker run  chaarimahmoud/verisol-extended:latest --validate
 
 # Show help
-docker run --rm chaarimahmoud/verisol-extended:latest --help
+docker run  chaarimahmoud/verisol-extended:latest --help
 ```
 
 ### 4. Verify WebAssembly Contracts
 ```bash
 # Basic usage
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm WasmInputs/simple.wat
+docker run  -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm WasmInputs/simple.wat
 
 # With custom WAT file
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm your-contract.wat
+docker run  -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm your-contract.wat
 ```
 
 ### 5. Verify Solidity Contracts

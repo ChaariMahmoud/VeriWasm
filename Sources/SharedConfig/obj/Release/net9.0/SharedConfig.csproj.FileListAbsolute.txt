@@ -1,0 +1,11 @@
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/bin/Release/net9.0/SharedConfig.deps.json
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/bin/Release/net9.0/SharedConfig.dll
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/bin/Release/net9.0/SharedConfig.pdb
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.AssemblyInfoInputs.cache
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.AssemblyInfo.cs
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.csproj.CoreCompileInputs.cache
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.dll
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/refint/SharedConfig.dll
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/SharedConfig.pdb
+/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/Release/net9.0/ref/SharedConfig.dll

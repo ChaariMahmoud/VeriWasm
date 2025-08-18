@@ -1,0 +1,65 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Build outputs
+bin/
+obj/
+nupkg/
+*.nupkg
+
+# IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test outputs
+TestResults/
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Documentation build
+docs/_build/
+
+# Docker files (keep main Dockerfile, ignore backups/alternatives)
+Dockerfile.*
+.dockerignore
+
+# CI/CD files
+.github/
+.azure/
+azure-pipelines.yml
+
+# Large binary files
+*.wasm
+*.dll
+*.exe
+*.so
+*.dylib
+
+# Keep necessary files
+!Sources/
+!README.md
+!INSTALL.md
+!WasmInputs/simple.wat
+!WasmInputs/simple.wasm
+!libbinaryenwrapper.so
+!bin/Debug/boogie
+!bin/Debug/corral

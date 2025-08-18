@@ -13,7 +13,7 @@ namespace WasmToBoogie.Tools
             int funcIndex = 0;
             foreach (var func in module.Functions)
             {
-                Console.WriteLine($"\n🔧 Fonction {funcIndex++}:");
+                Console.WriteLine($"\n🔧 Function {funcIndex++}:");
                 foreach (var node in func.Body)
                 {
                     PrettyPrintNode(node, 1);

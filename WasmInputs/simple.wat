@@ -504,7 +504,7 @@
   (export "main" (func $caller))
 );)
 
-(;;(module
+(module
   ;; --- 0-arg: returns 42 ---
   (func $const42 (result i32)
     (i32.const 42)
@@ -583,7 +583,7 @@
   )
 
   (export "main" (func $caller))
-);)
+)
 
 
 
@@ -675,7 +675,7 @@
     (unreachable)
   )
 );)
-(module
+(;;(module
   (func $deep_select_stress (param $a i32) (param $b i32) (param $c i32)
     ;; Nesting level 1
     (block $L1
@@ -740,7 +740,7 @@
     ;; If control reaches here, trap
     (unreachable)
   )
-)
+);)
 
 
 

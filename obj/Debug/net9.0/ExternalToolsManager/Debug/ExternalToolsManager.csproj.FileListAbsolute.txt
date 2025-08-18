@@ -26,3 +26,16 @@
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/refint/ExternalToolsManager.dll
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.pdb
 /home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ref/ExternalToolsManager.dll
+/home/hamoud/Music/verisol 2/bin/Debug/toolsourcesettings.json
+/home/hamoud/Music/verisol 2/bin/Debug/ExternalToolsManager.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/ExternalToolsManager.dll
+/home/hamoud/Music/verisol 2/bin/Debug/ExternalToolsManager.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.csproj.AssemblyReference.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfoInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfo.cs
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.csproj.CoreCompileInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/refint/ExternalToolsManager.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ref/ExternalToolsManager.dll

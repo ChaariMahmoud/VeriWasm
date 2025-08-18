@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BoogieAST\BoogieAST.csproj" />
+    <ProjectReference Include="..\SharedConfig\SharedConfig.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

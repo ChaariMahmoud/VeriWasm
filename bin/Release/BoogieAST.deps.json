@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "BoogieAST/0.1.1-alpha": {
+        "runtime": {
+          "BoogieAST.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BoogieAST/0.1.1-alpha": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

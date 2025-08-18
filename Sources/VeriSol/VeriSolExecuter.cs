@@ -15,6 +15,7 @@ namespace VeriSolRunner
     using System.Reflection;
     using System.Linq;
     using VeriSolRunner.ExternalTools;
+using SharedConfig;
     // using Microsoft.Boogie.ExprExtensions;
 
     internal class VeriSolExecutor
@@ -46,24 +47,15 @@ namespace VeriSolRunner
             this.ContractName = contractName;
             this.SolidityFileDir = Path.GetDirectoryName(solidityFilePath);
             Console.WriteLine($"SpecFilesDir = {SolidityFileDir}");
-            this.CorralPath = ExternalToolsManager.Corral.Command;
-            if (string.IsNullOrWhiteSpace(this.CorralPath))
-{
-    this.CorralPath = "/home/hamoud/Desktop/verisol/bin/Debug/corral";
-    Console.WriteLine("✅ Correction manuelle : CorralPath défini manuellement.");
-}
-else
-{
-    Console.WriteLine($"🔍 Corral détecté automatiquement : {this.CorralPath}");
-}
+            // Use centralized tool path configuration
+            this.CorralPath = ToolPaths.CorralPath;
+            Console.WriteLine($"🔍 Corral path: {this.CorralPath}");
 
-            this.BoogiePath = ExternalToolsManager.Boogie.Command;
-            if (string.IsNullOrWhiteSpace(this.BoogiePath))
-{
-    this.BoogiePath = "/home/hamoud/Desktop/verisol/bin/Debug/boogie";
-    Console.WriteLine("✅ Correction manuelle : BoogiePath défini manuellement.");
-}
-            this.SolcPath = ExternalToolsManager.Solc.Command;
+            // Use centralized tool path configuration
+            this.BoogiePath = ToolPaths.BoogiePath;
+            Console.WriteLine($"🔍 Boogie path: {this.BoogiePath}");
+            // Use centralized tool path configuration
+            this.SolcPath = ToolPaths.SolcPath;
             this.CorralRecursionLimit = corralRecursionLimit;
             this.ignoreMethods = new HashSet<Tuple<string, string>>(ignoreMethods);
             this.Logger = logger;
@@ -72,7 +64,6 @@ else
             this.printTransactionSequence = _printTransactionSequence;
             //this.GenInlineAttrs = genInlineAttrs;
             this.translatorFlags = _translatorFlags;
-            Console.WriteLine($"🔍 Chemin Boogie configuré : {this.BoogiePath}");
 
         }
 
@@ -91,11 +82,9 @@ else
     var baseName = Path.GetFileNameWithoutExtension(contractName);
     this.outFileName = $"BoogieOutputs/{baseName}.bpl";
 
-    this.CorralPath = "bin/Debug/corral";
-    Console.WriteLine("✅ Correction manuelle : CorralPath défini manuellement.");
-
-    this.BoogiePath = "bin/Debug/boogie";
-    Console.WriteLine("✅ Correction manuelle : BoogiePath défini manuellement.");
+    // Use centralized tool path configuration
+    this.CorralPath = ToolPaths.CorralPath;
+    this.BoogiePath = ToolPaths.BoogiePath;
         }
 
         public int Execute()
@@ -107,7 +96,7 @@ else
             }
             else
   {
-    Console.WriteLine($"📝 Écriture du programme Boogie dans {outFileName}");
+    Console.WriteLine($"📝 Writing Boogie program to {outFileName}");
     var raw = this.program.ToString();                 // serialize
     var pretty = BoogiePrettyPrinter.IndentBoogie(raw); // format
 
@@ -128,15 +117,15 @@ else
 
             if (TryRefutation)
             {
-                Console.WriteLine("🔄 Passage à la phase de réfutation avec Corral...");
+                Console.WriteLine("🔄 Moving to refutation phase with Corral...");
                 if (RunCorralForRefutation())
                 {
-                    Console.WriteLine("✅ Refutation Corral réussie (contre-exemple trouvé).\n");
+                    Console.WriteLine("✅ Corral refutation successful (counterexample found).\n");
                     return 0;
                 }
                 else
                 {
-                    Console.WriteLine("❌ Corral n’a pas trouvé de contre-exemple.\n");
+                    Console.WriteLine("❌ Corral did not find a counterexample.\n");
                     return 1;
                 }
             }
@@ -149,8 +138,8 @@ private bool FindProof()
 {
     var boogieArgs = new List<string>
     {
-        // ✅ Ne pas inclure les options non supportées par Boogie 3.5.1.0
-        $"-inline:spec", // Utilisé pour l'inlining des specs, compatible
+        // ✅ Do not include options not supported by Boogie 3.5.1.0
+        $"-inline:spec", // Used for spec inlining, compatible
         $"-inlineDepth:{translatorFlags.InlineDepthForBoogie}",
         $"-proc:BoogieEntry_*",
         outFileName
@@ -454,13 +443,13 @@ private string RunBinary(string cmdName, string arguments)
 {
     if (string.IsNullOrWhiteSpace(cmdName))
     {
-        Console.WriteLine("❌ ERREUR : Le chemin de la commande (cmdName) est vide !");
-        Console.WriteLine($"Arguments fournis : {arguments}");
-        throw new InvalidOperationException("Le chemin vers l'exécutable est vide. Vérifiez ExternalToolsManager.");
+        Console.WriteLine("❌ ERROR: Command path (cmdName) is empty!");
+        Console.WriteLine($"Arguments provided: {arguments}");
+        throw new InvalidOperationException("The path to the executable is empty. Check ExternalToolsManager.");
     }
     else
     {
-        Console.WriteLine($"✅ Lancement de la commande : {cmdName} {arguments}");
+        Console.WriteLine($"✅ Launching command: {cmdName} {arguments}");
     }
 
     Process p = new Process();

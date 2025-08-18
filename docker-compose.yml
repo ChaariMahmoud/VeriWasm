@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  verisol-extended:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: verisol-extended:latest
+    container_name: verisol-extended
+    volumes:
+      # Mount current directory for contract files
+      - .:/workspace
+      # Mount a volume for persistent outputs
+      - verisol-outputs:/app/BoogieOutputs
+    working_dir: /workspace
+    environment:
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+    # Default command - can be overridden
+    command: ["--help"]
+    # Run as non-root user for security
+    user: "verisol"
+    # Restart policy
+    restart: "no"
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+
+  # Development service with hot reload
+  verisol-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    image: verisol-extended:dev
+    container_name: verisol-extended-dev
+    volumes:
+      - .:/workspace
+      - verisol-outputs:/app/BoogieOutputs
+    working_dir: /workspace
+    environment:
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+    command: ["dotnet", "run", "--project", "Sources/VeriSol/VeriSol.csproj"]
+    user: "verisol"
+    restart: "no"
+    profiles:
+      - dev
+
+volumes:
+  verisol-outputs:
+    driver: local 

@@ -20,16 +20,16 @@ namespace WasmToBoogie
 
         public BoogieProgram Translate()
         {
-            Console.WriteLine($"\uD83D\uDCD6 Lecture du fichier WAT : {wasmPath}");
+            Console.WriteLine($"\uD83D\uDCD6 Reading WAT file: {wasmPath}");
 
             var parser = new WasmParser(wasmPath);
             var wasmAst = parser.Parse();
-            Console.WriteLine($"✅ AST WAT généré avec {wasmAst.Functions.Count} fonctions.");
+            Console.WriteLine($"✅ WAT AST generated with {wasmAst.Functions.Count} functions.");
 
             var converter = new WasmAstToBoogie(contractName);
             var boogieProgram = converter.Convert(wasmAst);
 
-            Console.WriteLine("✅ Conversion WAT → Boogie terminée.");
+            Console.WriteLine("✅ WAT → Boogie conversion completed.");
             return boogieProgram;
         }
 
@@ -41,7 +41,7 @@ namespace WasmToBoogie
             bpl = BoogiePrettyPrinter.IndentBoogie(bpl); // format
             Directory.CreateDirectory(Path.GetDirectoryName(outPath)!);
             File.WriteAllText(outPath, bpl, Encoding.UTF8);
-            Console.WriteLine($"📝 Boogie écrit: {outPath}");
+            Console.WriteLine($"📝 Boogie written: {outPath}");
         }
     }
 }

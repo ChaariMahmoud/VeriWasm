@@ -1,0 +1,14 @@
+/home/hamoud/Music/verisol 2/bin/Release/BoogieAST
+/home/hamoud/Music/verisol 2/bin/Release/BoogieAST.deps.json
+/home/hamoud/Music/verisol 2/bin/Release/BoogieAST.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Release/BoogieAST.dll
+/home/hamoud/Music/verisol 2/bin/Release/BoogieAST.pdb
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.AssemblyInfoInputs.cache
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.AssemblyInfo.cs
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.csproj.CoreCompileInputs.cache
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.dll
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/refint/BoogieAST.dll
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.pdb
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/BoogieAST.genruntimeconfig.cache
+/home/hamoud/Music/verisol 2/obj/Release/net9.0/BoogieAST/Release/ref/BoogieAST.dll

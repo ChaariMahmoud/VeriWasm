@@ -63,12 +63,12 @@ EXPORT void PrintModuleAST(BinaryenModuleRef module) {
     }
     char* watText = BinaryenModuleAllocateAndWriteText(module);
     if (watText) {
-        printf("\n===== AST WAT (depuis Binaryen) =====\n");
+        printf("\n===== AST WAT (from Binaryen) =====\n");
         printf("%s\n", watText);
         printf("=====================================\n\n");
         free(watText);
     } else {
-        fprintf(stderr, "❌ Impossible d'obtenir l'AST textuel du module.\n");
+        fprintf(stderr, "❌ Unable to obtain the textual AST of the module.\n");
     }
 }
 

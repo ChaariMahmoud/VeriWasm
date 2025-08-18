@@ -18,3 +18,22 @@
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.pdb
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.genruntimeconfig.cache
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolidityCFG/Debug/ref/SolidityCFG.dll
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityCFG
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityCFG.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityCFG.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityCFG.dll
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityCFG.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.csproj.AssemblyReference.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.AssemblyInfoInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.AssemblyInfo.cs
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.csproj.CoreCompileInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/Solidity.608B7497.Up2Date
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/refint/SolidityCFG.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.genruntimeconfig.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/ref/SolidityCFG.dll

@@ -22,3 +22,26 @@
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.pdb
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.genruntimeconfig.cache
 /home/hamoud/Desktop/verisol/obj/Debug/net9.0/SolToBoogieTest/Debug/ref/SolToBoogieTest.dll
+/home/hamoud/Music/verisol 2/bin/Debug/toolsourcesettings.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolidityAST
+/home/hamoud/Music/verisol 2/bin/Debug/BoogieAST.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/BoogieAST.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Debug/BoogieAST
+/home/hamoud/Music/verisol 2/bin/Debug/SolToBoogieTest
+/home/hamoud/Music/verisol 2/bin/Debug/SolToBoogieTest.deps.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolToBoogieTest.runtimeconfig.json
+/home/hamoud/Music/verisol 2/bin/Debug/SolToBoogieTest.dll
+/home/hamoud/Music/verisol 2/bin/Debug/SolToBoogieTest.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.csproj.AssemblyReference.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.GeneratedMSBuildEditorConfig.editorconfig
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.AssemblyInfoInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.AssemblyInfo.cs
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.csproj.CoreCompileInputs.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoo.95A06AF1.Up2Date
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/refint/SolToBoogieTest.dll
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.pdb
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.genruntimeconfig.cache
+/home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/ref/SolToBoogieTest.dll

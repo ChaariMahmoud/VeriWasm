@@ -11,6 +11,16 @@
         "runtime": {
           "bin/placeholder/BoogieAST.dll": {}
         }
+      },
+      "SharedConfig/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/SharedConfig.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SharedConfig.dll": {}
+        }
       }
     }
   },
@@ -19,11 +29,17 @@
       "type": "project",
       "path": "../BoogieAST/BoogieAST.csproj",
       "msbuildProject": "../BoogieAST/BoogieAST.csproj"
+    },
+    "SharedConfig/1.0.0": {
+      "type": "project",
+      "path": "../SharedConfig/SharedConfig.csproj",
+      "msbuildProject": "../SharedConfig/SharedConfig.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "BoogieAST >= 0.1.1-alpha"
+      "BoogieAST >= 0.1.1-alpha",
+      "SharedConfig >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -32,11 +48,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/WasmToBoogie.csproj",
+      "projectUniqueName": "/home/hamoud/Music/verisol 2/Sources/WasmToBoogie/WasmToBoogie.csproj",
       "projectName": "WasmToBoogie",
-      "projectPath": "/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/WasmToBoogie.csproj",
+      "projectPath": "/home/hamoud/Music/verisol 2/Sources/WasmToBoogie/WasmToBoogie.csproj",
       "packagesPath": "/home/hamoud/.nuget/packages/",
-      "outputPath": "/home/hamoud/Desktop/verisol 2/Sources/WasmToBoogie/obj/",
+      "outputPath": "/home/hamoud/Music/verisol 2/Sources/WasmToBoogie/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/hamoud/.nuget/NuGet/NuGet.Config"
@@ -52,8 +68,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/hamoud/Desktop/verisol 2/Sources/BoogieAST/BoogieAST.csproj": {
-              "projectPath": "/home/hamoud/Desktop/verisol 2/Sources/BoogieAST/BoogieAST.csproj"
+            "/home/hamoud/Music/verisol 2/Sources/BoogieAST/BoogieAST.csproj": {
+              "projectPath": "/home/hamoud/Music/verisol 2/Sources/BoogieAST/BoogieAST.csproj"
+            },
+            "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj": {
+              "projectPath": "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj"
             }
           }
         }

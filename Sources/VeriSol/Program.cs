@@ -10,12 +10,38 @@
     using Microsoft.Extensions.Logging;
     using SolToBoogie;
     using VeriSolRunner.ExternalTools;
+using SharedConfig;
 
 
     class Program
     {
         public static int Main(string[] args)
         {
+            // ✅ Tool configuration and validation mode
+            if (args.Length >= 1 && args[0] == "--config")
+            {
+                ToolPaths.PrintConfiguration();
+                Console.WriteLine(ToolPaths.GetConfigurationInstructions());
+                return 0;
+            }
+
+            // ✅ Tool validation mode
+            if (args.Length >= 1 && args[0] == "--validate")
+            {
+                Console.WriteLine("🔍 Validating tool paths...");
+                if (ToolPaths.ValidateTools())
+                {
+                    Console.WriteLine("✅ All tools are properly configured!");
+                    return 0;
+                }
+                else
+                {
+                    Console.WriteLine("❌ Some tools are missing. Please check the configuration.");
+                    Console.WriteLine(ToolPaths.GetConfigurationInstructions());
+                    return 1;
+                }
+            }
+
             // ✅ Mode WebAssembly
             if (args.Length >= 2 && args[0] == "--wasm")
             {
@@ -35,11 +61,11 @@ var executor = new VeriSolExecutor(
     logger: LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("WasmMode")
 );
 
-                Console.WriteLine("✅ Appel à WasmToBoogieMain réussi !");
+                Console.WriteLine("✅ WasmToBoogieMain call successful!");
                 return executor.Execute();
             }
 
-            // ✅ Mode Solidity classique
+            // ✅ Classic Solidity mode
             if (args.Length < 2)
             {
                 ShowUsage();
@@ -75,7 +101,7 @@ var executor = new VeriSolExecutor(
                 tryRefutation,
                 tryProofFlag,
                 logger,
-                printTransactionSequence, // ✅ Argument ajouté ici aussi
+                printTransactionSequence, // ✅ Argument added here too
                 translatorFlags
             );
 
@@ -84,16 +110,27 @@ var executor = new VeriSolExecutor(
 
         private static void ShowUsage()
         {
-            Console.WriteLine("VeriSol: Formal specification and verification tool for Solidity smart contracts");
-            Console.WriteLine("Usage:  VeriSol <relative-path-to-solidity-file> <top-level-contractName> [options]");
-            Console.WriteLine("        VeriSol --wasm <relative-path-to-wat-file>");
-            Console.WriteLine("options:");
+            Console.WriteLine("VeriSol Extended: Formal specification and verification tool for Solidity and WebAssembly smart contracts");
+            Console.WriteLine();
+            Console.WriteLine("Usage:");
+            Console.WriteLine("  VeriSol <solidity-file.sol> <contract-name> [options]     # Solidity mode");
+            Console.WriteLine("  VeriSol --wasm <wat-file.wat>                            # WebAssembly mode");
+            Console.WriteLine("  VeriSol --config                                          # Show tool configuration");
+            Console.WriteLine("  VeriSol --validate                                        # Validate tool paths");
+            Console.WriteLine();
+            Console.WriteLine("Solidity Options:");
             Console.WriteLine("   /noChk                  don't perform verification, default: false");
             Console.WriteLine("   /noPrf                  don't perform inductive verification, default: false");
             Console.WriteLine("   /txBound:k              max transaction depth, default: 4");
             Console.WriteLine("   /noTxSeq                don't print transaction sequence");
             Console.WriteLine("   /contractInfer          perform module invariant inference");
             Console.WriteLine("   /inlineDepth:k          inline nested calls upto depth k");
+            Console.WriteLine();
+            Console.WriteLine("Examples:");
+            Console.WriteLine("  VeriSol contract.sol MyContract");
+            Console.WriteLine("  VeriSol --wasm contract.wat");
+            Console.WriteLine("  VeriSol --config");
+            Console.WriteLine("  VeriSol --validate");
         }
     }
 }

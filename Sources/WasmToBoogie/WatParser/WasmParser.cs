@@ -4,12 +4,47 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using WasmToBoogie.Parser.Ast;
+using SharedConfig;
 
 namespace WasmToBoogie.Parser
 {
     public class WasmParser
     {
         private readonly string filePath;
+
+        static WasmParser()
+        {
+            // Load the Binaryen library from the centralized path
+            try
+            {
+                var binaryenPath = ToolPaths.BinaryenLibraryPath;
+                if (File.Exists(binaryenPath))
+                {
+                    // Load the library dynamically
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        LoadLibrary(binaryenPath);
+                    }
+                    else
+                    {
+                        // On Unix systems, we need to use dlopen
+                        // This is handled by the DllImport with the full path
+                    }
+                    Console.WriteLine($"✅ Binaryen library loaded from: {binaryenPath}");
+                }
+                else
+                {
+                    Console.WriteLine($"⚠️ Binaryen library not found at: {binaryenPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠️ Failed to load Binaryen library: {ex.Message}");
+            }
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr LoadLibrary(string lpFileName);
 
         public WasmParser(string filePath)
         {
@@ -85,21 +120,21 @@ namespace WasmToBoogie.Parser
         public WasmModule Parse()
         {
             if (!File.Exists(filePath))
-                throw new FileNotFoundException($"❌ Fichier WAT introuvable : {filePath}");
+                throw new FileNotFoundException($"❌ WAT file not found: {filePath}");
 
-            Console.WriteLine("📖 Lecture du fichier WAT : " + filePath);
+            Console.WriteLine("📖 Reading WAT file: " + filePath);
             string wasmPath = ConvertWatToWasm(filePath);
 
             IntPtr modulePtr = LoadWasmTextFile(wasmPath);
             if (modulePtr == IntPtr.Zero || !ValidateModule(modulePtr))
-                throw new Exception("❌ Erreur de lecture ou validation du module Binaryen");
+                throw new Exception("❌ Error reading or validating Binaryen module");
 
             PrintModuleAST(modulePtr);
 
             var module = new WasmModule();
 
             int fnCount = GetFunctionCount(modulePtr);
-            Console.WriteLine($"🔢 Nombre de fonctions : {fnCount}");
+            Console.WriteLine($"🔢 Number of functions: {fnCount}");
 
             for (int fi = 0; fi < fnCount; fi++)
             {
@@ -121,16 +156,16 @@ namespace WasmToBoogie.Parser
                 string watBody = bodyPtr != IntPtr.Zero ? (Marshal.PtrToStringAnsi(bodyPtr) ?? "") : "";
                 if (bodyPtr != IntPtr.Zero) FreeCString(bodyPtr);
 
-                Console.WriteLine($"\n📄 Corps extrait de la fonction #{fi} :\n{watBody}");
+                Console.WriteLine($"\n📄 Extracted body of function #{fi}:\n{watBody}");
 
                 var tokens = Tokenize(watBody);
-                Console.WriteLine("🔍 Tokens : " + string.Join(" ", tokens));
+                Console.WriteLine("🔍 Tokens: " + string.Join(" ", tokens));
 
                 int idx = 0;
                 var body = new List<WasmNode>();
                 while (idx < tokens.Count)
                 {
-                    Console.WriteLine($"\n🕽️ Appel ParseNode à l'index {idx}");
+                    Console.WriteLine($"\n🕽️ ParseNode call at index {idx}");
                     body.Add(ParseNode(tokens, ref idx));
                 }
 
@@ -164,7 +199,7 @@ namespace WasmToBoogie.Parser
                 module.Functions.Add(func);
             }
 
-            Console.WriteLine($"✅ AST WAT généré avec {module.Functions.Count} fonctions.");
+            Console.WriteLine($"✅ WAT AST generated with {module.Functions.Count} functions.");
 
             // Verify labels (optional)
             VerifyLabels(module);
@@ -351,7 +386,7 @@ namespace WasmToBoogie.Parser
         // --- label verification (unchanged) ---
         public void VerifyLabels(WasmModule module)
         {
-            Console.WriteLine("🔍 Vérification des labels...");
+            Console.WriteLine("🔍 Verifying labels...");
             foreach (var function in module.Functions)
             {
                 var availableLabels = new HashSet<string>();
@@ -360,7 +395,7 @@ namespace WasmToBoogie.Parser
                 labelScopes.Push(new HashSet<string>());
                 VerifyLabelsInNode(function.Body, availableLabels, labelScopes, labelDepths, 0);
             }
-            Console.WriteLine("✅ Vérification des labels terminée avec succès.");
+            Console.WriteLine("✅ Label verification completed successfully.");
         }
 
         private void VerifyLabelsInNode(List<WasmNode> nodes, HashSet<string> availableLabels, Stack<HashSet<string>> labelScopes, Dictionary<string, int> labelDepths, int currentDepth)
@@ -408,11 +443,11 @@ namespace WasmToBoogie.Parser
             if (!string.IsNullOrEmpty(blockNode.Label))
             {
                 if (availableLabels.Contains(blockNode.Label))
-                    throw new Exception($"❌ Label dupliqué trouvé : {blockNode.Label} (profondeur {currentDepth})");
+                    throw new Exception($"❌ Duplicate label found: {blockNode.Label} (depth {currentDepth})");
                 availableLabels.Add(blockNode.Label);
                 newScope.Add(blockNode.Label);
                 labelDepths[blockNode.Label] = currentDepth;
-                Console.WriteLine($"🔹 Label de bloc ajouté : {blockNode.Label} (profondeur {currentDepth})");
+                Console.WriteLine($"🔹 Block label added: {blockNode.Label} (depth {currentDepth})");
             }
             VerifyLabelsInNode(blockNode.Body, availableLabels, labelScopes, labelDepths, currentDepth + 1);
             labelScopes.Pop();
@@ -434,7 +469,7 @@ namespace WasmToBoogie.Parser
                 availableLabels.Add(loopNode.Label);
                 newScope.Add(loopNode.Label);
                 labelDepths[loopNode.Label] = currentDepth;
-                Console.WriteLine($"🔹 Label de boucle ajouté : {loopNode.Label} (profondeur {currentDepth})");
+                Console.WriteLine($"🔹 Loop label added: {loopNode.Label} (depth {currentDepth})");
             }
             VerifyLabelsInNode(loopNode.Body, availableLabels, labelScopes, labelDepths, currentDepth + 1);
             labelScopes.Pop();
@@ -459,7 +494,7 @@ namespace WasmToBoogie.Parser
                 throw new Exception($"❌ Label invalide dans {branchType} : {label}. Labels disponibles : {availableLabelsList}");
             }
             var labelDepth = labelDepths.GetValueOrDefault(label, -1);
-            Console.WriteLine($"🔹 {branchType} vers label valide : {label} (profondeur {labelDepth})");
+                            Console.WriteLine($"🔹 {branchType} to valid label: {label} (depth {labelDepth})");
         }
 
         private List<string> Tokenize(string wat)
@@ -476,7 +511,7 @@ namespace WasmToBoogie.Parser
             {
                 index++;
                 string op = tokens[index++];
-                Console.WriteLine($"🔸 Début bloc : ({op}");
+                Console.WriteLine($"🔸 Block start: ({op}");
 
                 if (op.EndsWith(".const"))
                 {
@@ -560,7 +595,7 @@ namespace WasmToBoogie.Parser
                 }
                 else if (op == "block")
                 {
-                    Console.WriteLine("  🔹 Bloc block");
+                    Console.WriteLine("  🔹 Block block");
                     string? label = tokens[index].StartsWith("$") ? tokens[index++] : null;
                     var body = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
@@ -570,7 +605,7 @@ namespace WasmToBoogie.Parser
                 }
                 else if (op == "loop")
                 {
-                    Console.WriteLine("  🔹 Bloc loop");
+                    Console.WriteLine("  🔹 Block loop");
                     string? label = tokens[index].StartsWith("$") ? tokens[index++] : null;
                     var body = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
@@ -580,7 +615,7 @@ namespace WasmToBoogie.Parser
                 }
                 else if (op == "if")
                 {
-                    Console.WriteLine("  🔹 Bloc if implicite");
+                    Console.WriteLine("  🔹 Block implicit if");
                     var condition = ParseNode(tokens, ref index);
                     var thenBody = new List<WasmNode> { ParseNode(tokens, ref index) };
                     List<WasmNode>? elseBody = null;
@@ -601,12 +636,12 @@ namespace WasmToBoogie.Parser
                     string label = tokens[index++];
                     var condition = ParseNode(tokens, ref index);
                     ExpectToken(tokens, ref index, ")");
-                    Console.WriteLine($"  🔹 Br_if vers label {label}");
+                    Console.WriteLine($"  🔹 Br_if to label {label}");
                     return new BrIfNode { Label = label, Condition = condition };
                 }
                 else if (op == "module" || op == "type" || op == "func")
                 {
-                    Console.WriteLine($"  ⚙️ Bloc de structure : {op}");
+                    Console.WriteLine($"  ⚙️ Structure block: {op}");
                     var inner = new List<WasmNode>();
                     while (index < tokens.Count && tokens[index] != ")")
                         inner.Add(ParseNode(tokens, ref index));
@@ -636,7 +671,7 @@ namespace WasmToBoogie.Parser
                 }
                 else
                 {
-                    Console.WriteLine($"  📦 Instruction générique : {op}");
+                    Console.WriteLine($"  📦 Generic instruction: {op}");
                     while (index < tokens.Count && tokens[index] != ")")
                         ParseNode(tokens, ref index);
                     ExpectToken(tokens, ref index, ")");
@@ -649,7 +684,7 @@ namespace WasmToBoogie.Parser
             }
             else
             {
-                Console.WriteLine($"📌 Instruction isolée : {tokens[index]}");
+                Console.WriteLine($"📌 Isolated instruction: {tokens[index]}");
                 return new RawInstructionNode { Instruction = tokens[index++] };
             }
         }

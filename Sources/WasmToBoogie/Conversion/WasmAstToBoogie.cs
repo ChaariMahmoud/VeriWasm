@@ -252,7 +252,7 @@ namespace WasmToBoogie.Conversion
              program.Declarations.Add(realToIntAxiom);*/
 
 
-            // === fonctions Boogie avec corps (au lieu d'axiomes) ===
+            // === Boogie functions with bodies (instead of axioms) ===
 
             // bool_to_real(b) { if b then 1.0 else 0.0 }
             // bool_to_real(b) : real { if b then 1.0 else 0.0 }

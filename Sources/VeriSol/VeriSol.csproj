@@ -9,7 +9,6 @@
 
   <PropertyGroup>
     <PackageId>VeriSol</PackageId>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/microsoft/verisol</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackAsTool>true</PackAsTool>
@@ -31,14 +30,11 @@
     <ProjectReference Include="..\SolidityAST\SolidityAST.csproj" />
     <ProjectReference Include="..\BoogieAST\BoogieAST.csproj" />
     <ProjectReference Include="..\SolToBoogie\SolToBoogie.csproj" />
+    <ProjectReference Include="..\SharedConfig\SharedConfig.csproj" />
     
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="$(RepositoryROOT)\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\WasmToBoogie\WasmToBoogie.csproj" />

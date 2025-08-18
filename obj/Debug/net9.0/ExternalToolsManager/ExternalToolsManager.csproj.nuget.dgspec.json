@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/hamoud/Desktop/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {}
+    "/home/hamoud/Music/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {}
   },
   "projects": {
-    "/home/hamoud/Desktop/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+    "/home/hamoud/Music/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/hamoud/Desktop/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectUniqueName": "/home/hamoud/Music/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
         "projectName": "ExternalToolsManager",
-        "projectPath": "/home/hamoud/Desktop/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectPath": "/home/hamoud/Music/verisol 2/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
         "packagesPath": "/home/hamoud/.nuget/packages/",
-        "outputPath": "/home/hamoud/Desktop/verisol 2/obj/Debug/net9.0/ExternalToolsManager/",
+        "outputPath": "/home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/hamoud/.nuget/NuGet/NuGet.Config"

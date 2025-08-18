@@ -42,8 +42,8 @@ docker pull chaarimahmoud/verisol-extended:latest
 
 #### 3. Build from Source (Alternative)
 ```bash
-git clone <[your-repo-url](https://github.com/ChaariMahmoud/VeriSol-Extended.git)>
-cd verisol-extended
+git clone https://github.com/ChaariMahmoud/VeriSol-Extended.git
+cd VeriSol-Extended
 docker build -t verisol-extended:latest .
 ```
 

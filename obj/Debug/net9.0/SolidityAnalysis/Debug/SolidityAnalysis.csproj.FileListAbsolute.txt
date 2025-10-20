@@ -57,3 +57,23 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST
+/home/chaari/VeriWasm/bin/Debug/SolidityAnalysis.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAnalysis.dll
+/home/chaari/VeriWasm/bin/Debug/SolidityAnalysis.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/Solidity.8994C1DA.Up2Date
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/refint/SolidityAnalysis.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/SolidityAnalysis.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityAnalysis/Debug/ref/SolidityAnalysis.dll

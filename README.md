@@ -26,29 +26,31 @@ WebAssembly (WASM) provides several properties that make it particularly suitabl
 
 Together, these features make WASM an excellent foundation for scalable and provable verification frameworks.
 
-## Features
+---
 
+## ✨ Features
 
 ### WebAssembly Support 
-- Translation of WASM smart contracts to Boogie
-- Support for WASM Text Format (.wat) files
-- Formal verification of WASM-based smart contracts
-- Stack-based execution model translation
-- Support for complex WASM features: loops, conditionals, function calls, error handling
+- Translation of WASM smart contracts to Boogie  
+- Support for WASM Text Format (`.wat`) files  
+- Formal verification of WASM-based smart contracts  
+- Stack-based execution model translation  
+- Support for complex WASM features: loops, conditionals, function calls, and error handling  
 
 ### Verification Capabilities
-- Inductive verification
-- Bounded model checking
-- Counterexample generation
-- Transaction sequence analysis
-- Contract invariant inference
+- Inductive verification  
+- Bounded model checking  
+- Counterexample generation  
+- Transaction sequence analysis  
+- Contract invariant inference  
 
+---
 
 ## ⚙️ Verification Pipeline
 
 ```
 ┌────────────┐      ┌───────────────┐      ┌───────────┐      ┌────────────┐      ┌──────────────────┐
-│  WAT File  │ ───► │   AST Builder │ ───► │   Boogie   │ ───► │   Z3/Corral │ ───► │ Verification Report │
+│  WAT File  │ ───► │   AST Builder │ ───► │   Boogie  │ ───► | z3/Corral  │ ───► │ Reporting        │
 └────────────┘      └───────────────┘      └───────────┘      └────────────┘      └──────────────────┘
 ```
 
@@ -100,14 +102,15 @@ The project aims to design a **certifiable verification condition generator (VCG
 and scalable reasoning framework for WebAssembly using Boogie and modern SMT-based approaches.
 
 ---
+
 ## 🧩 Installation
 
 ### Prerequisites
-- .NET 9.0 SDK  
-- Boogie  
-- Z3  
-- Corral  
-- Binaryen or WABT tools  
+- **.NET 9.0 SDK**  
+- **Boogie**  
+- **Z3**  
+- **Corral**  
+- **Binaryen** or **WABT** tools  
 
 ### Build from Source
 ```bash
@@ -115,17 +118,88 @@ git clone https://github.com/ChaariMahmoud/VeriWasm.git
 cd VeriWasm/Sources
 dotnet build
 ```
-##🧪 Usage
-Basic Command
+
+---
+
+## 🔧 Native Wrapper Setup
+
+This setup builds and installs the native wrapper so VeriWasm can call **Binaryen** directly.
+No environment variables are required because the library is installed in a system path and registered via `ldconfig`.
+
+### 1) Install build tools & WebAssembly toolchains
 ```bash
-dotnet run --wasm <file.wat>
+sudo apt update
+sudo apt install -y git cmake g++ ninja-build
+sudo apt install -y binaryen wabt
 ```
-## Output files:
--*BoogieOutputs/example.bpl* : generated Boogie code
 
--*boogie.txt* : Boogie verification output
+### 2) Build the Binaryen wrapper
+> Adjust `INC_BIN` / `LIB_BIN` if needed (defaults below work on Ubuntu/Debian with `apt install binaryen`).
+```bash
+INC_BIN="/usr/include"
+LIB_BIN="/usr/lib/x86_64-linux-gnu"
 
--*corral.txt* : Corral verification report
+gcc -shared -fPIC -I"$INC_BIN" -L"$LIB_BIN" -lbinaryen -o libbinaryenwrapper.so binaryen_wrapper.c
+```
+
+### 3) Install the wrapper and refresh loader cache
+```bash
+sudo cp libbinaryenwrapper.so /usr/local/lib/
+sudo ldconfig
+```
+
+### 4) Quick checks
+```bash
+wasm-opt --version
+wat2wasm --version
+```
+
+### 5) Build & run VeriWasm
+```bash
+dotnet build
+dotnet bin/Debug/VeriSol.dll --wasm WasmInputs/simple.wat
+```
+
+> The native wrapper is automatically resolved via `ldconfig`.  
+If installed elsewhere, specify its path using `LD_LIBRARY_PATH` or `NativeLibrary.Load(path)` in .NET.
+
+---
+
+## 🧰 External Tools
+
+VeriWasm relies on external formal verification tools for reasoning and SMT solving:
+
+| Tool | Description | Notes |
+|------|--------------|-------|
+| **Boogie** | Intermediate verification language and engine | Can be installed via .NET or published as self-contained executable |
+| **Corral** | Modular model checker built on Boogie | Supports self-contained .NET builds |
+| **Z3** | SMT solver used for VC checking | Install from your package manager (`apt install z3`) |
+| **Binaryen / WABT** | WebAssembly optimization and parsing toolkits | Required for AST extraction and translation |
+
+Both **Boogie** and **Corral** can optionally be built as **self-contained .NET applications**  
+(using `dotnet publish -r linux-x64 --self-contained true`) to ensure portability across operating systems and .NET versions.
+
+Refer to their official repositories for platform-specific installation:
+- [Boogie](https://github.com/boogie-org/boogie)
+- [Corral](https://github.com/boogie-org/corral)
+- [Z3](https://github.com/Z3Prover/z3)
+- [Binaryen](https://github.com/WebAssembly/binaryen)
+
+---
+
+## 🧪 Usage
+
+### Basic Command
+```bash
+dotnet bin/Debug/VeriSol.dll --wasm <file.wat>
+```
+
+### Output Files
+- **BoogieOutputs/example.bpl** — Generated Boogie code  
+- **boogie.txt** — Boogie verification output  
+- **corral.txt** — Corral verification report  
+
+---
 
 ## 🐳 Docker Support
 
@@ -138,7 +212,7 @@ docker pull chaarimahmoud/veriwasm:latest
 
 ### Run verification
 ```bash
-docker run --rm -v "$PWD":/workspace -w /workspace   chaarimahmoud/veriwasm:latest --wasm WasmInputs/example.wat
+docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/veriwasm:latest --wasm WasmInputs/example.wat
 ```
 
 ---
@@ -156,8 +230,8 @@ docker run --rm -v "$PWD":/workspace -w /workspace   chaarimahmoud/veriwasm:late
 ## 🤝 Contributing
 
 We welcome contributions and suggestions!  
-You can:
 
+You can:
 - Report issues  
 - Propose new features  
 - Submit pull requests  
@@ -190,4 +264,3 @@ You can:
 ---
 
 > © 2025 Mahmoud Chaari — VeriWasm: A Formal Verification Framework for WebAssembly
-

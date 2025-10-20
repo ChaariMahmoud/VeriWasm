@@ -1,2 +1,1 @@
-#!/bin/bash
-dotnet /home/hamoud/Desktop/verisol/corral/source/Corral/bin/Release/net6.0/corral.dll "$@"
+/usr/local/bin/corral

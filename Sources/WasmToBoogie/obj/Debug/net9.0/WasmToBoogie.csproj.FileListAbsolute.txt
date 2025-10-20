@@ -56,3 +56,24 @@
 /home/hamoud/Music/verisol 2/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll
 /home/hamoud/Music/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/SharedConfig.dll
 /home/hamoud/Music/verisol 2/Sources/WasmToBoogie/bin/Debug/net9.0/SharedConfig.pdb
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.deps.json
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/WasmToBoogie.deps.json
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/WasmToBoogie.dll
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/WasmToBoogie.pdb
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.dll
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/SharedConfig.dll
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/BoogieAST.pdb
+/home/chaari/VeriWasm/Sources/WasmToBoogie/bin/Debug/net9.0/SharedConfig.pdb
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.AssemblyInfo.cs
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.sourcelink.json
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBo.D0AA1B52.Up2Date
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.dll
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/refint/WasmToBoogie.dll
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/WasmToBoogie.pdb
+/home/chaari/VeriWasm/Sources/WasmToBoogie/obj/Debug/net9.0/ref/WasmToBoogie.dll

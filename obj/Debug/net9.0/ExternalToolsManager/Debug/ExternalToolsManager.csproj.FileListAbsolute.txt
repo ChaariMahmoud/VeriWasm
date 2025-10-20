@@ -39,3 +39,17 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/refint/ExternalToolsManager.dll
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/ExternalToolsManager/Debug/ref/ExternalToolsManager.dll
+/home/chaari/VeriWasm/bin/Debug/toolsourcesettings.json
+/home/chaari/VeriWasm/bin/Debug/ExternalToolsManager.deps.json
+/home/chaari/VeriWasm/bin/Debug/ExternalToolsManager.dll
+/home/chaari/VeriWasm/bin/Debug/ExternalToolsManager.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/refint/ExternalToolsManager.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ExternalToolsManager.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/ExternalToolsManager/Debug/ref/ExternalToolsManager.dll

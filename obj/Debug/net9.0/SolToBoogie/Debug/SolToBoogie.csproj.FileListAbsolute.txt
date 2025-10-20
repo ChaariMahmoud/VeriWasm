@@ -57,3 +57,23 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/refint/SolToBoogie.dll
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogie/Debug/ref/SolToBoogie.dll
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST
+/home/chaari/VeriWasm/bin/Debug/SolToBoogie.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolToBoogie.dll
+/home/chaari/VeriWasm/bin/Debug/SolToBoogie.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoo.E703E2C4.Up2Date
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/refint/SolToBoogie.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/SolToBoogie.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogie/Debug/ref/SolToBoogie.dll

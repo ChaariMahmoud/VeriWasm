@@ -71,3 +71,27 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/VeriSol/Debug/VeriSol.genruntimeconfig.cache
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/VeriSol/Debug/ref/VeriSol.dll
+/home/chaari/VeriWasm/bin/Debug/toolsourcesettings.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST
+/home/chaari/VeriWasm/bin/Debug/VeriSol
+/home/chaari/VeriWasm/bin/Debug/VeriSol.deps.json
+/home/chaari/VeriWasm/bin/Debug/VeriSol.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/VeriSol.dll
+/home/chaari/VeriWasm/bin/Debug/VeriSol.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.csproj.Up2Date
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/refint/VeriSol.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/VeriSol.genruntimeconfig.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/ref/VeriSol.dll

@@ -45,3 +45,27 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.genruntimeconfig.cache
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolToBoogieTest/Debug/ref/SolToBoogieTest.dll
+/home/chaari/VeriWasm/bin/Debug/toolsourcesettings.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST
+/home/chaari/VeriWasm/bin/Debug/SolToBoogieTest
+/home/chaari/VeriWasm/bin/Debug/SolToBoogieTest.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolToBoogieTest.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolToBoogieTest.dll
+/home/chaari/VeriWasm/bin/Debug/SolToBoogieTest.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoo.95A06AF1.Up2Date
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/refint/SolToBoogieTest.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/SolToBoogieTest.genruntimeconfig.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolToBoogieTest/Debug/ref/SolToBoogieTest.dll

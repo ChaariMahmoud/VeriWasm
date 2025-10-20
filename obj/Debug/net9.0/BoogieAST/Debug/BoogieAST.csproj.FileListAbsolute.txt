@@ -42,3 +42,18 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.genruntimeconfig.cache
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/BoogieAST/Debug/ref/BoogieAST.dll
+/home/chaari/VeriWasm/bin/Debug/BoogieAST
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.dll
+/home/chaari/VeriWasm/bin/Debug/BoogieAST.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/refint/BoogieAST.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/BoogieAST.genruntimeconfig.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/BoogieAST/Debug/ref/BoogieAST.dll

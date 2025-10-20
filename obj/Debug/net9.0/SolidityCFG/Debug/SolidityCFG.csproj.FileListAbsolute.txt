@@ -37,3 +37,23 @@
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.pdb
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.genruntimeconfig.cache
 /home/hamoud/Music/verisol 2/obj/Debug/net9.0/SolidityCFG/Debug/ref/SolidityCFG.dll
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityAST
+/home/chaari/VeriWasm/bin/Debug/SolidityCFG
+/home/chaari/VeriWasm/bin/Debug/SolidityCFG.deps.json
+/home/chaari/VeriWasm/bin/Debug/SolidityCFG.runtimeconfig.json
+/home/chaari/VeriWasm/bin/Debug/SolidityCFG.dll
+/home/chaari/VeriWasm/bin/Debug/SolidityCFG.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.csproj.AssemblyReference.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.GeneratedMSBuildEditorConfig.editorconfig
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.AssemblyInfoInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.AssemblyInfo.cs
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.csproj.CoreCompileInputs.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.sourcelink.json
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/Solidity.608B7497.Up2Date
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/refint/SolidityCFG.dll
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.pdb
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/SolidityCFG.genruntimeconfig.cache
+/home/chaari/VeriWasm/obj/Debug/net9.0/SolidityCFG/Debug/ref/SolidityCFG.dll

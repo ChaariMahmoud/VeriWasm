@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj": {}
+    "/home/chaari/VeriWasm/Sources/SharedConfig/SharedConfig.csproj": {}
   },
   "projects": {
-    "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj": {
+    "/home/chaari/VeriWasm/Sources/SharedConfig/SharedConfig.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj",
+        "projectUniqueName": "/home/chaari/VeriWasm/Sources/SharedConfig/SharedConfig.csproj",
         "projectName": "SharedConfig",
-        "projectPath": "/home/hamoud/Music/verisol 2/Sources/SharedConfig/SharedConfig.csproj",
-        "packagesPath": "/home/hamoud/.nuget/packages/",
-        "outputPath": "/home/hamoud/Music/verisol 2/Sources/SharedConfig/obj/",
+        "projectPath": "/home/chaari/VeriWasm/Sources/SharedConfig/SharedConfig.csproj",
+        "packagesPath": "/home/chaari/.nuget/packages/",
+        "outputPath": "/home/chaari/VeriWasm/Sources/SharedConfig/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/hamoud/.nuget/NuGet/NuGet.Config"
+          "/home/chaari/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,2 +1,1 @@
-#!/bin/bash
-/home/hamoud/.dotnet/tools/boogie "$@"
+/usr/local/bin/boogie

@@ -8,53 +8,53 @@
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
-    <repository type="git" url="https://github.com/microsoft/verisol" />
+    <repository type="git" url="https://github.com/microsoft/verisol" commit="546fc38dc6e63a52aa11a54b7036de038a05689b" />
   </metadata>
   <files>
-    <file src="/home/hamoud/Music/verisol 2/obj/Debug/net9.0/VeriSol/Debug/DotnetToolSettings.xml" target="tools/net9.0/any/DotnetToolSettings.xml" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAST" target="tools/net9.0/any/SolidityAST" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/BoogieAST" target="tools/net9.0/any/BoogieAST" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/toolsourcesettings.json" target="tools/net9.0/any/toolsourcesettings.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAST.deps.json" target="tools/net9.0/any/SolidityAST.deps.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAST.runtimeconfig.json" target="tools/net9.0/any/SolidityAST.runtimeconfig.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/BoogieAST.deps.json" target="tools/net9.0/any/BoogieAST.deps.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/BoogieAST.runtimeconfig.json" target="tools/net9.0/any/BoogieAST.runtimeconfig.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/VeriSol.dll" target="tools/net9.0/any/VeriSol.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/VeriSol.deps.json" target="tools/net9.0/any/VeriSol.deps.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/VeriSol.runtimeconfig.json" target="tools/net9.0/any/VeriSol.runtimeconfig.json" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/VeriSol.pdb" target="tools/net9.0/any/VeriSol.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/JsonSubTypes.dll" target="tools/net9.0/any/JsonSubTypes.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Configuration.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Configuration.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Abstractions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Configuration.Binder.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Binder.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Configuration.FileExtensions.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.FileExtensions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Configuration.Json.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Json.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.DependencyInjection.dll" target="tools/net9.0/any/Microsoft.Extensions.DependencyInjection.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.DependencyInjection.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.FileProviders.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.FileProviders.Abstractions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.FileProviders.Physical.dll" target="tools/net9.0/any/Microsoft.Extensions.FileProviders.Physical.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.FileSystemGlobbing.dll" target="tools/net9.0/any/Microsoft.Extensions.FileSystemGlobbing.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Logging.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Logging.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Abstractions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Logging.Configuration.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Configuration.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Logging.Console.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Console.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Options.dll" target="tools/net9.0/any/Microsoft.Extensions.Options.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Options.ConfigurationExtensions.dll" target="tools/net9.0/any/Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Microsoft.Extensions.Primitives.dll" target="tools/net9.0/any/Microsoft.Extensions.Primitives.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/Newtonsoft.Json.dll" target="tools/net9.0/any/Newtonsoft.Json.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/BoogieAST.dll" target="tools/net9.0/any/BoogieAST.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/ExternalToolsManager.dll" target="tools/net9.0/any/ExternalToolsManager.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SharedConfig.dll" target="tools/net9.0/any/SharedConfig.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAnalysis.dll" target="tools/net9.0/any/SolidityAnalysis.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAST.dll" target="tools/net9.0/any/SolidityAST.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolToBoogie.dll" target="tools/net9.0/any/SolToBoogie.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/WasmToBoogie.dll" target="tools/net9.0/any/WasmToBoogie.dll" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/ExternalToolsManager.pdb" target="tools/net9.0/any/ExternalToolsManager.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAST.pdb" target="tools/net9.0/any/SolidityAST.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/BoogieAST.pdb" target="tools/net9.0/any/BoogieAST.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolToBoogie.pdb" target="tools/net9.0/any/SolToBoogie.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SharedConfig.pdb" target="tools/net9.0/any/SharedConfig.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/WasmToBoogie.pdb" target="tools/net9.0/any/WasmToBoogie.pdb" />
-    <file src="/home/hamoud/Music/verisol 2/bin/Debug/publish/SolidityAnalysis.pdb" target="tools/net9.0/any/SolidityAnalysis.pdb" />
+    <file src="/home/chaari/VeriWasm/obj/Debug/net9.0/VeriSol/Debug/DotnetToolSettings.xml" target="tools/net9.0/any/DotnetToolSettings.xml" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAST" target="tools/net9.0/any/SolidityAST" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/BoogieAST" target="tools/net9.0/any/BoogieAST" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/toolsourcesettings.json" target="tools/net9.0/any/toolsourcesettings.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAST.deps.json" target="tools/net9.0/any/SolidityAST.deps.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAST.runtimeconfig.json" target="tools/net9.0/any/SolidityAST.runtimeconfig.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/BoogieAST.deps.json" target="tools/net9.0/any/BoogieAST.deps.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/BoogieAST.runtimeconfig.json" target="tools/net9.0/any/BoogieAST.runtimeconfig.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/VeriSol.dll" target="tools/net9.0/any/VeriSol.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/VeriSol.deps.json" target="tools/net9.0/any/VeriSol.deps.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/VeriSol.runtimeconfig.json" target="tools/net9.0/any/VeriSol.runtimeconfig.json" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/VeriSol.pdb" target="tools/net9.0/any/VeriSol.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/JsonSubTypes.dll" target="tools/net9.0/any/JsonSubTypes.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Configuration.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Configuration.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Configuration.Binder.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Binder.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Configuration.FileExtensions.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.FileExtensions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Configuration.Json.dll" target="tools/net9.0/any/Microsoft.Extensions.Configuration.Json.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.DependencyInjection.dll" target="tools/net9.0/any/Microsoft.Extensions.DependencyInjection.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.DependencyInjection.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.FileProviders.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.FileProviders.Abstractions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.FileProviders.Physical.dll" target="tools/net9.0/any/Microsoft.Extensions.FileProviders.Physical.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.FileSystemGlobbing.dll" target="tools/net9.0/any/Microsoft.Extensions.FileSystemGlobbing.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Logging.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Logging.Abstractions.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Abstractions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Logging.Configuration.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Configuration.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Logging.Console.dll" target="tools/net9.0/any/Microsoft.Extensions.Logging.Console.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Options.dll" target="tools/net9.0/any/Microsoft.Extensions.Options.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Options.ConfigurationExtensions.dll" target="tools/net9.0/any/Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Microsoft.Extensions.Primitives.dll" target="tools/net9.0/any/Microsoft.Extensions.Primitives.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/Newtonsoft.Json.dll" target="tools/net9.0/any/Newtonsoft.Json.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/BoogieAST.dll" target="tools/net9.0/any/BoogieAST.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/ExternalToolsManager.dll" target="tools/net9.0/any/ExternalToolsManager.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SharedConfig.dll" target="tools/net9.0/any/SharedConfig.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAnalysis.dll" target="tools/net9.0/any/SolidityAnalysis.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAST.dll" target="tools/net9.0/any/SolidityAST.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolToBoogie.dll" target="tools/net9.0/any/SolToBoogie.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/WasmToBoogie.dll" target="tools/net9.0/any/WasmToBoogie.dll" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/ExternalToolsManager.pdb" target="tools/net9.0/any/ExternalToolsManager.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAST.pdb" target="tools/net9.0/any/SolidityAST.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/BoogieAST.pdb" target="tools/net9.0/any/BoogieAST.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolToBoogie.pdb" target="tools/net9.0/any/SolToBoogie.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SharedConfig.pdb" target="tools/net9.0/any/SharedConfig.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/WasmToBoogie.pdb" target="tools/net9.0/any/WasmToBoogie.pdb" />
+    <file src="/home/chaari/VeriWasm/bin/Debug/publish/SolidityAnalysis.pdb" target="tools/net9.0/any/SolidityAnalysis.pdb" />
   </files>
 </package>

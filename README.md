@@ -1,42 +1,35 @@
-[![Build Status](https://shuvendu-lahiri.visualstudio.com/VeriSol%20Azure%20pipeline%20Build/_apis/build/status/microsoft.verisol?branchName=master)](https://shuvendu-lahiri.visualstudio.com/VeriSol%20Azure%20pipeline%20Build/_build/latest?definitionId=3&branchName=master)
+# VeriWasm
 
-# VeriSol Extended
+**VeriWasm** is a formal verification framework for **WebAssembly (WASM)** programs.  
+It translates **WAT (WebAssembly Text Format)** into **Boogie**, enabling reasoning with SMT solvers such as **Z3** and **Corral**, built on the modern **.NET 9.0** platform.
 
-VeriSol Extended is an enhanced version of the original [Microsoft VeriSol project](https://www.microsoft.com/en-us/research/project/verisol-a-formal-verifier-for-solidity-based-smart-contracts/) with additional support for WebAssembly (WASM) smart contracts and modern .NET 9.0 framework.
+## 🧩 Origin & Motivation
 
-## What's New
+The project originates from the formal verification concepts explored in **Microsoft VeriSol**,  
+which translated Solidity smart contracts into Boogie for verification.  
+However, **VeriWasm** redefines the vision: instead of focusing on one programming language,  
+it uses **WebAssembly (WASM)** as a *universal intermediate representation (IR)* for formal verification.
 
-This extended version includes:
+WebAssembly’s stack-based and deterministic nature makes it ideal for certifiable reasoning,  
+allowing verification of programs compiled from various source languages (Rust, C, Go, etc.)  
+and across different execution environments — not only blockchains.
 
-- **WasmToBoogie Translator**: A new module that translates WebAssembly (WASM) smart contracts to Boogie intermediate verification language
-- **Multi-Contract Support**: Now supports both Solidity (0.5.x) and WebAssembly smart contracts
-- **Modern .NET 9.0**: Upgraded from .NET Core 2.2 to .NET 9.0 for better performance and security
-- **Updated Dependencies**: 
-  - Boogie 3.5.1 (upgraded from older versions)
-  - Corral with .NET 6.0 support
-  - Enhanced toolchain compatibility
-- **Centralized Tool Configuration**: Manage Boogie/Corral/Z3/Binaryen paths via `ToolPaths` with `--config` and `--validate`
-- **Docker Support**: Complete containerized solution for easy deployment
+## 🌍 Why WebAssembly?
 
-## Original VeriSol
+WebAssembly (WASM) provides several properties that make it particularly suitable for formal verification:
 
-VeriSol (Verifier for Solidity) is a [Microsoft Research project](https://www.microsoft.com/en-us/research/project/verisol-a-formal-verifier-for-solidity-based-smart-contracts/) for prototyping a formal verification and analysis system for smart contracts developed in the popular [Solidity](https://solidity.readthedocs.io/) programming language. It is based on translating
-programs in Solidity language to programs in [Boogie](https://github.com/boogie-org/boogie) intermediate 
-verification language, and then leveraging and extending the verification toolchain for Boogie programs. The following [blog](https://www.microsoft.com/en-us/research/blog/researchers-work-to-secure-azure-blockchain-smart-contracts-with-formal-verification/) provides a high-level overview of the initial goals or VeriSol.
+- **Portability:** acts as a universal target for multiple languages (Rust, C, C++, Go, etc.)  
+- **Determinism:** well-defined execution semantics  
+- **Safety:** sandboxed linear memory model prevents undefined behavior  
+- **Verifiability:** simple, stack-based operational semantics  
+- **Adoption:** increasingly used for blockchain, embedded, and critical systems  
 
-The following paper describes the design of VeriSol and application of smart contract verification for [Azure Blockchain](https://azure.microsoft.com/en-us/solutions/blockchain/):
-
-> [__Formal Specification and Verification of Smart Contracts for Azure Blockchain__](https://www.microsoft.com/en-us/research/publication/formal-specification-and-verification-of-smart-contracts-for-azure-blockchain/),  Yuepeng Wang, Shuvendu K. Lahiri, Shuo Chen, Rong Pan, Isil Dillig, Cody Born, Immad Naseer, https://arxiv.org/abs/1812.08829
+Together, these features make WASM an excellent foundation for scalable and provable verification frameworks.
 
 ## Features
 
-### Solidity Support
-- Formal verification of Solidity 0.5.x smart contracts
-- Pre/post conditions, loop invariants, contract invariants
-- Modifies clauses and extended assertion language
-- Support for ERC20, DAO, and other common contract patterns
 
-### WebAssembly Support (NEW)
+### WebAssembly Support 
 - Translation of WASM smart contracts to Boogie
 - Support for WASM Text Format (.wat) files
 - Formal verification of WASM-based smart contracts
@@ -50,186 +43,77 @@ The following paper describes the design of VeriSol and application of smart con
 - Transaction sequence analysis
 - Contract invariant inference
 
-## Quick Start with Docker
 
-The easiest way to use VeriSol Extended is through Docker:
+## ⚙️ Verification Pipeline
+┌────────────┐ ┌───────────────┐ ┌───────────┐ ┌────────────┐ ┌──────────────────┐
+│ WAT File │ ───► │ AST Builder │ ───► │ Boogie │ ───► │ Z3/Corral │ ───► │ Verification Report │
+└────────────┘ └───────────────┘ └───────────┘ └────────────┘ └──────────────────┘
+VeriWasm translates WebAssembly programs into Boogie code,  
+then leverages existing SMT-based verification tools to check correctness properties, invariants, and safety guarantees.
 
-### 1. Use the Pre-built Docker Image (Recommended)
-```bash
-# Pull the latest image from Docker Hub
-docker pull chaarimahmoud/verisol-extended:latest
+---
 
-# Or use a specific version
-docker pull chaarimahmoud/verisol-extended:v1.0.0
-```
+## 🚀 Key Features
 
-### 2. Build from Source (Alternative)
-```bash
-git clone https://github.com/ChaariMahmoud/VeriSol-Extended.git
-cd Verisol-Extended
-docker build -t verisol-extended:latest .
-```
+### WebAssembly to Boogie Translation
+- Support for **WASM Text Format (.wat)**  
+- **AST-based translation** with stack-typed model (`push`, `pop`, `popToTmp`)  
+- Control flow constructs: `if`, `loop`, `block`, `br`, `br_if`  
+- Arithmetic, logical, and comparison operators  
+- Label management for structured flow control  
 
-### 3. Test the Installation
-```bash
-# Show configuration
-docker run  chaarimahmoud/verisol-extended:latest --config
+### Verification Infrastructure
+- Automatic generation of **Verification Conditions (VCs)**  
+- Verification via **Boogie → Z3 / Corral**  
+- Modular translation for scalability  
+- Support for multiple backends (Z3, CVC5, IC3/PDR, BMC)  
+- Detailed verification reports and counterexamples  
 
-# Validate tools
-docker run  chaarimahmoud/verisol-extended:latest --validate
+### Modular Architecture
+- `Parser/` → Parses WAT files and builds an AST  
+- `Conversion/` → Translates AST nodes into Boogie statements  
+- `Verification/` → Interfaces with Boogie and SMT solvers  
+- `ToolPaths.cs` → Centralized configuration for Boogie, Z3, Corral, and Binaryen  
 
-# Show help
-docker run  chaarimahmoud/verisol-extended:latest --help
-```
+---
 
-### 4. Verify WebAssembly Contracts
-```bash
-# Basic usage
-docker run  -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm WasmInputs/simple.wat
+## 🧠 Research Context
 
-# With custom WAT file
-docker run  -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm your-contract.wat
-```
+VeriWasm is developed as part of a **doctoral research project** on  
+**“Specification and Formal Verification of WebAssembly Programs”**  
+conducted at the **Laboratoire de Recherche de l’EPITA (LRE)**,  
+under the supervision of **Souheib Baarir**, in collaboration with **Sorbonne Université – EDITE**.
 
-### 5. Verify Solidity Contracts
-```bash
-# Basic usage
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest Test/regressions/ERC20-simplified.sol ERC20
+The project aims to design a **certifiable verification condition generator (VCG)**  
+and scalable reasoning framework for WebAssembly using Boogie and modern SMT-based approaches.
 
-# With custom contract
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest your-contract.sol ContractName
-```
-
-## Usage
-
-### Solidity Contracts
-```bash
-VeriSol <solidity-file.sol> <contract-name> [options]
-```
-
-### WebAssembly Contracts
-```bash
-VeriSol --wasm <wat-file.wat>
-```
-
-### Configuration and Validation
-```bash
-VeriSol --config      # Show tool configuration
-VeriSol --validate    # Validate tool paths
-```
-
-### Examples
-
-**Solidity Example:**
-```bash
-VeriSol Test/regressions/ERC20-simplified.sol ERC20
-```
-
-**WebAssembly Example:**
-```bash
-VeriSol --wasm WasmInputs/simple.wat
-```
-
-## Docker Usage Guide
+---
+## 🧩 Installation
 
 ### Prerequisites
-- Docker installed on your system
-- WAT files for WebAssembly contracts
-- Solidity files for Solidity contracts
+- .NET 9.0 SDK  
+- Boogie  
+- Z3  
+- Corral  
+- Binaryen or WABT tools  
 
-### Docker Commands
-
-#### Basic Commands
+### Build from Source
 ```bash
-# Pull the pre-built image
-docker pull chaarimahmoud/verisol-extended:latest
-
-# Build from source (alternative)
-docker build -t verisol-extended:latest .
-
-# Show help
-docker run --rm chaarimahmoud/verisol-extended:latest --help
-
-# Show configuration
-docker run --rm chaarimahmoud/verisol-extended:latest --config
-
-# Validate tools
-docker run --rm chaarimahmoud/verisol-extended:latest --validate
+git clone https://github.com/ChaariMahmoud/VeriWasm.git
+cd VeriWasm/Sources
+dotnet build
 ```
-
-#### WebAssembly Verification
+##🧪 Usage
+Basic Command
 ```bash
-# Basic WASM verification
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm WasmInputs/simple.wat
-
-# With custom output directory
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --wasm your-contract.wat
-
-# View generated Boogie output
-ls -la BoogieOutputs/
-cat BoogieOutputs/your-contract.bpl
+dotnet run --wasm <file.wat>
 ```
+## Output files:
+-*BoogieOutputs/example.bpl* – generated Boogie code
 
-#### Solidity Verification
-```bash
-# Basic Solidity verification
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest Test/regressions/ERC20-simplified.sol ERC20
+-*boogie.txt* – Boogie verification output
 
-# With custom contract
-docker run --rm -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest your-contract.sol ContractName
-```
-
-#### Custom Configuration
-```bash
-# Override tool paths
-docker run --rm \
-  -e VERISOL_BOOGIE_PATH=/custom/boogie \
-  -e VERISOL_CORRAL_PATH=/custom/corral \
-  -e VERISOL_BINARYEN_PATH=/custom/libbinaryenwrapper.so \
-  -v "$PWD":/workspace -w /workspace chaarimahmoud/verisol-extended:latest --validate
-```
-
-### Docker Configuration
-
-Inside the container, tool paths are pre-configured:
-```text
-VERISOL_BOOGIE_PATH=/app/tools/boogie
-VERISOL_CORRAL_PATH=/app/tools/corral
-VERISOL_Z3_PATH=/usr/bin/z3
-VERISOL_BINARYEN_PATH=/app/tools/libbinaryenwrapper.so
-```
-
-### Output Files
-
-The Docker container generates:
-- `BoogieOutputs/<contract-name>.bpl` - Generated Boogie code
-- `boogie.txt` - Boogie verification results
-- `corral.txt` - Corral verification results
-
-## INSTALL
-
-For detailed installation instructions, see [INSTALL.md](INSTALL.md).
-
-## VeriSol Code Contracts library
-
-The code contract library **VeriSolContracts.sol** is present [here](/Test/regressions/Libraries/VeriSolContracts.sol). This allows adding specifications in the form of pre/post conditions, loop invariants, contract invariants, modifies clauses, and extending the assertion language with constructs such as old, sum, etc.
-
-## Architecture
-
-### WasmToBoogie Module
-The new WasmToBoogie module consists of:
-
-- **WasmParser**: Parses WASM Text Format (.wat) files into an Abstract Syntax Tree (AST)
-- **WasmAstToBoogie**: Translates WASM AST to Boogie intermediate language
-- **Stack Management**: Handles WASM's stack-based execution model
-- **Control Flow**: Translates WASM control structures (blocks, loops, branches) to Boogie
-
-### Key Components
-- `WasmToBoogieMain.cs`: Main entry point for WASM translation
-- `WasmAstToBoogie.cs`: Core translation logic
-- `WatParser/`: WASM text format parser
-- `Conversion/`: AST to Boogie translation
-- `ToolPaths.cs`: Centralized tool configuration
+-*corral.txt* – Corral verification report
 
 ## Contributing
 
@@ -255,3 +139,4 @@ For questions, suggestions, or contributions, please contact:
 5. Open a Pull Request
 
 We appreciate all contributions that help make VeriSol Extended better!
+© 2025 Mahmoud Chaari — VeriWasm: A Formal Verification Framework for WebAssembly

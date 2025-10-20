@@ -45,11 +45,23 @@ Together, these features make WASM an excellent foundation for scalable and prov
 
 
 ## ⚙️ Verification Pipeline
-┌────────────┐ ┌───────────────┐ ┌───────────┐ ┌────────────┐ ┌──────────────────┐
-│ WAT File │ ───► │ AST Builder │ ───► │ Boogie │ ───► │ Z3/Corral │ ───► │ Verification Report │
-└────────────┘ └───────────────┘ └───────────┘ └────────────┘ └──────────────────┘
-VeriWasm translates WebAssembly programs into Boogie code,  
-then leverages existing SMT-based verification tools to check correctness properties, invariants, and safety guarantees.
+
+```
+┌────────────┐      ┌───────────────┐      ┌───────────┐      ┌────────────┐      ┌──────────────────┐
+│  WAT File  │ ───► │   AST Builder │ ───► │   Boogie   │ ───► │   Z3/Corral │ ───► │ Verification Report │
+└────────────┘      └───────────────┘      └───────────┘      └────────────┘      └──────────────────┘
+```
+
+VeriWasm translates WebAssembly programs written in **WAT (WebAssembly Text Format)**  
+into **Boogie** for formal reasoning. The translated Boogie code is then verified using  
+SMT solvers like **Z3** or model checkers like **Corral**, producing formal verification reports.
+
+**Pipeline summary:**
+1. Parse WAT and build an Abstract Syntax Tree (AST)  
+2. Convert the AST to Boogie code  
+3. Generate Verification Conditions (VCs)  
+4. Solve VCs with SMT backends (Z3 / Corral)  
+5. Produce verification reports and counterexamples if violations occur  
 
 ---
 
@@ -109,34 +121,73 @@ Basic Command
 dotnet run --wasm <file.wat>
 ```
 ## Output files:
--*BoogieOutputs/example.bpl* – generated Boogie code
+-*BoogieOutputs/example.bpl* : generated Boogie code
 
--*boogie.txt* – Boogie verification output
+-*boogie.txt* : Boogie verification output
 
--*corral.txt* – Corral verification report
+-*corral.txt* : Corral verification report
 
-## Contributing
+## 🐳 Docker Support
 
-We welcome contributions and suggestions! Feel free to contribute to this project by:
+VeriWasm can also be executed inside a containerized environment.
 
-- Reporting bugs and issues
-- Suggesting new features
-- Submitting pull requests
-- Improving documentation
-- Adding test cases
+### Pull the latest image
+```bash
+docker pull chaarimahmoud/veriwasm:latest
+```
 
-### Contact
+### Run verification
+```bash
+docker run --rm -v "$PWD":/workspace -w /workspace   chaarimahmoud/veriwasm:latest --wasm WasmInputs/example.wat
+```
 
-For questions, suggestions, or contributions, please contact:
-- **Email**: [chaarimahmoud55@gmail.com](mailto:chaarimahmoud55@gmail.com)
+---
+
+## 📈 Roadmap
+
+- Add memory operations (`load`, `store`, `heap`)
+- Multi-function and modular verification
+- Automatic invariant inference
+- Alternative solver integration (CVC5, IC3/PDR)
+- Web-based visualization for verification results
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions and suggestions!  
+You can:
+
+- Report issues  
+- Propose new features  
+- Submit pull requests  
+- Improve documentation  
 
 ### How to Contribute
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit your changes  
+4. Push and open a Pull Request  
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+---
 
-We appreciate all contributions that help make VeriSol Extended better!
-© 2025 Mahmoud Chaari — VeriWasm: A Formal Verification Framework for WebAssembly
+## 📧 Contact
+
+**Author:** Mahmoud Chaari  
+**Email:** [chaarimahmoud55@gmail.com](mailto:chaarimahmoud55@gmail.com)  
+**Affiliation:** Laboratoire de Recherche de l’EPITA (LRE) – Sorbonne Université, EDITE  
+**Keywords:** WebAssembly, Boogie, Formal Verification, Z3, Corral, .NET 9.0  
+
+---
+
+## 📚 References
+
+- [WebAssembly.org](https://webassembly.org/)  
+- [Boogie: Intermediate Verification Language](https://www.microsoft.com/en-us/research/project/boogie-an-intermediate-verification-language/)  
+- [Z3 SMT Solver](https://github.com/Z3Prover/z3)  
+- [Corral Model Checker](https://github.com/boogie-org/corral)  
+
+---
+
+> © 2025 Mahmoud Chaari — VeriWasm: A Formal Verification Framework for WebAssembly
+

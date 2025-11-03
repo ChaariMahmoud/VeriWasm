@@ -101,6 +101,7 @@ namespace WasmToBoogie.Parser.Ast
         // new: signature info (filled by parser)
         public int ParamCount { get; set; } = 0;
         public int LocalCount { get; set; } = 0;
+        public int ResultCount { get; set; } 
         public Dictionary<string, int> LocalIndexByName { get; set; } = new(); // params first [0..n-1], then locals
     }
 
@@ -108,4 +109,12 @@ namespace WasmToBoogie.Parser.Ast
     {
         public List<WasmFunction> Functions { get; set; } = new();
     }
+
+    public class ReturnNode : WasmNode { }
+public class NopNode : WasmNode { }
+public class BrTableNode : WasmNode {
+    public List<string> Targets { get; set; } = new(); 
+    public string Default { get; set; } = "";          
+}
+
 }

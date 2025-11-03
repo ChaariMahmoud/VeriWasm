@@ -1,3 +1,6 @@
 Corral program verifier version 1.0.0.0
-
-Error, Invalid input: Implementation of main procedure not found
+BoogieOutputs/simple.bpl(95,9): error: Error: goto label 'label$1_end_1' is undefined
+BoogieOutputs/simple.bpl(98,13): error: Error: goto label 'label$2_end_2' is undefined
+BoogieOutputs/simple.bpl(101,13): error: Error: goto label 'label$1_end_1' is undefined
+BoogieOutputs/simple.bpl(103,9): error: Error: goto label 'label$1_end_1' is undefined
+Failed to read BoogieOutputs/simple.bpl

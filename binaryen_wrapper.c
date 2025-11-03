@@ -108,6 +108,16 @@ EXPORT BinaryenExpressionRef GetFunctionBody(BinaryenModuleRef module, int index
     return BinaryenFunctionGetBody(func);
 }
 
+EXPORT int GetFunctionResultCount(BinaryenModuleRef module, int index) {
+    if (!module) return 0;
+    int n = BinaryenGetNumFunctions(module);
+    if (index < 0 || index >= n) return 0;
+    BinaryenFunctionRef f = BinaryenGetFunctionByIndex(module, index);
+    if (!f) return 0;
+    BinaryenType results = BinaryenFunctionGetResults(f);
+    return BinaryenTypeArity(results);
+}
+
 EXPORT int GetFunctionParamCount(BinaryenModuleRef module, int index) {
     if (!module) return 0;
     int n = BinaryenGetNumFunctions(module);
@@ -134,20 +144,21 @@ EXPORT const char* GetFunctionBodyText(BinaryenModuleRef module, int index) {
     BinaryenExpressionRef body = BinaryenFunctionGetBody(func);
     if (!body) return strdup("");
 
-    // Create a tiny temporary module to hold the copied expression
+    // *** NOUVEAU : récupérer signature exacte ***
+    BinaryenType params  = BinaryenFunctionGetParams(func);
+    BinaryenType results = BinaryenFunctionGetResults(func);
+
     BinaryenModuleRef tempMod = BinaryenModuleCreate();
     if (!tempMod) return strdup("");
 
-    // Copy the expression into the temporary module
     BinaryenExpressionRef copied = BinaryenExpressionCopy(body, tempMod);
 
-    // Add a dummy function (no params/results) whose body is the copied expression.
-    // This produces a self-contained WAT snippet you can tokenize.
+    // *** NOUVEAU : récréer la fonction avec la VRAIE signature ***
     BinaryenAddFunction(
         tempMod,
         "temp",
-        BinaryenTypeNone(),
-        BinaryenTypeNone(),
+        params,
+        results,
         NULL, 0,
         copied
     );

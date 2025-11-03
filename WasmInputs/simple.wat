@@ -504,86 +504,7 @@
   (export "main" (func $caller))
 );)
 
-(module
-  ;; --- 0-arg: returns 42 ---
-  (func $const42 (result i32)
-    (i32.const 42)
-  )
 
-  ;; --- 1-arg: if (x == 0) then 0 else (-x)
-  ;; NO 'if (result ...)' : both branches are side-effect-only.
-  (func $neg_if_zero (param $x i32) (result i32)
-    (local $r i32)
-    (if
-      (i32.eqz (local.get $x))      ;; condition
-      (block                        ;; then
-        (local.set $r (i32.const 0))
-        (drop (i32.const 123))      ;; extra drop for testing
-      )
-      (block                        ;; else
-        (local.set $r (i32.sub (i32.const 0) (local.get $x)))
-        (drop (i32.const 456))      ;; extra drop for testing
-      )
-    )
-    (local.get $r)
-  )
-
-  ;; --- 3-arg + local + tee: t := a+b; return (t*3) + c ---
-  (func $math (param $a i32) (param $b i32) (param $c i32) (result i32) (local $t i32)
-    (local.set $t
-      (i32.add (local.get $a) (local.get $b))
-    )
-    (i32.add
-      (local.tee $t
-        (i32.mul (local.get $t) (i32.const 3))
-      )
-      (local.get $c)
-    )
-  )
-
-  ;; --- 1-arg: comparison (x > 10) -> 0/1 ---
-  (func $compare (param $x i32) (result i32)
-    (i32.gt_s (local.get $x) (i32.const 10))
-  )
-
-  ;; --- loop + block + br/br_if + eqz ---
-  ;; computes sum_{i=1..n} i
-  (func $loop_sum (param $n i32) (result i32) (local $acc i32)
-    (local.set $acc (i32.const 0))
-    (block $exit
-      (loop $again
-        (br_if $exit (i32.eqz (local.get $n)))       ;; break if n==0
-        (local.set $acc (i32.add (local.get $acc) (local.get $n)))
-        (local.set $n   (i32.sub (local.get $n) (i32.const 1)))
-        (br $again)
-      )
-    )
-    (local.get $acc)
-  )
-
-  ;; --- wrap + drop ---
-  (func $wrap_and_const (result i32)
-    (drop (i32.wrap_i64 (i64.const 5)))
-    (call $const42)
-  )
-
-  ;; --- caller using folded call args & binary ops ---
-  ;; returns: neg_if_zero(a) + math(a,b,c) + compare(c) + loop_sum(b)
-  (func $caller (param $a i32) (param $b i32) (param $c i32) (result i32)
-    (i32.add
-      (i32.add
-        (call $neg_if_zero (local.get $a))
-        (call $math (local.get $a) (local.get $b) (local.get $c))
-      )
-      (i32.add
-        (call $compare (local.get $c))
-        (call $loop_sum (local.get $b))
-      )
-    )
-  )
-
-  (export "main" (func $caller))
-)
 
 
 
@@ -743,7 +664,133 @@
 );)
 
 
+(module
+  (func (export "tbl_named") (param $x i32) (result i32)
+    (block $outer
+      (block $inner
+        ;; sélecteur sur la pile
+        local.get $x
+        ;; 0 -> inner, 1 -> outer, default -> outer
+        br_table $inner $outer $outer
+      )
+      ;; si br 0 (inner) :
+      i32.const 11
+      return
+    )
+    ;; si br 1 (outer) ou default :
+    i32.const 22
+  )
+)
 
+
+(;;(module
+  ;; --- 0-arg: returns 42 ---
+  (func $const42 (result i32)
+    (i32.const 42)
+  )
+
+  ;; --- 1-arg: if (x == 0) then 0 else (-x)
+  ;; NO 'if (result ...)' : both branches are side-effect-only.
+  (func $neg_if_zero (param $x i32) (result i32)
+    (local $r i32)
+    (if
+      (i32.eqz (local.get $x))      ;; condition
+      (block                        ;; then
+        (local.set $r (i32.const 0))
+        (drop (i32.const 123))      ;; extra drop for testing
+      )
+      (block                        ;; else
+        (local.set $r (i32.sub (i32.const 0) (local.get $x)))
+        (drop (i32.const 456))      ;; extra drop for testing
+      )
+    )
+    (local.get $r)
+  )
+
+  ;; --- 3-arg + local + tee: t := a+b; return (t*3) + c ---
+  (func $math (param $a i32) (param $b i32) (param $c i32) (result i32) (local $t i32)
+    (local.set $t
+      (i32.add (local.get $a) (local.get $b))
+    )
+    (i32.add
+      (local.tee $t
+        (i32.mul (local.get $t) (i32.const 3))
+      )
+      (local.get $c)
+    )
+  )
+
+  ;; --- 1-arg: comparison (x > 10) -> 0/1 ---
+  (func $compare (param $x i32) (result i32)
+    (i32.gt_s (local.get $x) (i32.const 10))
+  )
+
+  ;; --- loop + block + br/br_if + eqz ---
+  ;; computes sum_{i=1..n} i
+  (func $loop_sum (param $n i32) (result i32) (local $acc i32)
+    (local.set $acc (i32.const 0))
+    (block $exit
+      (loop $again
+        (br_if $exit (i32.eqz (local.get $n)))       ;; break if n==0
+        (local.set $acc (i32.add (local.get $acc) (local.get $n)))
+        (local.set $n   (i32.sub (local.get $n) (i32.const 1)))
+        (br $again)
+      )
+    )
+    (local.get $acc)
+  )
+
+  ;; --- wrap + drop ---
+  (func $wrap_and_const (result i32)
+    (drop (i32.wrap_i64 (i64.const 5)))
+    (call $const42)
+  )
+
+  ;; --- caller using folded call args & binary ops ---
+  ;; returns: neg_if_zero(a) + math(a,b,c) + compare(c) + loop_sum(b)
+  (func $caller (param $a i32) (param $b i32) (param $c i32) (result i32)
+    (i32.add
+      (i32.add
+        (call $neg_if_zero (local.get $a))
+        (call $math (local.get $a) (local.get $b) (local.get $c))
+      )
+      (i32.add
+        (call $compare (local.get $c))
+        (call $loop_sum (local.get $b))
+        (unreachable)
+      )
+    )
+  )
+
+  (export "main" (func $caller))
+);)
+
+
+(;;(module
+  (func (export "test_nop") (param $p i32)
+    nop
+    nop
+    ;; leave the function (void)
+    return
+  )
+);)
+(;;(module
+  (func (export "switch3") (param $x i32) (result i32)
+    (block $default
+      (block $case0
+        (block $case1
+          local.get $x
+          br_table $case0 $case1 $default
+        )
+        i32.const 0
+        return
+      )
+      i32.const 1
+      return
+    )
+    i32.const 2
+  )
+);)
 
 
 
